@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "marketplace": "Marketplace",
+    "create": "Create",
+    "dashboard": "Dashboard"
+  },
+  "wallet": {
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect"
+  },
+  "common": {
+    "anime": "Anime",
+    "vault": "Vault",
+    "language": "Language"
+  }
+}

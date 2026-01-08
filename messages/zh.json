@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "首页",
+    "marketplace": "市场",
+    "create": "创建",
+    "dashboard": "仪表盘"
+  },
+  "wallet": {
+    "connect": "连接钱包",
+    "disconnect": "断开连接"
+  },
+  "common": {
+    "anime": "动漫",
+    "vault": "金库",
+    "language": "语言"
+  }
+}

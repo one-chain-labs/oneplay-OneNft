@@ -4,18 +4,52 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useOneWallet, shortenAddress } from "@/lib/wallet"
 import { Button } from "@/components/ui/button"
-import { Wallet, Home, Store, Plus, User, Settings } from "lucide-react"
+import { Wallet, Home, Store, Plus, User, Globe } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useState, useEffect } from "react"
+import zhMessagesData from "@/messages/zh.json"
+import enMessagesData from "@/messages/en.json"
+
+type Messages = {
+  nav: {
+    home: string
+    marketplace: string
+    create: string
+    dashboard: string
+  }
+  wallet: {
+    connect: string
+    disconnect: string
+  }
+  common: {
+    anime: string
+    vault: string
+    language: string
+  }
+}
+
+const zhMessages = zhMessagesData as Messages
+const enMessages = enMessagesData as Messages
 
 export function Header() {
   const pathname = usePathname()
   const { address, isConnected, connectWallet } = useOneWallet()
+  const [lang, setLang] = useState<"zh" | "en">("zh")
+  
+  const messages = lang === "zh" ? zhMessages : enMessages
 
   const navItems = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Marketplace", href: "/marketplace", icon: Store },
-    { name: "Create", href: "/create", icon: Plus },
-    { name: "Dashboard", href: "/dashboard", icon: User },
+    { name: messages.nav.home, href: "/", icon: Home },
+    { name: messages.nav.marketplace, href: "/marketplace", icon: Store },
+    { name: messages.nav.create, href: "/create", icon: Plus },
+    { name: messages.nav.dashboard, href: "/dashboard", icon: User },
   ]
 
   return (
@@ -24,8 +58,8 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
           <div className="text-2xl font-black">
-            <span className="bg-gradient-to-r from-teal-500 via-purple-500 bg-clip-text text-transparent">Anime</span>
-            <span className="bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">Vault</span>
+            <span className="bg-gradient-to-r from-teal-500 via-purple-500 bg-clip-text text-transparent">{messages.common.anime}</span>
+            <span className="bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">{messages.common.vault}</span>
           </div>
         </Link>
 
@@ -53,6 +87,18 @@ export function Header() {
 
         {/* Wallet Button */}
         <div className="flex items-center gap-2">
+          {/* Language Switcher */}
+          <Select value={lang} onValueChange={(val: "zh" | "en") => setLang(val)}>
+            <SelectTrigger className="w-[100px] h-9 text-xs">
+              <Globe className="mr-2 h-3 w-3" />
+              <SelectValue placeholder={messages.common.language} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="zh">中文</SelectItem>
+              <SelectItem value="en">English</SelectItem>
+            </SelectContent>
+          </Select>
+
           {isConnected && address ? (
             <Button 
               variant="outline" 
@@ -70,7 +116,7 @@ export function Header() {
               className="gap-2"
             >
               <Wallet className="h-4 w-4" />
-              Connect Wallet
+              {messages.wallet.connect}
             </Button>
           )}
         </div>
