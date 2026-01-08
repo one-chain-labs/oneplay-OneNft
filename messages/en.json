@@ -45,5 +45,230 @@
     "address_copied_desc": "Wallet address copied to clipboard",
     "view_explorer": "View on Explorer",
     "disconnect": "Disconnect"
+  },
+  "marketplace": {
+    "hero": {
+      "badge": "Complete NFT Lifecycle",
+      "title": "Anime NFT Marketplace",
+      "description": "Experience the complete lifecycle:",
+      "mint": "Mint",
+      "list": "List",
+      "trade": "Trade",
+      "collect": "Collect"
+    },
+    "stats": {
+      "total_nfts": "Total NFTs",
+      "listed": "Listed",
+      "total_volume": "Total Volume (OCT)",
+      "avg_price": "Avg Price (OCT)"
+    },
+    "tabs": {
+      "all": "All",
+      "minted": "Minted",
+      "listed": "Listed",
+      "trading": "Trading",
+      "collected": "Collected"
+    },
+    "filters": {
+      "search_placeholder": "Search anime NFTs, series, or characters...",
+      "button": "Filters",
+      "advanced": "Advanced Filters",
+      "category": "Category",
+      "rarity": "Rarity",
+      "stage": "Lifecycle Stage",
+      "price_range": "Price Range",
+      "clear_all": "Clear All Filters",
+      "sort": {
+        "newest": "Newest",
+        "oldest": "Oldest",
+        "price_low": "Price: Low to High",
+        "price_high": "Price: High to Low",
+        "name": "Name A-Z"
+      }
+    },
+    "list": {
+      "loading": "Loading marketplace listings...",
+      "found": "{count} found",
+      "found_plural": "{count} found",
+      "fetching": "Fetching live listings...",
+      "no_results_title": "No NFTs Found",
+      "no_results_desc": "Try adjusting your search criteria or filters to find more results.",
+      "view_details": "View Details",
+      "buy_now": "Buy Now",
+      "connect_wallet": "Connect Wallet"
+    },
+    "dialogs": {
+      "mint": {
+        "title": "Mint New NFT",
+        "desc": "Create a new anime merchandise NFT on the blockchain. This will cost a small gas fee.",
+        "note": "To mint an NFT, please use the Create page to upload your merchandise details and images.",
+        "go_create": "Go to Create Page"
+      },
+      "buy": {
+        "title": "Purchase NFT",
+        "desc": "Complete your purchase of {name} for {price} OCT",
+        "price": "Price",
+        "fee": "Platform Fee ({percent}%)",
+        "total": "Total",
+        "confirm": "Confirm Purchase",
+        "processing": "Processing..."
+      },
+      "cancel": "Cancel"
+    },
+    "stages": {
+      "minted": {
+        "label": "Minted",
+        "desc": "Recently minted NFT"
+      },
+      "listed": {
+        "label": "Listed",
+        "desc": "Available for purchase"
+      },
+      "trading": {
+        "label": "Trading",
+        "desc": "Active in marketplace"
+      },
+      "collected": {
+        "label": "Collected",
+        "desc": "In collector's vault"
+      },
+      "unknown": {
+        "label": "Unknown"
+      }
+    },
+    "categories": {
+      "figure": "Figure",
+      "card": "Card",
+      "poster": "Poster",
+      "accessory": "Accessory",
+      "other": "Other"
+    },
+    "rarities": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "legendary": "Legendary"
+    },
+    "toasts": {
+      "wallet_not_connected": "Wallet not connected",
+      "connect_to_mint": "Please connect your wallet to mint NFTs",
+      "connect_to_list": "Please connect your wallet to list NFTs",
+      "connect_to_buy": "Please connect your wallet to purchase NFTs",
+      "connect_to_interact": "Connect your wallet to interact with NFTs",
+      "mint_success": "NFT Minted! 🎉",
+      "mint_success_desc": "Your NFT has been successfully minted to the blockchain",
+      "mint_failed": "Minting failed",
+      "mint_failed_desc": "There was an error minting your NFT. Please try again.",
+      "list_success": "NFT Listed! 📋",
+      "list_success_desc": "Your NFT has been listed for {price} OCT",
+      "list_failed": "Listing failed",
+      "list_failed_desc": "There was an error listing your NFT. Please try again.",
+      "buy_success": "Purchase Successful! 🎊",
+      "buy_success_desc": "You've successfully purchased {name} for {price} OCT",
+      "buy_failed": "Purchase failed",
+      "buy_failed_desc": "There was an error completing the purchase. Please try again."
+    }
+  },
+  "create": {
+    "hero": {
+      "badge": "Tokenization Studio",
+      "title": "Create Your Anime NFT",
+      "description": "Transform your physical anime merchandise into verified NFTs on the blockchain"
+    },
+    "steps": {
+      "1": {
+        "name": "Item Details",
+        "desc": "Basic information about your merchandise"
+      },
+      "2": {
+        "name": "Verification",
+        "desc": "Upload photos and authenticity documents"
+      },
+      "3": {
+        "name": "Preview",
+        "desc": "Review your NFT before minting"
+      },
+      "4": {
+        "name": "Mint NFT",
+        "desc": "Create your NFT on the blockchain"
+      }
+    },
+    "nav": {
+      "previous": "Previous",
+      "step_indicator": "Step {current} of {total}"
+    },
+    "toasts": {
+      "wallet_not_connected": "Wallet not connected",
+      "connect_first": "Please connect your wallet first",
+      "contract_error": "Contract not configured",
+      "configure_contract": "Please configure the contract addresses",
+      "uploading": "Uploading image...",
+      "upload_wait": "Please wait while we upload your image to Supabase",
+      "upload_success": "Image uploaded!",
+      "upload_success_desc": "Image successfully uploaded to Supabase",
+      "mint_success": "NFT Minted Successfully! 🎉",
+      "mint_success_desc": "Your NFT has been created on the blockchain. View on explorer: {url}",
+      "mint_failed": "Minting failed"
+    }
+  },
+  "dashboard": {
+    "header": {
+      "collector": "Collector",
+      "connect_prompt": "Connect your wallet",
+      "member_since": "Member since {date}",
+      "settings": "Settings",
+      "create": "Create NFT"
+    },
+    "stats": {
+      "portfolio_value": "Portfolio Value",
+      "portfolio_desc": "Live valuation across owned NFTs",
+      "nfts_owned": "NFTs Owned",
+      "nfts_owned_desc": "Across all categories",
+      "total_volume": "Total Volume",
+      "transactions_logged": "{count} transactions logged",
+      "listed_nfts": "Listed NFTs",
+      "listed_desc": "Actively on marketplace"
+    },
+    "tabs": {
+      "collection": "My Collection",
+      "activity": "Activity",
+      "favorites": "Favorites",
+      "analytics": "Analytics"
+    },
+    "collection": {
+      "search_placeholder": "Search your collection...",
+      "loading": "Loading your collection...",
+      "empty": "No NFTs match your filters.",
+      "card": {
+        "minted": "Minted: {price}",
+        "current_value": "Current Value",
+        "listed": "Listed",
+        "list_for_sale": "List for Sale"
+      },
+      "filters": {
+        "all": "All Items",
+        "listed": "Listed",
+        "unlisted": "Not Listed",
+        "figure": "Figures",
+        "card": "Cards",
+        "poster": "Posters",
+        "accessory": "Accessories"
+      }
+    },
+    "activity": {
+      "title": "Transaction History",
+      "desc": "Your complete trading and minting history",
+      "empty": "No transactions yet.",
+      "actor": "Actor: {address}"
+    },
+    "favorites": {
+      "empty": "You have not added any favorites yet."
+    },
+    "analytics": {
+      "title": "Portfolio Performance",
+      "desc": "Your collection value over time",
+      "placeholder": "Portfolio chart will be displayed here"
+    }
   }
 }

@@ -42,6 +42,7 @@ import {
   TrendingDown,
 } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/components/providers/language-provider"
 import { useOneWallet } from "@/lib/wallet"
 import { useToast } from "@/hooks/use-toast"
 import type { AnimeNFT } from "@/lib/types"
@@ -67,6 +68,7 @@ export default function MarketplacePage() {
   const [showBuyDialog, setShowBuyDialog] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
 
+  const { t } = useLanguage()
   const { isConnected, address } = useOneWallet()
   const { toast } = useToast()
 
@@ -220,35 +222,35 @@ export default function MarketplacePage() {
     switch (stage) {
       case "minted":
         return {
-          label: "Minted",
+          label: t("marketplace.stages.minted.label"),
           icon: Sparkles,
           color: "bg-blue-500",
-          description: "Recently minted NFT",
+          description: t("marketplace.stages.minted.desc"),
         }
       case "listed":
         return {
-          label: "Listed",
+          label: t("marketplace.stages.listed.label"),
           icon: ShoppingBag,
           color: "bg-green-500",
-          description: "Available for purchase",
+          description: t("marketplace.stages.listed.desc"),
         }
       case "trading":
         return {
-          label: "Trading",
+          label: t("marketplace.stages.trading.label"),
           icon: TrendingUp,
           color: "bg-purple-500",
-          description: "Active in marketplace",
+          description: t("marketplace.stages.trading.desc"),
         }
       case "collected":
         return {
-          label: "Collected",
+          label: t("marketplace.stages.collected.label"),
           icon: Trophy,
           color: "bg-yellow-500",
-          description: "In collector's vault",
+          description: t("marketplace.stages.collected.desc"),
         }
       default:
         return {
-          label: "Unknown",
+          label: t("marketplace.stages.unknown.label"),
           icon: Layers,
           color: "bg-gray-500",
           description: "",
@@ -259,8 +261,8 @@ export default function MarketplacePage() {
   const handleMint = async () => {
     if (!isConnected) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet to mint NFTs",
+        title: t("marketplace.toasts.wallet_not_connected"),
+        description: t("marketplace.toasts.connect_to_mint"),
         variant: "destructive",
       })
       return
@@ -271,14 +273,14 @@ export default function MarketplacePage() {
       // Simulate minting process
       await new Promise((resolve) => setTimeout(resolve, 2000))
       toast({
-        title: "NFT Minted! 🎉",
-        description: "Your NFT has been successfully minted to the blockchain",
+        title: t("marketplace.toasts.mint_success"),
+        description: t("marketplace.toasts.mint_success_desc"),
       })
       setShowMintDialog(false)
     } catch (error) {
       toast({
-        title: "Minting failed",
-        description: "There was an error minting your NFT. Please try again.",
+        title: t("marketplace.toasts.mint_failed"),
+        description: t("marketplace.toasts.mint_failed_desc"),
         variant: "destructive",
       })
     } finally {
@@ -289,8 +291,8 @@ export default function MarketplacePage() {
   const handleList = async (nft: any, price: number) => {
     if (!isConnected) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet to list NFTs",
+        title: t("marketplace.toasts.wallet_not_connected"),
+        description: t("marketplace.toasts.connect_to_list"),
         variant: "destructive",
       })
       return
@@ -300,14 +302,14 @@ export default function MarketplacePage() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
       toast({
-        title: "NFT Listed! 📋",
-        description: `Your NFT has been listed for ${price} OCT`,
+        title: t("marketplace.toasts.list_success"),
+        description: t("marketplace.toasts.list_success_desc").replace("{price}", price.toString()),
       })
       setShowListDialog(false)
     } catch (error) {
       toast({
-        title: "Listing failed",
-        description: "There was an error listing your NFT. Please try again.",
+        title: t("marketplace.toasts.list_failed"),
+        description: t("marketplace.toasts.list_failed_desc"),
         variant: "destructive",
       })
     } finally {
@@ -318,8 +320,8 @@ export default function MarketplacePage() {
   const handleBuy = async (nft: any) => {
     if (!isConnected) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet to purchase NFTs",
+        title: t("marketplace.toasts.wallet_not_connected"),
+        description: t("marketplace.toasts.connect_to_buy"),
         variant: "destructive",
       })
       return
@@ -329,14 +331,16 @@ export default function MarketplacePage() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
       toast({
-        title: "Purchase Successful! 🎊",
-        description: `You've successfully purchased ${nft.name} for ${nft.price} OCT`,
+        title: t("marketplace.toasts.buy_success"),
+        description: t("marketplace.toasts.buy_success_desc")
+          .replace("{name}", nft.name)
+          .replace("{price}", nft.price.toString()),
       })
       setShowBuyDialog(false)
     } catch (error) {
       toast({
-        title: "Purchase failed",
-        description: "There was an error completing the purchase. Please try again.",
+        title: t("marketplace.toasts.buy_failed"),
+        description: t("marketplace.toasts.buy_failed_desc"),
         variant: "destructive",
       })
     } finally {
@@ -351,25 +355,25 @@ export default function MarketplacePage() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
             <Sparkles className="h-4 w-4" />
-            <span className="text-sm font-medium">Complete NFT Lifecycle</span>
+            <span className="text-sm font-medium">{t("marketplace.hero.badge")}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            Anime NFT Marketplace
+            {t("marketplace.hero.title")}
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Experience the complete lifecycle: <span className="font-semibold text-primary">Mint</span> →{" "}
-            <span className="font-semibold text-green-500">List</span> →{" "}
-            <span className="font-semibold text-purple-500">Trade</span> →{" "}
-            <span className="font-semibold text-yellow-500">Collect</span>
+            {t("marketplace.hero.description")} <span className="font-semibold text-primary">{t("marketplace.hero.mint")}</span> →{" "}
+            <span className="font-semibold text-green-500">{t("marketplace.hero.list")}</span> →{" "}
+            <span className="font-semibold text-purple-500">{t("marketplace.hero.trade")}</span> →{" "}
+            <span className="font-semibold text-yellow-500">{t("marketplace.hero.collect")}</span>
           </p>
 
           {/* Lifecycle Visualization */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             {[
-              { stage: "minted", label: "Mint", icon: Sparkles },
-              { stage: "listed", label: "List", icon: ShoppingBag },
-              { stage: "trading", label: "Trade", icon: TrendingUp },
-              { stage: "collected", label: "Collect", icon: Trophy },
+              { stage: "minted", label: t("marketplace.hero.mint"), icon: Sparkles },
+              { stage: "listed", label: t("marketplace.hero.list"), icon: ShoppingBag },
+              { stage: "trading", label: t("marketplace.hero.trade"), icon: TrendingUp },
+              { stage: "collected", label: t("marketplace.hero.collect"), icon: Trophy },
             ].map((item, index) => {
               const Icon = item.icon
               const info = getStageInfo(item.stage)
@@ -401,25 +405,25 @@ export default function MarketplacePage() {
             <Card className="border-2">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{marketplaceStats.totalNFTs}</div>
-                <div className="text-sm text-muted-foreground">Total NFTs</div>
+                <div className="text-sm text-muted-foreground">{t("marketplace.stats.total_nfts")}</div>
               </CardContent>
             </Card>
             <Card className="border-2">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-green-500">{marketplaceStats.listedCount}</div>
-                <div className="text-sm text-muted-foreground">Listed</div>
+                <div className="text-sm text-muted-foreground">{t("marketplace.stats.listed")}</div>
               </CardContent>
             </Card>
             <Card className="border-2">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-purple-500">{marketplaceStats.totalVolume.toFixed(1)}</div>
-                <div className="text-sm text-muted-foreground">Total Volume (OCT)</div>
+                <div className="text-sm text-muted-foreground">{t("marketplace.stats.total_volume")}</div>
               </CardContent>
             </Card>
             <Card className="border-2">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-blue-500">{marketplaceStats.averagePrice.toFixed(1)}</div>
-                <div className="text-sm text-muted-foreground">Avg Price (OCT)</div>
+                <div className="text-sm text-muted-foreground">{t("marketplace.stats.avg_price")}</div>
               </CardContent>
             </Card>
           </div>
@@ -430,31 +434,31 @@ export default function MarketplacePage() {
           <div className="flex flex-col lg:flex-row gap-4 mb-6">
             <TabsList className="grid w-full lg:w-auto grid-cols-5 bg-muted/50">
               <TabsTrigger value="all" className="data-[state=active]:bg-primary data-[state=active]:text-white">
-                All
+                {t("marketplace.tabs.all")}
               </TabsTrigger>
               <TabsTrigger
                 value="minted"
                 className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
               >
-                Minted
+                {t("marketplace.tabs.minted")}
               </TabsTrigger>
               <TabsTrigger
                 value="listed"
                 className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
               >
-                Listed
+                {t("marketplace.tabs.listed")}
               </TabsTrigger>
               <TabsTrigger
                 value="trading"
                 className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
               >
-                Trading
+                {t("marketplace.tabs.trading")}
               </TabsTrigger>
               <TabsTrigger
                 value="collected"
                 className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white"
               >
-                Collected
+                {t("marketplace.tabs.collected")}
               </TabsTrigger>
             </TabsList>
 
@@ -464,7 +468,7 @@ export default function MarketplacePage() {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
-                    placeholder="Search anime NFTs, series, or characters..."
+                    placeholder={t("marketplace.filters.search_placeholder")}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -479,7 +483,7 @@ export default function MarketplacePage() {
                   className="flex items-center gap-2"
                 >
                   <Filter className="h-4 w-4" />
-                  Filters
+                  {t("marketplace.filters.button")}
                 </Button>
 
                 <Select value={sortBy} onValueChange={setSortBy}>
@@ -487,11 +491,11 @@ export default function MarketplacePage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="newest">Newest</SelectItem>
-                    <SelectItem value="oldest">Oldest</SelectItem>
-                    <SelectItem value="price-low">Price: Low to High</SelectItem>
-                    <SelectItem value="price-high">Price: High to Low</SelectItem>
-                    <SelectItem value="name">Name A-Z</SelectItem>
+                    <SelectItem value="newest">{t("marketplace.filters.sort.newest")}</SelectItem>
+                    <SelectItem value="oldest">{t("marketplace.filters.sort.oldest")}</SelectItem>
+                    <SelectItem value="price-low">{t("marketplace.filters.sort.price_low")}</SelectItem>
+                    <SelectItem value="price-high">{t("marketplace.filters.sort.price_high")}</SelectItem>
+                    <SelectItem value="name">{t("marketplace.filters.sort.name")}</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -521,13 +525,13 @@ export default function MarketplacePage() {
           {showFilters && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle className="text-lg">Advanced Filters</CardTitle>
+                <CardTitle className="text-lg">{t("marketplace.filters.advanced")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Categories */}
                   <div>
-                    <Label className="text-sm font-medium mb-3 block">Category</Label>
+                    <Label className="text-sm font-medium mb-3 block">{t("marketplace.filters.category")}</Label>
                     <div className="space-y-2">
                       {categories.map((category) => (
                         <div key={category} className="flex items-center space-x-2">
@@ -543,7 +547,7 @@ export default function MarketplacePage() {
                             }}
                           />
                           <Label htmlFor={category} className="text-sm capitalize cursor-pointer">
-                            {category}
+                            {t(`marketplace.categories.${category}`)}
                           </Label>
                         </div>
                       ))}
@@ -552,7 +556,7 @@ export default function MarketplacePage() {
 
                   {/* Rarity */}
                   <div>
-                    <Label className="text-sm font-medium mb-3 block">Rarity</Label>
+                    <Label className="text-sm font-medium mb-3 block">{t("marketplace.filters.rarity")}</Label>
                     <div className="space-y-2">
                       {rarities.map((rarity) => (
                         <div key={rarity} className="flex items-center space-x-2">
@@ -568,7 +572,7 @@ export default function MarketplacePage() {
                             }}
                           />
                           <Label htmlFor={rarity} className="text-sm capitalize cursor-pointer">
-                            {rarity}
+                            {t(`marketplace.rarities.${rarity}`)}
                           </Label>
                         </div>
                       ))}
@@ -577,7 +581,7 @@ export default function MarketplacePage() {
 
                   {/* Lifecycle Stage */}
                   <div>
-                    <Label className="text-sm font-medium mb-3 block">Lifecycle Stage</Label>
+                    <Label className="text-sm font-medium mb-3 block">{t("marketplace.filters.stage")}</Label>
                     <div className="space-y-2">
                       {lifecycleStages.map((stage) => (
                         <div key={stage} className="flex items-center space-x-2">
@@ -593,7 +597,7 @@ export default function MarketplacePage() {
                             }}
                           />
                           <Label htmlFor={stage} className="text-sm capitalize cursor-pointer">
-                            {stage}
+                            {t(`marketplace.stages.${stage}.label`)}
                           </Label>
                         </div>
                       ))}
@@ -604,7 +608,7 @@ export default function MarketplacePage() {
                 {/* Price Range */}
                 <div>
                   <Label className="text-sm font-medium mb-3 block">
-                    Price Range: {priceRange[0]} - {priceRange[1]} OCT
+                    {t("marketplace.filters.price_range")}: {priceRange[0]} - {priceRange[1]} OCT
                   </Label>
                   <Slider
                     value={priceRange}
@@ -628,7 +632,7 @@ export default function MarketplacePage() {
                   }}
                   className="w-full"
                 >
-                  Clear All Filters
+                  {t("marketplace.filters.clear_all")}
                 </Button>
               </CardContent>
             </Card>
@@ -639,19 +643,19 @@ export default function MarketplacePage() {
             <div className="flex items-center justify-between mb-6">
               <p className="text-muted-foreground">
                 {isLoading
-                  ? "Loading marketplace listings..."
-                  : `${filteredAndSortedNFTs.length} NFT${filteredAndSortedNFTs.length !== 1 ? "s" : ""} found`}
+                  ? t("marketplace.list.loading")
+                  : t("marketplace.list.found_plural").replace("{count}", filteredAndSortedNFTs.length.toString())}
               </p>
               {!isConnected && (
-                <Button onClick={() => toast({ title: "Connect your wallet to interact with NFTs" })} variant="outline">
+                <Button onClick={() => toast({ title: t("marketplace.toasts.connect_to_interact") })} variant="outline">
                   <Wallet className="h-4 w-4 mr-2" />
-                  Connect Wallet
+                  {t("marketplace.list.connect_wallet")}
                 </Button>
               )}
             </div>
 
             {isLoading ? (
-              <div className="text-center py-16 text-muted-foreground">Fetching live listings...</div>
+              <div className="text-center py-16 text-muted-foreground">{t("marketplace.list.fetching")}</div>
             ) : viewMode === "grid" ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredAndSortedNFTs.map((nft) => {
@@ -670,7 +674,7 @@ export default function MarketplacePage() {
                           className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className={`absolute top-3 left-3 px-3 py-1.5 rounded-full text-white text-xs font-bold ${getRarityColor(nft.rarity)}`}>
-                          {nft.rarity.toUpperCase()}
+                          {t(`marketplace.rarities.${nft.rarity}`)}
                         </div>
                         <div className={`absolute top-3 right-3 flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-medium ${stageInfo.color}`}>
                           <StageIcon className="h-3 w-3" />
@@ -696,11 +700,11 @@ export default function MarketplacePage() {
                       <CardContent className="pt-0 space-y-3">
                         <div className="flex items-center justify-between">
                           <Badge variant="secondary" className="text-xs">
-                            {nft.category}
+                            {t(`marketplace.categories.${nft.category}`)}
                           </Badge>
                           {nft.price && (
                             <div className="text-right">
-                              <div className="text-sm text-muted-foreground">Price</div>
+                              <div className="text-sm text-muted-foreground">{t("marketplace.dialogs.buy.price")}</div>
                               <div className="text-lg font-bold text-primary">{nft.price} OCT</div>
                             </div>
                           )}
@@ -711,7 +715,7 @@ export default function MarketplacePage() {
                             asChild
                             onClick={() => setSelectedNFT(nft)}
                           >
-                            <Link href={`/marketplace/${nft.id}`}>View Details</Link>
+                            <Link href={`/marketplace/${nft.id}`}>{t("marketplace.list.view_details")}</Link>
                           </Button>
                           {nft.isListed && nft.price && (
                             <Button
@@ -760,7 +764,7 @@ export default function MarketplacePage() {
                               </div>
                               {nft.price && (
                                 <div className="text-right">
-                                  <div className="text-sm text-muted-foreground">Price</div>
+                                  <div className="text-sm text-muted-foreground">{t("marketplace.dialogs.buy.price")}</div>
                                   <div className="text-xl font-bold text-primary">{nft.price} OCT</div>
                                 </div>
                               )}
@@ -768,16 +772,16 @@ export default function MarketplacePage() {
                             <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{nft.description}</p>
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">
-                                <Badge variant="secondary">{nft.category}</Badge>
-                                <Badge className={getRarityColor(nft.rarity)}>{nft.rarity}</Badge>
+                                <Badge variant="secondary">{t(`marketplace.categories.${nft.category}`)}</Badge>
+                                <Badge className={getRarityColor(nft.rarity)}>{t(`marketplace.rarities.${nft.rarity}`)}</Badge>
                                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                                   <Clock className="h-3 w-3" />
-                                  <span>Minted {new Date(nft.createdAt).toLocaleDateString()}</span>
+                                  <span>{t("marketplace.stages.minted.label")} {new Date(nft.createdAt).toLocaleDateString()}</span>
                                 </div>
                               </div>
                               <div className="flex gap-2">
                                 <Button variant="outline" asChild>
-                                  <Link href={`/marketplace/${nft.id}`}>View Details</Link>
+                                  <Link href={`/marketplace/${nft.id}`}>{t("marketplace.list.view_details")}</Link>
                                 </Button>
                                 {nft.isListed && nft.price && (
                                   <Button
@@ -788,7 +792,7 @@ export default function MarketplacePage() {
                                     }}
                                   >
                                     <ShoppingBag className="h-4 w-4 mr-2" />
-                                    Buy Now
+                                    {t("marketplace.list.buy_now")}
                                   </Button>
                                 )}
                               </div>
@@ -807,9 +811,9 @@ export default function MarketplacePage() {
                 <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <Search className="h-12 w-12 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">No NFTs Found</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("marketplace.list.no_results_title")}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Try adjusting your search criteria or filters to find more results.
+                  {t("marketplace.list.no_results_desc")}
                 </p>
                 <Button
                   variant="outline"
@@ -821,7 +825,7 @@ export default function MarketplacePage() {
                     setPriceRange([0, 100])
                   }}
                 >
-                  Clear All Filters
+                  {t("marketplace.filters.clear_all")}
                 </Button>
               </div>
             )}
@@ -833,22 +837,22 @@ export default function MarketplacePage() {
       <Dialog open={showMintDialog} onOpenChange={setShowMintDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Mint New NFT</DialogTitle>
+            <DialogTitle>{t("marketplace.dialogs.mint.title")}</DialogTitle>
             <DialogDescription>
-              Create a new anime merchandise NFT on the blockchain. This will cost a small gas fee.
+              {t("marketplace.dialogs.mint.desc")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              To mint an NFT, please use the Create page to upload your merchandise details and images.
+              {t("marketplace.dialogs.mint.note")}
             </p>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowMintDialog(false)}>
-              Cancel
+              {t("marketplace.dialogs.cancel")}
             </Button>
             <Button asChild>
-              <Link href="/create">Go to Create Page</Link>
+              <Link href="/create">{t("marketplace.dialogs.mint.go_create")}</Link>
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -858,9 +862,11 @@ export default function MarketplacePage() {
       <Dialog open={showBuyDialog} onOpenChange={setShowBuyDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Purchase NFT</DialogTitle>
+            <DialogTitle>{t("marketplace.dialogs.buy.title")}</DialogTitle>
             <DialogDescription>
-              Complete your purchase of {selectedNFT?.name} for {selectedNFT?.price} OCT
+              {t("marketplace.dialogs.buy.desc")
+                .replace("{name}", selectedNFT?.name || "")
+                .replace("{price}", selectedNFT?.price?.toString() || "")}
             </DialogDescription>
           </DialogHeader>
           {selectedNFT && (
@@ -879,15 +885,15 @@ export default function MarketplacePage() {
               </div>
               <div className="p-4 bg-muted rounded-lg space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Price</span>
+                  <span className="text-muted-foreground">{t("marketplace.dialogs.buy.price")}</span>
                   <span className="font-medium">{selectedNFT.price} OCT</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Platform Fee (2.5%)</span>
+                  <span className="text-muted-foreground">{t("marketplace.dialogs.buy.fee").replace("{percent}", "2.5")}</span>
                   <span className="font-medium">{(selectedNFT.price * 0.025).toFixed(2)} OCT</span>
                 </div>
                 <div className="flex justify-between pt-2 border-t">
-                  <span className="font-semibold">Total</span>
+                  <span className="font-semibold">{t("marketplace.dialogs.buy.total")}</span>
                   <span className="font-bold text-primary">
                     {(selectedNFT.price * 1.025).toFixed(2)} OCT
                   </span>
@@ -897,18 +903,18 @@ export default function MarketplacePage() {
           )}
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowBuyDialog(false)} disabled={isProcessing}>
-              Cancel
+              {t("marketplace.dialogs.cancel")}
             </Button>
             <Button onClick={() => handleBuy(selectedNFT)} disabled={isProcessing || !isConnected}>
               {isProcessing ? (
                 <>
                   <Zap className="h-4 w-4 mr-2 animate-spin" />
-                  Processing...
+                  {t("marketplace.dialogs.buy.processing")}
                 </>
               ) : (
                 <>
                   <Wallet className="h-4 w-4 mr-2" />
-                  Confirm Purchase
+                  {t("marketplace.dialogs.buy.confirm")}
                 </>
               )}
             </Button>

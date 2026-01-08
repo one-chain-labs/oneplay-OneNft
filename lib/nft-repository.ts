@@ -21,6 +21,7 @@ export interface NFTData {
   mint_tx_digest?: string
   list_tx_digest?: string
   purchase_tx_digest?: string
+  created_at?: string
 }
 
 export interface NFTTransaction {

@@ -45,5 +45,230 @@
     "address_copied_desc": "钱包地址已复制到剪贴板",
     "view_explorer": "在浏览器中查看",
     "disconnect": "断开连接"
+  },
+  "marketplace": {
+    "hero": {
+      "badge": "完整的 NFT 生命周期",
+      "title": "动漫 NFT 市场",
+      "description": "体验完整的生命周期：",
+      "mint": "铸造",
+      "list": "上架",
+      "trade": "交易",
+      "collect": "收藏"
+    },
+    "stats": {
+      "total_nfts": "NFT 总数",
+      "listed": "已上架",
+      "total_volume": "总交易量 (OCT)",
+      "avg_price": "平均价格 (OCT)"
+    },
+    "tabs": {
+      "all": "全部",
+      "minted": "已铸造",
+      "listed": "已上架",
+      "trading": "交易中",
+      "collected": "已收藏"
+    },
+    "filters": {
+      "search_placeholder": "搜索动漫 NFT、系列或角色...",
+      "button": "筛选",
+      "advanced": "高级筛选",
+      "category": "类别",
+      "rarity": "稀有度",
+      "stage": "生命周期阶段",
+      "price_range": "价格范围",
+      "clear_all": "清除所有筛选",
+      "sort": {
+        "newest": "最新",
+        "oldest": "最旧",
+        "price_low": "价格：从低到高",
+        "price_high": "价格：从高到低",
+        "name": "名称 A-Z"
+      }
+    },
+    "list": {
+      "loading": "正在加载市场列表...",
+      "found": "找到 {count} 个",
+      "found_plural": "找到 {count} 个",
+      "fetching": "正在获取实时列表...",
+      "no_results_title": "未找到 NFT",
+      "no_results_desc": "尝试调整您的搜索条件或筛选器以查找更多结果。",
+      "view_details": "查看详情",
+      "buy_now": "立即购买",
+      "connect_wallet": "连接钱包"
+    },
+    "dialogs": {
+      "mint": {
+        "title": "铸造新 NFT",
+        "desc": "在区块链上创建新的动漫周边 NFT。这将花费少量的 Gas 费。",
+        "note": "要铸造 NFT，请使用“创建”页面上传您的商品详情和图片。",
+        "go_create": "前往创建页面"
+      },
+      "buy": {
+        "title": "购买 NFT",
+        "desc": "完成以 {price} OCT 购买 {name}",
+        "price": "价格",
+        "fee": "平台费 ({percent}%)",
+        "total": "总计",
+        "confirm": "确认购买",
+        "processing": "处理中..."
+      },
+      "cancel": "取消"
+    },
+    "stages": {
+      "minted": {
+        "label": "已铸造",
+        "desc": "最近铸造的 NFT"
+      },
+      "listed": {
+        "label": "已上架",
+        "desc": "可供购买"
+      },
+      "trading": {
+        "label": "交易中",
+        "desc": "市场活跃"
+      },
+      "collected": {
+        "label": "已收藏",
+        "desc": "在收藏家金库中"
+      },
+      "unknown": {
+        "label": "未知"
+      }
+    },
+    "categories": {
+      "figure": "手办",
+      "card": "卡牌",
+      "poster": "海报",
+      "accessory": "配件",
+      "other": "其他"
+    },
+    "rarities": {
+      "common": "普通",
+      "uncommon": "精良",
+      "rare": "稀有",
+      "epic": "史诗",
+      "legendary": "传说"
+    },
+    "toasts": {
+      "wallet_not_connected": "钱包未连接",
+      "connect_to_mint": "请连接钱包以铸造 NFT",
+      "connect_to_list": "请连接钱包以上架 NFT",
+      "connect_to_buy": "请连接钱包以购买 NFT",
+      "connect_to_interact": "连接钱包以与 NFT 交互",
+      "mint_success": "NFT 铸造成功！🎉",
+      "mint_success_desc": "您的 NFT 已成功铸造到区块链",
+      "mint_failed": "铸造失败",
+      "mint_failed_desc": "铸造您的 NFT 时出错。请重试。",
+      "list_success": "NFT 上架成功！📋",
+      "list_success_desc": "您的 NFT 已以 {price} OCT 上架",
+      "list_failed": "上架失败",
+      "list_failed_desc": "上架您的 NFT 时出错。请重试。",
+      "buy_success": "购买成功！🎊",
+      "buy_success_desc": "您已成功以 {price} OCT 购买 {name}",
+      "buy_failed": "购买失败",
+      "buy_failed_desc": "完成购买时出错。请重试。"
+    }
+  },
+  "create": {
+    "hero": {
+      "badge": "代币化工作室",
+      "title": "创建您的动漫 NFT",
+      "description": "将您的实物动漫周边转化为区块链上经过验证的 NFT"
+    },
+    "steps": {
+      "1": {
+        "name": "商品详情",
+        "desc": "关于您商品的基本信息"
+      },
+      "2": {
+        "name": "验证",
+        "desc": "上传照片和真实性文件"
+      },
+      "3": {
+        "name": "预览",
+        "desc": "在铸造前检查您的 NFT"
+      },
+      "4": {
+        "name": "铸造 NFT",
+        "desc": "在区块链上创建您的 NFT"
+      }
+    },
+    "nav": {
+      "previous": "上一步",
+      "step_indicator": "第 {current} 步，共 {total} 步"
+    },
+    "toasts": {
+      "wallet_not_connected": "钱包未连接",
+      "connect_first": "请先连接您的钱包",
+      "contract_error": "合约未配置",
+      "configure_contract": "请配置合约地址",
+      "uploading": "正在上传图片...",
+      "upload_wait": "请稍候，我们正在将您的图片上传到 Supabase",
+      "upload_success": "图片上传成功！",
+      "upload_success_desc": "图片已成功上传到 Supabase",
+      "mint_success": "NFT 铸造成功！🎉",
+      "mint_success_desc": "您的 NFT 已在区块链上创建。在浏览器中查看：{url}",
+      "mint_failed": "铸造失败"
+    }
+  },
+  "dashboard": {
+    "header": {
+      "collector": "收藏家",
+      "connect_prompt": "连接您的钱包",
+      "member_since": "加入时间 {date}",
+      "settings": "设置",
+      "create": "创建 NFT"
+    },
+    "stats": {
+      "portfolio_value": "资产组合价值",
+      "portfolio_desc": "拥有 NFT 的实时估值",
+      "nfts_owned": "拥有的 NFT",
+      "nfts_owned_desc": "涵盖所有类别",
+      "total_volume": "总交易量",
+      "transactions_logged": "记录了 {count} 笔交易",
+      "listed_nfts": "已上架 NFT",
+      "listed_desc": "目前在市场上活跃"
+    },
+    "tabs": {
+      "collection": "我的收藏",
+      "activity": "活动",
+      "favorites": "收藏夹",
+      "analytics": "分析"
+    },
+    "collection": {
+      "search_placeholder": "搜索您的收藏...",
+      "loading": "正在加载您的收藏...",
+      "empty": "没有匹配您筛选条件的 NFT。",
+      "card": {
+        "minted": "铸造价：{price}",
+        "current_value": "当前价值",
+        "listed": "已上架",
+        "list_for_sale": "上架出售"
+      },
+      "filters": {
+        "all": "所有物品",
+        "listed": "已上架",
+        "unlisted": "未上架",
+        "figure": "手办",
+        "card": "卡牌",
+        "poster": "海报",
+        "accessory": "配件"
+      }
+    },
+    "activity": {
+      "title": "交易历史",
+      "desc": "您完整的交易和铸造历史",
+      "empty": "暂无交易。",
+      "actor": "操作者：{address}"
+    },
+    "favorites": {
+      "empty": "您尚未添加任何收藏。"
+    },
+    "analytics": {
+      "title": "资产组合表现",
+      "desc": "您的收藏价值随时间变化",
+      "placeholder": "此处将显示资产组合图表"
+    }
   }
 }
