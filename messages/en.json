@@ -13,5 +13,37 @@
     "anime": "Anime",
     "vault": "Vault",
     "language": "Language"
+  },
+  "home": {
+    "hero": {
+      "badge": "Powered by OneChain OCT Testnet",
+      "title_prefix": "Connect Your",
+      "title_highlight": "OneWallet",
+      "description": "Connect your OneWallet to view your OCT Testnet token balance and start using the anime NFT platform."
+    },
+    "integration": {
+      "title": "OneWallet Integration",
+      "description": "Connect your OneWallet to view your OCT Testnet token balance"
+    },
+    "footer": {
+      "powered_by": "Powered by OneChain OCT Testnet"
+    }
+  },
+  "wallet_info": {
+    "connect_title": "Connect Your Wallet",
+    "connect_description": "Connect your OneWallet to start using the anime NFT platform",
+    "connect_button_connecting": "Connecting...",
+    "connect_button_default": "Connect OneWallet",
+    "connected_title": "Wallet Connected",
+    "connected_description": "Your OneWallet is connected and ready to use",
+    "status_label": "Status",
+    "status_connected": "Connected",
+    "balance_label": "OCT Balance",
+    "balance_loading": "Loading...",
+    "address_label": "Address",
+    "address_copied_title": "Address copied!",
+    "address_copied_desc": "Wallet address copied to clipboard",
+    "view_explorer": "View on Explorer",
+    "disconnect": "Disconnect"
   }
 }

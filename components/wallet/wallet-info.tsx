@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Wallet, Copy, ExternalLink, Coins } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { useEffect, useState } from "react"
+import { useLanguage } from "@/components/providers/language-provider"
 
 export function WalletInfo() {
     const { address, isConnected, isConnecting, connectWallet, disconnectWallet } = useOneWallet()
@@ -15,6 +16,7 @@ export function WalletInfo() {
     const client = useSuiClient()
     const [balance, setBalance] = useState<string>("0")
     const [isLoadingBalance, setIsLoadingBalance] = useState(false)
+    const { messages } = useLanguage()
 
     // Fetch OCT balance when wallet connects
     useEffect(() => {
@@ -70,8 +72,8 @@ export function WalletInfo() {
         if (address) {
             navigator.clipboard.writeText(address)
             toast({
-                title: "Address copied!",
-                description: "Wallet address copied to clipboard",
+                title: messages.wallet_info.address_copied_title,
+                description: messages.wallet_info.address_copied_desc,
             })
         }
     }
@@ -82,10 +84,10 @@ export function WalletInfo() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Wallet className="h-5 w-5" />
-                        Connect Your Wallet
+                        {messages.wallet_info.connect_title}
                     </CardTitle>
                     <CardDescription>
-                        Connect your OneWallet to start using the anime NFT platform
+                        {messages.wallet_info.connect_description}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -94,7 +96,7 @@ export function WalletInfo() {
                         disabled={isConnecting}
                         className="w-full"
                     >
-                        {isConnecting ? "Connecting..." : "Connect OneWallet"}
+                        {isConnecting ? messages.wallet_info.connect_button_connecting : messages.wallet_info.connect_button_default}
                     </Button>
                 </CardContent>
             </Card>
@@ -106,33 +108,33 @@ export function WalletInfo() {
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <Wallet className="h-5 w-5" />
-                    Wallet Connected
+                    {messages.wallet_info.connected_title}
                 </CardTitle>
                 <CardDescription>
-                    Your OneWallet is connected and ready to use
+                    {messages.wallet_info.connected_description}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
                 <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">Status</span>
+                        <span className="text-sm font-medium">{messages.wallet_info.status_label}</span>
                         <Badge variant="default" className="bg-green-500">
-                            Connected
+                            {messages.wallet_info.status_connected}
                         </Badge>
                     </div>
 
                     <div className="space-y-2">
-                        <span className="text-sm font-medium">OCT Balance</span>
+                        <span className="text-sm font-medium">{messages.wallet_info.balance_label}</span>
                         <div className="flex items-center gap-2 p-3 bg-primary/10 rounded-md">
                             <Coins className="h-4 w-4 text-primary" />
                             <span className="text-lg font-bold text-primary">
-                                {isLoadingBalance ? "Loading..." : `${balance} OCT`}
+                                {isLoadingBalance ? messages.wallet_info.balance_loading : `${balance} OCT`}
                             </span>
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <span className="text-sm font-medium">Address</span>
+                        <span className="text-sm font-medium">{messages.wallet_info.address_label}</span>
                         <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
                             <code className="text-xs flex-1">{address}</code>
                             <Button
@@ -155,7 +157,7 @@ export function WalletInfo() {
                         className="flex-1"
                     >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        View on Explorer
+                        {messages.wallet_info.view_explorer}
                     </Button>
                     <Button
                         variant="outline"
@@ -163,7 +165,7 @@ export function WalletInfo() {
                         onClick={disconnectWallet}
                         className="flex-1"
                     >
-                        Disconnect
+                        {messages.wallet_info.disconnect}
                     </Button>
                 </div>
             </CardContent>

@@ -13,5 +13,37 @@
     "anime": "动漫",
     "vault": "金库",
     "language": "语言"
+  },
+  "home": {
+    "hero": {
+      "badge": "由 OneChain OCT 测试网支持",
+      "title_prefix": "连接您的",
+      "title_highlight": "OneWallet",
+      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额并开始使用动漫 NFT 平台。"
+    },
+    "integration": {
+      "title": "OneWallet 集成",
+      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额"
+    },
+    "footer": {
+      "powered_by": "由 OneChain OCT 测试网支持"
+    }
+  },
+  "wallet_info": {
+    "connect_title": "连接您的钱包",
+    "connect_description": "连接您的 OneWallet 以开始使用动漫 NFT 平台",
+    "connect_button_connecting": "连接中...",
+    "connect_button_default": "连接 OneWallet",
+    "connected_title": "钱包已连接",
+    "connected_description": "您的 OneWallet 已连接并可以使用",
+    "status_label": "状态",
+    "status_connected": "已连接",
+    "balance_label": "OCT 余额",
+    "balance_loading": "加载中...",
+    "address_label": "已连接地址",
+    "address_copied_title": "地址已复制！",
+    "address_copied_desc": "钱包地址已复制到剪贴板",
+    "view_explorer": "在浏览器中查看",
+    "disconnect": "断开连接"
   }
 }

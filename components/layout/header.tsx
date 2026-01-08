@@ -13,37 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState, useEffect } from "react"
-import zhMessagesData from "@/messages/zh.json"
-import enMessagesData from "@/messages/en.json"
-
-type Messages = {
-  nav: {
-    home: string
-    marketplace: string
-    create: string
-    dashboard: string
-  }
-  wallet: {
-    connect: string
-    disconnect: string
-  }
-  common: {
-    anime: string
-    vault: string
-    language: string
-  }
-}
-
-const zhMessages = zhMessagesData as Messages
-const enMessages = enMessagesData as Messages
+import { useLanguage } from "@/components/providers/language-provider"
 
 export function Header() {
   const pathname = usePathname()
   const { address, isConnected, connectWallet } = useOneWallet()
-  const [lang, setLang] = useState<"zh" | "en">("zh")
-  
-  const messages = lang === "zh" ? zhMessages : enMessages
+  const { language, setLanguage, messages } = useLanguage()
 
   const navItems = [
     { name: messages.nav.home, href: "/", icon: Home },
@@ -88,7 +63,7 @@ export function Header() {
         {/* Wallet Button */}
         <div className="flex items-center gap-2">
           {/* Language Switcher */}
-          <Select value={lang} onValueChange={(val: "zh" | "en") => setLang(val)}>
+          <Select value={language} onValueChange={(val: "zh" | "en") => setLanguage(val)}>
             <SelectTrigger className="w-[100px] h-9 text-xs">
               <Globe className="mr-2 h-3 w-3" />
               <SelectValue placeholder={messages.common.language} />
