@@ -2,7 +2,7 @@
 
 import { SuiClient } from '@onelabs/sui/client';
 import { Ed25519Keypair } from '@onelabs/sui/keypairs/ed25519';
-import { TransactionBlock } from '@onelabs/sui/transactions';
+import { Transaction} from '@onelabs/sui/transactions';
 import { fromB64 } from '@onelabs/sui/utils';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -127,7 +127,7 @@ class AnimeMerchandiseCLI {
             const category = await this.question(rl, 'Enter category (figurine/poster/apparel): ');
             const series = await this.question(rl, 'Enter anime series: ');
 
-            const tx = new TransactionBlock();
+            const tx = new Transaction();
 
             // Note: This is a simplified version - you'll need the actual marketplace objects
             console.log('⚠️  Note: This requires marketplace objects from deployment');
@@ -173,7 +173,7 @@ class AnimeMerchandiseCLI {
 
             console.log(`\n💰 Balance for ${address}:`);
             console.log(`Total: ${balance.totalBalance} SUI`);
-            console.log(`Coins: ${balance.coinObjects.length} coin objects`);
+            // console.log(`Coins: ${balance.coinObjects.length} coin objects`);
         } catch (error) {
             console.error('❌ Error checking balance:', error);
         }

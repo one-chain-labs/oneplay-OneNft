@@ -64,10 +64,10 @@ try {
 // Contract address: 0x02c23edcb0cc861f892d22776d83e21e5b6a953c17e6b2011b5721b608c6fc64
 // Module: animetranferprotocolnew
 export const CONTRACT_ADDRESSES = {
-  PACKAGE_ID: deploymentInfo?.packageId || "0x02c23edcb0cc861f892d22776d83e21e5b6a953c17e6b2011b5721b608c6fc64",
-  NFT_COUNT_ID: deploymentInfo?.nftCountId || "0x801f449ccb8d78ff3b8cdd20824806aff8d866087bc0faafdca365309d602d52",
-  LAND_REGISTRY_ID: deploymentInfo?.landRegistryId || "0x9c125a32b0f1645361d112b62baab2ae25cecce732bb0b539dbbb7fb1bf7d5ae",
-  LAND_REGISTRY_ADDRESS_ID: deploymentInfo?.landRegistryAddressId || "0xe738a6a7bd81fbe533b363bb5efcd726b3afea1a2107d3667319062c520a173b",
+  PACKAGE_ID: deploymentInfo?.packageId || "0xa4cf435971e08f658169a8066ef1be0ba980b4a0058aacc4c937d88707009a74",
+  NFT_COUNT_ID: deploymentInfo?.nftCountId || "0x7a91e2442533369c3e5bf2b843af7813a6531e6d0c9dedc6bc00989daecaf07b",
+  LAND_REGISTRY_ID: deploymentInfo?.landRegistryId || "0x3b48655e81ae2527f0086bac79c90a8afc289b405732082f3342d00ab9fc1e87",
+  LAND_REGISTRY_ADDRESS_ID: deploymentInfo?.landRegistryAddressId || "0x70cc3943cafc6f26cca128048b04c0891caf40c2f797bb1f1bcefceb6d5a39d5",
   // Legacy fields for backward compatibility
   MARKETPLACE_ID: deploymentInfo?.marketplaceId || "",
   MARKETPLACE_CAP_ID: deploymentInfo?.marketplaceCapId || "",

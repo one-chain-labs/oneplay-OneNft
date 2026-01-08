@@ -1,0 +1,18 @@
+[package]
+name = "anime"
+edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
+
+[dependencies]
+One = { git = "https://github.com/one-chain-labs/onechain.git", subdir = "crates/sui-framework/packages/one-framework", rev = "1.0.4" }
+
+
+[addresses]
+anime = "0x0"
+
+
+[dev-dependencies]
+
+
+[dev-addresses]
+
+
