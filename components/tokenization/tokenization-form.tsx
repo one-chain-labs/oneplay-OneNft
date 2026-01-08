@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card"
 import { Upload, X, Camera, FileText } from "lucide-react"
 import type { TokenizationRequest } from "@/lib/types"
+import { useLanguage } from "@/components/providers/language-provider"
 
 interface TokenizationFormProps {
   onSubmit: (data: Partial<TokenizationRequest>) => void
@@ -19,6 +20,7 @@ interface TokenizationFormProps {
 }
 
 export function TokenizationForm({ onSubmit, initialData = {}, step = "details" }: TokenizationFormProps) {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState<Partial<TokenizationRequest>>(initialData)
   const [uploadedImages, setUploadedImages] = useState<File[]>([])
   const [verificationPhotos, setVerificationPhotos] = useState<File[]>([])
@@ -89,9 +91,9 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
         {/* Verification Photos */}
         <div className="space-y-4">
           <div>
-            <Label className="text-base font-semibold">Verification Photos</Label>
+            <Label className="text-base font-semibold">{t("create.form.verification.title")}</Label>
             <p className="text-sm text-muted-foreground mb-4">
-              Upload clear photos showing the item's condition, authenticity marks, and any unique features
+              {t("create.form.verification.desc")}
             </p>
           </div>
 
@@ -100,7 +102,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
               <CardContent className="flex flex-col items-center justify-center p-6">
                 <Camera className="h-12 w-12 text-muted-foreground mb-4" />
                 <Label htmlFor="verification-photos" className="cursor-pointer">
-                  <span className="text-sm font-medium">Upload Verification Photos</span>
+                  <span className="text-sm font-medium">{t("create.form.verification.upload_photos")}</span>
                   <Input
                     id="verification-photos"
                     type="file"
@@ -110,7 +112,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
                     onChange={(e) => handleFileUpload(e.target.files, "verification")}
                   />
                 </Label>
-                <p className="text-xs text-muted-foreground mt-2">PNG, JPG up to 10MB each</p>
+                <p className="text-xs text-muted-foreground mt-2">{t("create.form.verification.photo_reqs")}</p>
               </CardContent>
             </Card>
 
@@ -118,7 +120,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
               <CardContent className="flex flex-col items-center justify-center p-6">
                 <FileText className="h-12 w-12 text-muted-foreground mb-4" />
                 <Label htmlFor="certificates" className="cursor-pointer">
-                  <span className="text-sm font-medium">Upload Certificates</span>
+                  <span className="text-sm font-medium">{t("create.form.verification.upload_certs")}</span>
                   <Input
                     id="certificates"
                     type="file"
@@ -128,7 +130,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
                     onChange={(e) => handleFileUpload(e.target.files, "certificates")}
                   />
                 </Label>
-                <p className="text-xs text-muted-foreground mt-2">Authenticity certificates (optional)</p>
+                <p className="text-xs text-muted-foreground mt-2">{t("create.form.verification.cert_desc")}</p>
               </CardContent>
             </Card>
           </div>
@@ -136,7 +138,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
           {/* Uploaded Files Display */}
           {verificationPhotos.length > 0 && (
             <div>
-              <Label className="text-sm font-medium">Verification Photos ({verificationPhotos.length})</Label>
+              <Label className="text-sm font-medium">{t("create.form.verification.photos_label")} ({verificationPhotos.length})</Label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
                 {verificationPhotos.map((file, index) => (
                   <div key={index} className="relative group">
@@ -161,7 +163,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
 
           {certificates.length > 0 && (
             <div>
-              <Label className="text-sm font-medium">Certificates ({certificates.length})</Label>
+              <Label className="text-sm font-medium">{t("create.form.verification.certs_label")} ({certificates.length})</Label>
               <div className="space-y-2 mt-2">
                 {certificates.map((file, index) => (
                   <div key={index} className="flex items-center justify-between p-2 bg-muted rounded-lg">
@@ -180,7 +182,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
         </div>
 
         <Button type="submit" className="w-full" size="lg">
-          Continue to Preview
+          {t("create.form.buttons.continue_preview")}
         </Button>
       </form>
     )
@@ -191,10 +193,10 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
       {/* Basic Information */}
       <div className="space-y-4">
         <div>
-          <Label htmlFor="itemName">Item Name *</Label>
+          <Label htmlFor="itemName">{t("create.form.item_name")} *</Label>
           <Input
             id="itemName"
-            placeholder="e.g., Demon Slayer Tanjiro Figure"
+            placeholder={t("create.form.item_name_placeholder")}
             value={formData.itemName || ""}
             onChange={(e) => handleInputChange("itemName", e.target.value)}
             required
@@ -202,10 +204,10 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
         </div>
 
         <div>
-          <Label htmlFor="description">Description *</Label>
+          <Label htmlFor="description">{t("create.form.description")} *</Label>
           <Textarea
             id="description"
-            placeholder="Describe your anime merchandise in detail..."
+            placeholder={t("create.form.description_placeholder")}
             value={formData.description || ""}
             onChange={(e) => handleInputChange("description", e.target.value)}
             rows={4}
@@ -215,33 +217,33 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="category">Category *</Label>
+            <Label htmlFor="category">{t("create.form.category")} *</Label>
             <Select value={formData.category} onValueChange={(value) => handleInputChange("category", value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Select category" />
+                <SelectValue placeholder={t("create.form.select_category")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="figure">Figure</SelectItem>
-                <SelectItem value="card">Trading Card</SelectItem>
-                <SelectItem value="poster">Poster</SelectItem>
-                <SelectItem value="accessory">Accessory</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="figure">{t("marketplace.categories.figure")}</SelectItem>
+                <SelectItem value="card">{t("marketplace.categories.card")}</SelectItem>
+                <SelectItem value="poster">{t("marketplace.categories.poster")}</SelectItem>
+                <SelectItem value="accessory">{t("marketplace.categories.accessory")}</SelectItem>
+                <SelectItem value="other">{t("marketplace.categories.other")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Label htmlFor="rarity">Rarity *</Label>
+            <Label htmlFor="rarity">{t("create.form.rarity")} *</Label>
             <Select value={formData.rarity} onValueChange={(value) => handleInputChange("rarity", value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Select rarity" />
+                <SelectValue placeholder={t("create.form.select_rarity")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="common">Common</SelectItem>
-                <SelectItem value="uncommon">Uncommon</SelectItem>
-                <SelectItem value="rare">Rare</SelectItem>
-                <SelectItem value="epic">Epic</SelectItem>
-                <SelectItem value="legendary">Legendary</SelectItem>
+                <SelectItem value="common">{t("marketplace.rarities.common")}</SelectItem>
+                <SelectItem value="uncommon">{t("marketplace.rarities.uncommon")}</SelectItem>
+                <SelectItem value="rare">{t("marketplace.rarities.rare")}</SelectItem>
+                <SelectItem value="epic">{t("marketplace.rarities.epic")}</SelectItem>
+                <SelectItem value="legendary">{t("marketplace.rarities.legendary")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -250,14 +252,14 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
 
       {/* Attributes */}
       <div className="space-y-4">
-        <Label className="text-base font-semibold">Item Attributes</Label>
+        <Label className="text-base font-semibold">{t("create.form.attributes")}</Label>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="series">Anime Series *</Label>
+            <Label htmlFor="series">{t("create.form.series")} *</Label>
             <Input
               id="series"
-              placeholder="e.g., Demon Slayer"
+              placeholder={t("create.form.series_placeholder")}
               value={formData.attributes?.series || ""}
               onChange={(e) => handleInputChange("attributes.series", e.target.value)}
               required
@@ -265,10 +267,10 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
           </div>
 
           <div>
-            <Label htmlFor="character">Character *</Label>
+            <Label htmlFor="character">{t("create.form.character")} *</Label>
             <Input
               id="character"
-              placeholder="e.g., Tanjiro Kamado"
+              placeholder={t("create.form.character_placeholder")}
               value={formData.attributes?.character || ""}
               onChange={(e) => handleInputChange("attributes.character", e.target.value)}
               required
@@ -276,41 +278,41 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
           </div>
 
           <div>
-            <Label htmlFor="manufacturer">Manufacturer</Label>
+            <Label htmlFor="manufacturer">{t("create.form.manufacturer")}</Label>
             <Input
               id="manufacturer"
-              placeholder="e.g., Good Smile Company"
+              placeholder={t("create.form.manufacturer_placeholder")}
               value={formData.attributes?.manufacturer || ""}
               onChange={(e) => handleInputChange("attributes.manufacturer", e.target.value)}
             />
           </div>
 
           <div>
-            <Label htmlFor="releaseYear">Release Year</Label>
+            <Label htmlFor="releaseYear">{t("create.form.release_year")}</Label>
             <Input
               id="releaseYear"
               type="number"
-              placeholder="e.g., 2023"
+              placeholder={t("create.form.release_year_placeholder")}
               value={formData.attributes?.releaseYear || ""}
               onChange={(e) => handleInputChange("attributes.releaseYear", Number.parseInt(e.target.value))}
             />
           </div>
 
           <div className="md:col-span-2">
-            <Label htmlFor="condition">Condition</Label>
+            <Label htmlFor="condition">{t("create.form.condition")}</Label>
             <Select
               value={formData.attributes?.condition}
               onValueChange={(value) => handleInputChange("attributes.condition", value)}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select condition" />
+                <SelectValue placeholder={t("create.form.select_condition")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="mint">Mint - Perfect condition</SelectItem>
-                <SelectItem value="near-mint">Near Mint - Excellent condition</SelectItem>
-                <SelectItem value="good">Good - Minor wear</SelectItem>
-                <SelectItem value="fair">Fair - Noticeable wear</SelectItem>
-                <SelectItem value="poor">Poor - Significant wear</SelectItem>
+                <SelectItem value="mint">{t("create.form.conditions.mint")}</SelectItem>
+                <SelectItem value="near-mint">{t("create.form.conditions.near_mint")}</SelectItem>
+                <SelectItem value="good">{t("create.form.conditions.good")}</SelectItem>
+                <SelectItem value="fair">{t("create.form.conditions.fair")}</SelectItem>
+                <SelectItem value="poor">{t("create.form.conditions.poor")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -320,15 +322,15 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
       {/* Image Upload */}
       <div className="space-y-4">
         <div>
-          <Label className="text-base font-semibold">Item Images *</Label>
-          <p className="text-sm text-muted-foreground">Upload high-quality photos of your merchandise</p>
+          <Label className="text-base font-semibold">{t("create.form.images.label")} *</Label>
+          <p className="text-sm text-muted-foreground">{t("create.form.images.upload_desc")}</p>
         </div>
 
         <Card className="border-dashed border-2 hover:border-primary/50 transition-colors">
           <CardContent className="flex flex-col items-center justify-center p-8">
             <Upload className="h-12 w-12 text-muted-foreground mb-4" />
             <Label htmlFor="images" className="cursor-pointer">
-              <span className="text-lg font-medium">Upload Images</span>
+              <span className="text-lg font-medium">{t("create.form.images.upload_button")}</span>
               <Input
                 id="images"
                 type="file"
@@ -338,13 +340,13 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
                 onChange={(e) => handleFileUpload(e.target.files, "images")}
               />
             </Label>
-            <p className="text-sm text-muted-foreground mt-2">PNG, JPG up to 10MB each. Minimum 1 image required.</p>
+            <p className="text-sm text-muted-foreground mt-2">{t("create.form.images.requirements")}</p>
           </CardContent>
         </Card>
 
         {uploadedImages.length > 0 && (
           <div>
-            <Label className="text-sm font-medium">Uploaded Images ({uploadedImages.length})</Label>
+            <Label className="text-sm font-medium">{t("create.form.images.uploaded_label")} ({uploadedImages.length})</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
               {uploadedImages.map((file, index) => (
                 <div key={index} className="relative group">
@@ -369,7 +371,7 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
       </div>
 
       <Button type="submit" className="w-full" size="lg" disabled={!formData.itemName || uploadedImages.length === 0}>
-        Continue to Verification
+        {t("create.form.buttons.continue_verification")}
       </Button>
     </form>
   )

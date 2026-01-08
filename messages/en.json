@@ -210,6 +210,57 @@
       "mint_success": "NFT Minted Successfully! 🎉",
       "mint_success_desc": "Your NFT has been created on the blockchain. View on explorer: {url}",
       "mint_failed": "Minting failed"
+    },
+    "form": {
+      "item_details": "Item Details",
+      "item_name": "Item Name",
+      "item_name_placeholder": "e.g., Demon Slayer Tanjiro Figure",
+      "description": "Description",
+      "description_placeholder": "Describe your anime merchandise in detail...",
+      "category": "Category",
+      "select_category": "Select category",
+      "rarity": "Rarity",
+      "select_rarity": "Select rarity",
+      "attributes": "Item Attributes",
+      "series": "Anime Series",
+      "series_placeholder": "e.g., Demon Slayer",
+      "character": "Character",
+      "character_placeholder": "e.g., Tanjiro Kamado",
+      "manufacturer": "Manufacturer",
+      "manufacturer_placeholder": "e.g., Good Smile Company",
+      "release_year": "Release Year",
+      "release_year_placeholder": "e.g., 2023",
+      "condition": "Condition",
+      "select_condition": "Select condition",
+      "conditions": {
+        "mint": "Mint - Perfect condition",
+        "near_mint": "Near Mint - Excellent condition",
+        "good": "Good - Minor wear",
+        "fair": "Fair - Noticeable wear",
+        "poor": "Poor - Significant wear"
+      },
+      "images": {
+        "label": "Item Images",
+        "upload_desc": "Upload high-quality photos of your merchandise",
+        "upload_button": "Upload Images",
+        "drag_drop": "Drag & drop or click to upload",
+        "requirements": "PNG, JPG up to 10MB each. Minimum 1 image required.",
+        "uploaded_label": "Uploaded Images"
+      },
+      "verification": {
+        "title": "Verification Photos",
+        "desc": "Upload clear photos showing the item's condition, authenticity marks, and any unique features",
+        "upload_photos": "Upload Verification Photos",
+        "upload_certs": "Upload Certificates",
+        "photo_reqs": "PNG, JPG up to 10MB each",
+        "cert_desc": "Authenticity certificates (optional)",
+        "photos_label": "Verification Photos",
+        "certs_label": "Certificates"
+      },
+      "buttons": {
+        "continue_verification": "Continue to Verification",
+        "continue_preview": "Continue to Preview"
+      }
     }
   },
   "dashboard": {

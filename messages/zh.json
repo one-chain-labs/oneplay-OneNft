@@ -210,6 +210,57 @@
       "mint_success": "NFT 铸造成功！🎉",
       "mint_success_desc": "您的 NFT 已在区块链上创建。在浏览器中查看：{url}",
       "mint_failed": "铸造失败"
+    },
+    "form": {
+      "item_details": "商品详情",
+      "item_name": "商品名称",
+      "item_name_placeholder": "例如：鬼灭之刃 炭治郎手办",
+      "description": "描述",
+      "description_placeholder": "详细描述您的动漫周边商品...",
+      "category": "类别",
+      "select_category": "选择类别",
+      "rarity": "稀有度",
+      "select_rarity": "选择稀有度",
+      "attributes": "商品属性",
+      "series": "动漫系列",
+      "series_placeholder": "例如：鬼灭之刃",
+      "character": "角色",
+      "character_placeholder": "例如：灶门炭治郎",
+      "manufacturer": "制造商",
+      "manufacturer_placeholder": "例如：Good Smile Company",
+      "release_year": "发布年份",
+      "release_year_placeholder": "例如：2023",
+      "condition": "成色",
+      "select_condition": "选择成色",
+      "conditions": {
+        "mint": "全新 - 完美成色",
+        "near_mint": "近新 - 极佳成色",
+        "good": "良好 - 轻微磨损",
+        "fair": "一般 - 明显磨损",
+        "poor": "较差 - 严重磨损"
+      },
+      "images": {
+        "label": "商品图片",
+        "upload_desc": "上传您商品的高质量照片",
+        "upload_button": "上传图片",
+        "drag_drop": "拖拽或点击上传",
+        "requirements": "PNG, JPG 格式，每张最大 10MB。至少上传 1 张图片。",
+        "uploaded_label": "已上传图片"
+      },
+      "verification": {
+        "title": "验证照片",
+        "desc": "上传清晰的照片，展示商品的成色、防伪标记和任何独特特征",
+        "upload_photos": "上传验证照片",
+        "upload_certs": "上传证书",
+        "photo_reqs": "PNG, JPG 格式，每张最大 10MB",
+        "cert_desc": "防伪证书（可选）",
+        "photos_label": "验证照片",
+        "certs_label": "证书"
+      },
+      "buttons": {
+        "continue_verification": "继续验证",
+        "continue_preview": "继续预览"
+      }
     }
   },
   "dashboard": {
