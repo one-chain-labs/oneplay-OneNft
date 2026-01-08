@@ -16,15 +16,10 @@ import { CONTRACT_ADDRESSES, CONTRACT_MODULE, contractTarget } from "@/lib/onela
 import { useToast } from "@/hooks/use-toast"
 import { useOneWallet } from "@/lib/wallet"
 import { logTransaction, saveMintedNFT } from "@/lib/nft-repository"
-
-const steps = [
-  { id: 1, name: "Item Details", description: "Basic information about your merchandise" },
-  { id: 2, name: "Verification", description: "Upload photos and authenticity documents" },
-  { id: 3, name: "Preview", description: "Review your NFT before minting" },
-  { id: 4, name: "Mint NFT", description: "Create your NFT on the blockchain" },
-]
+import { useLanguage } from "@/components/providers/language-provider"
 
 export default function CreatePage() {
+  const { t } = useLanguage()
   const [currentStep, setCurrentStep] = useState(1)
   const [tokenizationData, setTokenizationData] = useState<Partial<TokenizationRequest>>({})
   const [isLoading, setIsLoading] = useState(false)
@@ -97,8 +92,8 @@ export default function CreatePage() {
   const testMint = async () => {
     if (!isConnected || !account) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet first",
+        title: t("create.toasts.wallet_not_connected"),
+        description: t("create.toasts.connect_first"),
         variant: "destructive"
       })
       return
@@ -106,8 +101,8 @@ export default function CreatePage() {
 
     if (!CONTRACT_ADDRESSES.PACKAGE_ID || !CONTRACT_ADDRESSES.NFT_COUNT_ID || !CONTRACT_ADDRESSES.LAND_REGISTRY_ID || !CONTRACT_ADDRESSES.LAND_REGISTRY_ADDRESS_ID) {
       toast({
-        title: "Contract not configured",
-        description: "Please configure the contract addresses",
+        title: t("create.toasts.contract_error"),
+        description: t("create.toasts.configure_contract"),
         variant: "destructive"
       })
       return
@@ -137,15 +132,15 @@ export default function CreatePage() {
       
       if (tokenizationData.images && tokenizationData.images.length > 0 && tokenizationData.images[0] instanceof File) {
         toast({
-          title: "Uploading image...",
-          description: "Please wait while we upload your image to Supabase",
+          title: t("create.toasts.uploading"),
+          description: t("create.toasts.upload_wait"),
         })
         try {
           imageUrl = await uploadImageToSupabase(tokenizationData.images[0])
           console.log("Image uploaded to Supabase:", imageUrl)
           toast({
-            title: "Image uploaded!",
-            description: "Image successfully uploaded to Supabase",
+            title: t("create.toasts.upload_success"),
+            description: t("create.toasts.upload_success_desc"),
           })
         } catch (error: any) {
           console.error("Failed to upload image:", error)
@@ -264,8 +259,8 @@ export default function CreatePage() {
       })
 
       toast({
-        title: "NFT Minted Successfully! 🎉",
-        description: `Your NFT has been created on the blockchain. View on explorer: https://onescan.cc/testnet/transactionBlocksDetail?digest=${mintDigest}`,
+        title: t("create.toasts.mint_success"),
+        description: t("create.toasts.mint_success_desc").replace("{url}", `https://onescan.cc/testnet/transactionBlocksDetail?digest=${mintDigest}`),
       })
 
       reset()
@@ -274,7 +269,7 @@ export default function CreatePage() {
     } catch (error: any) {
       console.error("Minting failed:", error)
       toast({
-        title: "Minting failed",
+        title: t("create.toasts.mint_failed"),
         description: error.message || "An unexpected error occurred",
         variant: "destructive",
       })
@@ -286,6 +281,13 @@ export default function CreatePage() {
   // Alias for backward compatibility
   const handleMintNFT = testMint
 
+  const steps = [
+    { id: 1, name: t("create.steps.1.name"), description: t("create.steps.1.desc") },
+    { id: 2, name: t("create.steps.2.name"), description: t("create.steps.2.desc") },
+    { id: 3, name: t("create.steps.3.name"), description: t("create.steps.3.desc") },
+    { id: 4, name: t("create.steps.4.name"), description: t("create.steps.4.desc") },
+  ]
+
   const progress = (currentStep / steps.length) * 100
 
   return (
@@ -295,11 +297,11 @@ export default function CreatePage() {
         <div className="text-center mb-8">
           <Badge variant="secondary" className="mb-4">
             <Sparkles className="h-4 w-4 mr-2" />
-            Tokenization Studio
+            {t("create.hero.badge")}
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Create Your Anime NFT</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t("create.hero.title")}</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transform your physical anime merchandise into verified NFTs on the blockchain
+            {t("create.hero.description")}
           </p>
         </div>
 
@@ -366,10 +368,12 @@ export default function CreatePage() {
               className="flex items-center gap-2 bg-transparent"
             >
               <ArrowLeft className="h-4 w-4" />
-              Previous
+              {t("create.nav.previous")}
             </Button>
             <div className="text-sm text-muted-foreground">
-              Step {currentStep} of {steps.length}
+              {t("create.nav.step_indicator")
+                .replace("{current}", currentStep.toString())
+                .replace("{total}", steps.length.toString())}
             </div>
             <div className="w-24" /> {/* Spacer for alignment */}
           </div>

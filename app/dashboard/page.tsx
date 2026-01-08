@@ -30,8 +30,10 @@ import { ListNFTDialog } from "@/components/nft/list-nft-dialog"
 import { fetchOwnedNFTs, fetchTransactionsForAddress, type NftRecord, type NftTransactionRecord } from "@/lib/nft-repository"
 import { useCurrentAccount } from "@onelabs/dapp-kit"
 import { getExplorerUrl } from "@/lib/onelabs"
+import { useLanguage } from "@/components/providers/language-provider"
 
 export default function DashboardPage() {
+  const { t } = useLanguage()
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [searchQuery, setSearchQuery] = useState("")
   const [filterBy, setFilterBy] = useState("all")
@@ -75,7 +77,9 @@ export default function DashboardPage() {
     }
   }, [ownedNfts, transactions])
 
-  const username = walletAddress ? `Collector ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "Connect your wallet"
+  const username = walletAddress 
+    ? `${t("dashboard.header.collector")} ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` 
+    : t("dashboard.header.connect_prompt")
   
   // Format date consistently to avoid hydration errors
   const formatDate = (dateString?: string) => {
@@ -184,19 +188,19 @@ export default function DashboardPage() {
             </Avatar>
             <div>
               <h1 className="text-2xl font-bold">{username}</h1>
-              <p className="text-muted-foreground font-mono">{walletAddress || "Wallet not connected"}</p>
-              <p className="text-sm text-muted-foreground">Member since {joinedAt}</p>
+              <p className="text-muted-foreground font-mono">{walletAddress || t("dashboard.header.connect_prompt")}</p>
+              <p className="text-sm text-muted-foreground">{t("dashboard.header.member_since").replace("{date}", joinedAt)}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" className="bg-transparent">
               <Settings className="h-4 w-4 mr-2" />
-              Settings
+              {t("dashboard.header.settings")}
             </Button>
             <Button asChild>
               <Link href="/create">
                 <Plus className="h-4 w-4 mr-2" />
-                Create NFT
+                {t("dashboard.header.create")}
               </Link>
             </Button>
           </div>
@@ -206,45 +210,45 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Portfolio Value</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("dashboard.stats.portfolio_value")}</CardTitle>
               <Wallet className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{derivedStats.portfolioValue.toFixed(2)} OCT</div>
-              <div className="text-xs text-muted-foreground">Live valuation across owned NFTs</div>
+              <div className="text-xs text-muted-foreground">{t("dashboard.stats.portfolio_desc")}</div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">NFTs Owned</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("dashboard.stats.nfts_owned")}</CardTitle>
               <Grid3X3 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{derivedStats.totalNfts}</div>
-              <p className="text-xs text-muted-foreground">Across all categories</p>
+              <p className="text-xs text-muted-foreground">{t("dashboard.stats.nfts_owned_desc")}</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Volume</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("dashboard.stats.total_volume")}</CardTitle>
               <BarChart3 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{derivedStats.totalVolume.toFixed(2)} OCT</div>
-              <p className="text-xs text-muted-foreground">{derivedStats.transactionsLogged} transactions logged</p>
+              <p className="text-xs text-muted-foreground">{t("dashboard.stats.transactions_logged").replace("{count}", derivedStats.transactionsLogged.toString())}</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Listed NFTs</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("dashboard.stats.listed_nfts")}</CardTitle>
               <Award className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{derivedStats.listedCount}</div>
-              <p className="text-xs text-muted-foreground">Actively on marketplace</p>
+              <p className="text-xs text-muted-foreground">{t("dashboard.stats.listed_desc")}</p>
             </CardContent>
           </Card>
         </div>
@@ -252,10 +256,10 @@ export default function DashboardPage() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="collection" className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="collection">My Collection</TabsTrigger>
-            <TabsTrigger value="activity">Activity</TabsTrigger>
-            <TabsTrigger value="favorites">Favorites</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="collection">{t("dashboard.tabs.collection")}</TabsTrigger>
+            <TabsTrigger value="activity">{t("dashboard.tabs.activity")}</TabsTrigger>
+            <TabsTrigger value="favorites">{t("dashboard.tabs.favorites")}</TabsTrigger>
+            <TabsTrigger value="analytics">{t("dashboard.tabs.analytics")}</TabsTrigger>
           </TabsList>
 
           {/* My Collection Tab */}
@@ -267,7 +271,7 @@ export default function DashboardPage() {
                   <div className="relative flex-1 max-w-sm">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
-                      placeholder="Search your collection..."
+                      placeholder={t("dashboard.collection.search_placeholder")}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="pl-10"
@@ -278,13 +282,13 @@ export default function DashboardPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All Items</SelectItem>
-                      <SelectItem value="listed">Listed</SelectItem>
-                      <SelectItem value="unlisted">Not Listed</SelectItem>
-                      <SelectItem value="figure">Figures</SelectItem>
-                      <SelectItem value="card">Cards</SelectItem>
-                      <SelectItem value="poster">Posters</SelectItem>
-                      <SelectItem value="accessory">Accessories</SelectItem>
+                      <SelectItem value="all">{t("dashboard.collection.filters.all")}</SelectItem>
+                      <SelectItem value="listed">{t("dashboard.collection.filters.listed")}</SelectItem>
+                      <SelectItem value="unlisted">{t("dashboard.collection.filters.unlisted")}</SelectItem>
+                      <SelectItem value="figure">{t("dashboard.collection.filters.figure")}</SelectItem>
+                      <SelectItem value="card">{t("dashboard.collection.filters.card")}</SelectItem>
+                      <SelectItem value="poster">{t("dashboard.collection.filters.poster")}</SelectItem>
+                      <SelectItem value="accessory">{t("dashboard.collection.filters.accessory")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -313,9 +317,9 @@ export default function DashboardPage() {
 
               {/* Collection Grid/List */}
               {isLoading ? (
-                <div className="text-center text-muted-foreground py-12">Loading your collection...</div>
+                <div className="text-center text-muted-foreground py-12">{t("dashboard.collection.loading")}</div>
               ) : filteredCollection.length === 0 ? (
-                <div className="text-center text-muted-foreground py-12">No NFTs match your filters.</div>
+                <div className="text-center text-muted-foreground py-12">{t("dashboard.collection.empty")}</div>
               ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredCollection.map((nft) => (
@@ -333,16 +337,16 @@ export default function DashboardPage() {
                         >
                           {(nft.rarity || "common").toUpperCase()}
                         </div>
-                        {nft.status === "listed" && <Badge className="absolute top-3 right-3 bg-green-500">Listed</Badge>}
+                        {nft.status === "listed" && <Badge className="absolute top-3 right-3 bg-green-500">{t("dashboard.collection.card.listed")}</Badge>}
                       </div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg line-clamp-1">{nft.name}</CardTitle>
-                        <div className="text-sm text-muted-foreground">Minted: {formatOct(nft.price_oct)}</div>
+                        <div className="text-sm text-muted-foreground">{t("dashboard.collection.card.minted").replace("{price}", formatOct(nft.price_oct))}</div>
                       </CardHeader>
                       <CardContent className="pt-0">
                         <div className="flex items-center justify-between mb-3">
                           <div>
-                            <div className="text-sm text-muted-foreground">Current Value</div>
+                            <div className="text-sm text-muted-foreground">{t("dashboard.collection.card.current_value")}</div>
                             <div className="text-lg font-bold text-primary">
                               {formatOct(nft.listing_price_oct ?? nft.price_oct)}
                             </div>
@@ -351,11 +355,11 @@ export default function DashboardPage() {
                         <div className="flex gap-2">
                           {nft.status === "listed" ? (
                             <Button variant="outline" size="sm" className="flex-1 bg-transparent" disabled>
-                              Listed
+                              {t("dashboard.collection.card.listed")}
                             </Button>
                           ) : (
                             <Button size="sm" className="flex-1" onClick={() => handleList(nft)} disabled={!walletAddress}>
-                              List for Sale
+                              {t("dashboard.collection.card.list_for_sale")}
                             </Button>
                           )}
                           <Button variant="ghost" size="sm" asChild>
@@ -390,11 +394,11 @@ export default function DashboardPage() {
                                 <h3 className="text-lg font-semibold">{nft.name}</h3>
                                 <div className="flex items-center gap-2">
                                   <Badge variant="secondary">{nft.category || "other"}</Badge>
-                                  {nft.status === "listed" && <Badge className="bg-green-500">Listed</Badge>}
+                                  {nft.status === "listed" && <Badge className="bg-green-500">{t("dashboard.collection.card.listed")}</Badge>}
                                 </div>
                               </div>
                               <div className="text-right">
-                                <div className="text-sm text-muted-foreground">Current Value</div>
+                                <div className="text-sm text-muted-foreground">{t("dashboard.collection.card.current_value")}</div>
                                 <div className="text-xl font-bold text-primary">
                                   {formatOct(nft.listing_price_oct ?? nft.price_oct)}
                                 </div>
@@ -402,16 +406,16 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-4 text-sm">
-                                <span className="text-muted-foreground">Minted: {formatOct(nft.price_oct)}</span>
+                                <span className="text-muted-foreground">{t("dashboard.collection.card.minted").replace("{price}", formatOct(nft.price_oct))}</span>
                               </div>
                               <div className="flex gap-2">
                                 {nft.status === "listed" ? (
                                   <Button variant="outline" size="sm" className="bg-transparent" disabled>
-                                    Listed
+                                    {t("dashboard.collection.card.listed")}
                                   </Button>
                                 ) : (
                                   <Button size="sm" onClick={() => handleList(nft)} disabled={!walletAddress}>
-                                    List for Sale
+                                    {t("dashboard.collection.card.list_for_sale")}
                                   </Button>
                                 )}
                                 <Button variant="ghost" size="sm" asChild>
@@ -435,12 +439,12 @@ export default function DashboardPage() {
           <TabsContent value="activity" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Transaction History</CardTitle>
-                <CardDescription>Your complete trading and minting history</CardDescription>
+                <CardTitle>{t("dashboard.activity.title")}</CardTitle>
+                <CardDescription>{t("dashboard.activity.desc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 {transactions.length === 0 ? (
-                  <div className="text-center text-muted-foreground py-8">No transactions yet.</div>
+                  <div className="text-center text-muted-foreground py-8">{t("dashboard.activity.empty")}</div>
                 ) : (
                   <div className="space-y-4">
                     {transactions.map((tx) => (
@@ -460,7 +464,7 @@ export default function DashboardPage() {
                               <Clock className="h-3 w-3" />
                               {new Date(tx.created_at).toLocaleString()}
                             </div>
-                            <div className="font-mono text-xs break-all">Actor: {tx.actor_address}</div>
+                            <div className="font-mono text-xs break-all">{t("dashboard.activity.actor").replace("{address}", tx.actor_address)}</div>
                           </div>
                         </div>
                         <Button variant="ghost" size="sm" asChild>
@@ -478,7 +482,7 @@ export default function DashboardPage() {
 
           {/* Favorites Tab */}
           <TabsContent value="favorites" className="mt-6">
-            <div className="text-center text-muted-foreground py-12">You have not added any favorites yet.</div>
+            <div className="text-center text-muted-foreground py-12">{t("dashboard.favorites.empty")}</div>
           </TabsContent>
 
           {/* Analytics Tab */}
@@ -486,14 +490,14 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Portfolio Performance</CardTitle>
-                  <CardDescription>Your collection value over time</CardDescription>
+                  <CardTitle>{t("dashboard.analytics.title")}</CardTitle>
+                  <CardDescription>{t("dashboard.analytics.desc")}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64 flex items-center justify-center text-muted-foreground">
                     <div className="text-center">
                       <BarChart3 className="h-16 w-16 mx-auto mb-4" />
-                      <p>Portfolio chart will be displayed here</p>
+                      <p>{t("dashboard.analytics.placeholder")}</p>
                     </div>
                   </div>
                 </CardContent>
