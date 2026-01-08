@@ -25,8 +25,10 @@ import {
   type NftTransactionRecord,
 } from "@/lib/nft-repository"
 import type { AnimeNFT } from "@/lib/types"
+import { useLanguage } from "@/components/providers/language-provider"
 
 export default function NFTDetailPage() {
+  const { t } = useLanguage()
   const params = useParams<{ id: string }>()
   const [isLiked, setIsLiked] = useState(false)
   const [isPurchasing, setIsPurchasing] = useState(false)
@@ -88,16 +90,16 @@ export default function NFTDetailPage() {
       owner: nftRecord.owner_address,
       price: nftRecord.listing_price_oct || nftRecord.price_oct || undefined,
       isListed: nftRecord.status === "listed",
-      createdAt: nftRecord.created_at,
+      createdAt: nftRecord.created_at || "",
       attributes: {
-        series: nftRecord.series || "Unknown Series",
-        character: nftRecord.character || "Unknown Character",
+        series: nftRecord.series || t("nft_detail.attributes.series"),
+        character: nftRecord.character || t("nft_detail.attributes.character"),
         manufacturer: nftRecord.manufacturer || undefined,
         releaseYear: nftRecord.release_year || undefined,
         condition: nftRecord.condition || undefined,
       },
     }
-  }, [nftRecord])
+  }, [nftRecord, t])
 
   const listingId = nftRecord?.listing_id || ""
 
@@ -119,8 +121,8 @@ export default function NFTDetailPage() {
   const handlePurchase = async () => {
     if (!isConnected || !account) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet first",
+        title: t("nft_detail.toasts.wallet_not_connected"),
+        description: t("nft_detail.toasts.connect_first"),
         variant: "destructive",
       })
       return
@@ -128,8 +130,8 @@ export default function NFTDetailPage() {
 
     if (!listingId || !nftRecord) {
       toast({
-        title: "Listing not found",
-        description: "This NFT is not currently listed for sale",
+        title: t("nft_detail.toasts.listing_not_found"),
+        description: t("nft_detail.toasts.not_listed"),
         variant: "destructive",
       })
       return
@@ -140,7 +142,7 @@ export default function NFTDetailPage() {
     try {
       const nftObjectId = nftRecord.nft_object_id || (params?.id as string) || ""
       if (!nftObjectId) {
-        throw new Error("NFT object ID not found. Please refresh and try again.")
+        throw new Error(t("nft_detail.toasts.object_id_error"))
       }
 
       const tx = createPurchaseTransaction(listingId)
@@ -182,14 +184,16 @@ export default function NFTDetailPage() {
       setTransactions(txs)
 
       toast({
-        title: "NFT Purchased Successfully! 🎉",
-        description: `You are now the owner of ${nft?.name ?? "this NFT"}. View on explorer: ${getExplorerUrl("transaction", digest)}`,
+        title: t("nft_detail.toasts.purchase_success"),
+        description: t("nft_detail.toasts.purchase_success_desc")
+          .replace("{name}", nft?.name ?? "this NFT")
+          .replace("{url}", getExplorerUrl("transaction", digest)),
       })
     } catch (error: any) {
       console.error("Purchase failed:", error)
       toast({
-        title: "Purchase failed",
-        description: error.message || "An unexpected error occurred",
+        title: t("nft_detail.toasts.purchase_failed"),
+        description: error.message || t("conversation.common.error_occurred"), // assuming error_occurred might exist or fallback
         variant: "destructive",
       })
     } finally {
@@ -201,7 +205,7 @@ export default function NFTDetailPage() {
     if (navigator.share && nft) {
       navigator.share({
         title: nft.name,
-        text: `Check out this amazing anime NFT: ${nft.name}`,
+        text: t("nft_detail.share.text").replace("{name}", nft.name),
         url: window.location.href,
       })
     } else {
@@ -226,7 +230,7 @@ export default function NFTDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading NFT details...</div>
+      <div className="min-h-screen flex items-center justify-center text-muted-foreground">{t("nft_detail.loading")}</div>
     )
   }
 
@@ -234,10 +238,10 @@ export default function NFTDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="space-y-4 text-center">
-          <h2 className="text-2xl font-bold">NFT not found</h2>
-          <p className="text-muted-foreground">This NFT may have been removed or never existed.</p>
+          <h2 className="text-2xl font-bold">{t("nft_detail.not_found.title")}</h2>
+          <p className="text-muted-foreground">{t("nft_detail.not_found.description")}</p>
           <Button asChild>
-            <Link href="/marketplace">Back to marketplace</Link>
+            <Link href="/marketplace">{t("nft_detail.not_found.back_button")}</Link>
           </Button>
         </div>
       </div>
@@ -250,7 +254,7 @@ export default function NFTDetailPage() {
         <Button variant="ghost" className="mb-6" asChild>
           <Link href="/marketplace">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Marketplace
+            {t("nft_detail.back_link")}
           </Link>
         </Button>
 
@@ -262,7 +266,7 @@ export default function NFTDetailPage() {
                 <div
                   className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-medium ${getRarityColor(nft.rarity)}`}
                 >
-                  {nft.rarity.toUpperCase()}
+                  {(t(`marketplace.rarities.${nft.rarity}`) || nft.rarity).toUpperCase()}
                 </div>
                 <div className="absolute top-4 right-4 flex gap-2">
                   <Button size="sm" variant="secondary" onClick={() => setIsLiked(!isLiked)} className={isLiked ? "text-red-500" : ""}>
@@ -281,23 +285,23 @@ export default function NFTDetailPage() {
                   <Eye className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div className="text-2xl font-bold capitalize">{nftRecord?.status ?? "minted"}</div>
-                <div className="text-sm text-muted-foreground">Status</div>
+                <div className="text-sm text-muted-foreground">{t("nft_detail.status_card.status")}</div>
               </Card>
               <Card className="text-center p-4">
                 <div className="flex items-center justify-center mb-2">
                   <Heart className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div className="text-2xl font-bold">{transactions.length}</div>
-                <div className="text-sm text-muted-foreground">Transactions</div>
+                <div className="text-sm text-muted-foreground">{t("nft_detail.status_card.transactions")}</div>
               </Card>
               <Card className="text-center p-4">
                 <div className="flex items-center justify-center mb-2">
                   <TrendingUp className="h-5 w-5 text-green-500" />
                 </div>
                 <div className="text-2xl font-bold text-green-500">
-                  {nft.price ? `${nft.price} OCT` : "Not listed"}
+                  {nft.price ? `${nft.price} OCT` : t("nft_detail.status_card.not_listed")}
                 </div>
-                <div className="text-sm text-muted-foreground">Listing Price</div>
+                <div className="text-sm text-muted-foreground">{t("nft_detail.status_card.listing_price")}</div>
               </Card>
             </div>
           </div>
@@ -307,7 +311,7 @@ export default function NFTDetailPage() {
               <h1 className="text-3xl font-bold mb-2">{nft.name}</h1>
               <p className="text-muted-foreground mb-4">{nft.description}</p>
               <div className="flex items-center gap-2 mb-4">
-                <Badge variant="secondary">{nft.category}</Badge>
+                <Badge variant="secondary">{t(`marketplace.categories.${nft.category}`) || nft.category}</Badge>
                 <Badge variant="outline">{nft.attributes.series}</Badge>
               </div>
             </div>
@@ -315,28 +319,28 @@ export default function NFTDetailPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <span>Current Price</span>
+                  <span>{t("nft_detail.action_card.current_price")}</span>
                   <div className="flex items-center gap-1 text-sm text-green-500">
                     <TrendingUp className="h-4 w-4" />
-                    Live Listing
+                    {t("nft_detail.action_card.live_listing")}
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-primary mb-4">{nft.price ? `${nft.price} OCT` : "Not listed"}</div>
+                <div className="text-3xl font-bold text-primary mb-4">{nft.price ? `${nft.price} OCT` : t("nft_detail.action_card.not_listed")}</div>
                 <div className="flex gap-3">
                   <Button className="flex-1" onClick={handlePurchase} disabled={isPurchasing || isTransactionPending || !listingId}>
                     {isPurchasing || isTransactionPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Processing...
+                        {t("nft_detail.action_card.processing")}
                       </>
                     ) : (
-                      "Buy Now"
+                      t("nft_detail.action_card.buy_now")
                     )}
                   </Button>
                   <Button variant="outline" className="bg-transparent" disabled>
-                    Make Offer
+                    {t("nft_detail.action_card.make_offer")}
                   </Button>
                 </div>
               </CardContent>
@@ -346,7 +350,7 @@ export default function NFTDetailPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <User className="h-5 w-5" />
-                  Owner
+                  {t("nft_detail.info_cards.owner")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -356,7 +360,7 @@ export default function NFTDetailPage() {
                     <AvatarFallback>OW</AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="font-medium">Owner</div>
+                    <div className="font-medium">{t("nft_detail.info_cards.owner")}</div>
                     <div className="text-sm text-muted-foreground font-mono">{nft.owner}</div>
                   </div>
                 </div>
@@ -367,7 +371,7 @@ export default function NFTDetailPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Award className="h-5 w-5" />
-                  Creator
+                  {t("nft_detail.info_cards.creator")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -377,7 +381,7 @@ export default function NFTDetailPage() {
                     <AvatarFallback>CR</AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="font-medium">Creator</div>
+                    <div className="font-medium">{t("nft_detail.info_cards.creator")}</div>
                     <div className="text-sm text-muted-foreground font-mono">{nft.creator}</div>
                   </div>
                 </div>
@@ -388,9 +392,9 @@ export default function NFTDetailPage() {
 
         <Tabs defaultValue="details" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="details">Details</TabsTrigger>
-            <TabsTrigger value="history">History</TabsTrigger>
-            <TabsTrigger value="more">More from Collection</TabsTrigger>
+            <TabsTrigger value="details">{t("nft_detail.tabs.details")}</TabsTrigger>
+            <TabsTrigger value="history">{t("nft_detail.tabs.history")}</TabsTrigger>
+            <TabsTrigger value="more">{t("nft_detail.tabs.more")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="details" className="mt-6">
@@ -399,34 +403,34 @@ export default function NFTDetailPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Tag className="h-5 w-5" />
-                    Attributes
+                    {t("nft_detail.attributes.title")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-muted-foreground">Series:</span>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.series")}:</span>
                       <p className="font-medium">{nft.attributes.series}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Character:</span>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.character")}:</span>
                       <p className="font-medium">{nft.attributes.character}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Manufacturer:</span>
-                      <p className="font-medium">{nft.attributes.manufacturer ?? "Unknown"}</p>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.manufacturer")}:</span>
+                      <p className="font-medium">{nft.attributes.manufacturer ?? t("nft_detail.attributes.unknown")}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Release Year:</span>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.release_year")}:</span>
                       <p className="font-medium">{nft.attributes.releaseYear ?? "—"}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Condition:</span>
-                      <p className="font-medium capitalize">{nft.attributes.condition ?? "unknown"}</p>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.condition")}:</span>
+                      <p className="font-medium capitalize">{nft.attributes.condition ?? t("nft_detail.attributes.unknown")}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Rarity:</span>
-                      <p className="font-medium capitalize">{nft.rarity}</p>
+                      <span className="text-muted-foreground">{t("nft_detail.attributes.rarity")}:</span>
+                      <p className="font-medium capitalize">{t(`marketplace.rarities.${nft.rarity}`) || nft.rarity}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -436,13 +440,13 @@ export default function NFTDetailPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Shield className="h-5 w-5" />
-                    Blockchain Details
+                    {t("nft_detail.blockchain.title")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Token ID:</span>
+                      <span className="text-muted-foreground">{t("nft_detail.blockchain.token_id")}:</span>
                       <Button variant="link" className="px-0 h-auto font-mono text-xs" asChild>
                         <Link href={getExplorerUrl("object", nft.id)} target="_blank" rel="noopener noreferrer">
                           {shortenId(nft.id, 8)}
@@ -450,15 +454,15 @@ export default function NFTDetailPage() {
                       </Button>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Network:</span>
-                      <span>OneChain OCT Testnet</span>
+                      <span className="text-muted-foreground">{t("nft_detail.blockchain.network")}:</span>
+                      <span>{t("nft_detail.blockchain.network_name")}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Standard:</span>
-                      <span>OCT NFT</span>
+                      <span className="text-muted-foreground">{t("nft_detail.blockchain.standard")}:</span>
+                      <span>{t("nft_detail.blockchain.standard_name")}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Created:</span>
+                      <span className="text-muted-foreground">{t("nft_detail.blockchain.created")}:</span>
                       <span>{formatDate(nft.createdAt as string)}</span>
                     </div>
                   </div>
@@ -471,7 +475,7 @@ export default function NFTDetailPage() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        View on Explorer
+                        {t("nft_detail.blockchain.view_explorer")}
                       </a>
                     </Button>
                   )}
@@ -483,36 +487,30 @@ export default function NFTDetailPage() {
           <TabsContent value="history" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Transaction History</CardTitle>
-                <CardDescription>Complete ownership and transaction history for this NFT</CardDescription>
+                <CardTitle>{t("nft_detail.history.title")}</CardTitle>
+                <CardDescription>{t("nft_detail.history.description")}</CardDescription>
               </CardHeader>
               <CardContent>
                 {transactions.length === 0 ? (
-                  <div className="text-center text-muted-foreground py-8">No transactions recorded yet.</div>
+                  <div className="text-center text-muted-foreground py-8">{t("nft_detail.history.empty")}</div>
                 ) : (
                   <div className="space-y-4">
                     {transactions.map((event) => (
-                      <div key={event.id} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                          {event.type === "mint" ? (
-                            <Award className="h-5 w-5 text-primary" />
-                          ) : (
-                            <Tag className="h-5 w-5 text-primary" />
-                          )}
+                      <div key={event.tx_digest} className="flex items-center gap-4 p-4 border rounded-lg">
+                        <div className="p-2 bg-muted rounded-full">
+                          <Clock className="h-4 w-4" />
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
+                          <div className="flex justify-between mb-1">
                             <span className="font-medium capitalize">{event.type}</span>
-                            {event.price_oct && <span className="font-bold">{event.price_oct} OCT</span>}
+                            <span className="text-sm text-muted-foreground">
+                              {event.created_at ? new Date(event.created_at).toLocaleString() : "—"}
+                            </span>
                           </div>
-                          <div className="text-sm text-muted-foreground">
-                            <div className="flex items-center gap-1 mb-1">
-                              <Clock className="h-3 w-3" />
-                              {new Date(event.created_at).toLocaleString()}
-                            </div>
-                            <div>
-                              Actor: <span className="font-mono">{event.actor_address}</span>
-                            </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">
+                              {t("nft_detail.history.actor")}: {shortenId(event.actor_address)}
+                            </span>
                           </div>
                         </div>
                         <Button variant="ghost" size="sm" asChild>
@@ -531,12 +529,12 @@ export default function NFTDetailPage() {
           <TabsContent value="more" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>More from this Collection</CardTitle>
-                <CardDescription>Discover other NFTs from the same creator or series</CardDescription>
+                <CardTitle>{t("nft_detail.more_collection.title")}</CardTitle>
+                <CardDescription>{t("nft_detail.more_collection.description")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8 text-muted-foreground">
-                  <p>More items from this collection will be displayed here.</p>
+                  <p>{t("nft_detail.more_collection.placeholder")}</p>
                 </div>
               </CardContent>
             </Card>

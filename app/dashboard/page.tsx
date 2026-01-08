@@ -157,17 +157,23 @@ export default function DashboardPage() {
   // Calculate user stats
   const userStats = useMemo(() => {
     const nftsOwned = ownedNfts.length
-    const nftsListed = ownedNfts.filter(nft => nft.status === "listed").length
+
+    // Use type assertions to help typescript understand filter logic
+    const nftsSold = transactions.filter((tx) => (tx.type as string) === "sale" || (tx.type as string) === "purchase").length 
+    
+    // Total Volume - sum of all sales/purchases
+    // Note: In our current schema, 'purchase' is often the logged event for a sale completing
     const totalVolume = transactions
-      .filter(tx => tx.type === "purchase" || tx.type === "sale")
+      .filter((tx) => tx.type === "purchase" || (tx.type as string) === "sale")
       .reduce((sum, tx) => sum + (Number(tx.price_oct) || 0), 0)
+
     const portfolioValue = ownedNfts
       .filter(nft => nft.status === "listed")
       .reduce((sum, nft) => sum + (Number(nft.listing_price_oct) || 0), 0)
 
     return {
       nftsOwned,
-      nftsSold: transactions.filter(tx => tx.type === "sale").length,
+      nftsSold,
       totalVolume,
       portfolioValue,
       portfolioChange: "+0%", // Can be calculated from historical data if needed
@@ -448,30 +454,28 @@ export default function DashboardPage() {
                 ) : (
                   <div className="space-y-4">
                     {transactions.map((tx) => (
-                      <div key={tx.id} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                          {tx.type === "purchase" && <TrendingDown className="h-5 w-5 text-red-500" />}
-                          {tx.type === "list" && <TrendingUp className="h-5 w-5 text-green-500" />}
-                          {tx.type === "mint" && <Plus className="h-5 w-5 text-primary" />}
+                      <div key={tx.tx_digest || Math.random().toString()} className="flex items-center gap-4 p-4 border rounded-lg">
+                        <div className="p-2 bg-muted rounded-full">
+                          {getChangeIcon(tx.type === "purchase" ? "-" : "+")({ className: "h-4 w-4" })}
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
+                          <div className="flex justify-between mb-1">
                             <span className="font-medium capitalize">{tx.type}</span>
-                            {tx.price_oct && <span className="font-bold">{tx.price_oct} OCT</span>}
+                            <span className="text-sm text-muted-foreground">
+                              {tx.created_at ? new Date(tx.created_at).toLocaleString() : "—"}
+                            </span>
                           </div>
-                          <div className="text-sm text-muted-foreground">
-                            <div className="flex items-center gap-1">
-                              <Clock className="h-3 w-3" />
-                              {new Date(tx.created_at).toLocaleString()}
-                            </div>
-                            <div className="font-mono text-xs break-all">{t("dashboard.activity.actor").replace("{address}", tx.actor_address)}</div>
+                          <div className="flex justify-between text-sm">
+                            <Link href={`/marketplace/${tx.nft_object_id}`} className="hover:underline">
+                              View NFT
+                            </Link>
+                            {tx.price_oct && (
+                              <span className="font-medium">
+                                {tx.price_oct} OCT
+                              </span>
+                            )}
                           </div>
                         </div>
-                        <Button variant="ghost" size="sm" asChild>
-                          <Link href={getExplorerUrl("transaction", tx.tx_digest)} target="_blank">
-                            <ExternalLink className="h-4 w-4" />
-                          </Link>
-                        </Button>
                       </div>
                     ))}
                   </div>
@@ -538,18 +542,36 @@ export default function DashboardPage() {
                     <div className="text-center text-muted-foreground py-6">No market activity recorded yet.</div>
                   ) : (
                     <div className="space-y-4">
-                      {transactions.slice(0, 3).map((tx) => (
-                        <div key={tx.id} className="flex items-center justify-between p-4 border rounded-lg">
-                          <div className="flex items-center gap-3">
-                            <div className={`w-2 h-2 rounded-full ${tx.type === "purchase" ? "bg-green-500" : "bg-blue-500"}`}></div>
-                            <span className="text-sm">
-                              {tx.type === "purchase" ? "Purchased" : tx.type === "list" ? "Listed" : "Minted"} NFT{" "}
-                              <span className="font-mono text-xs">{tx.nft_object_id.slice(0, 8)}...</span>
-                            </span>
+                      {transactions
+                        .filter((tx) => tx.type === "purchase" || (tx as any).type === "sale")
+                        .map((tx) => (
+                          <div key={tx.tx_digest || Math.random()} className="flex items-center justify-between p-4 border rounded-lg">
+                            <div className="flex items-center gap-4">
+                              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                {tx.type === "purchase" ? (
+                                  <TrendingDown className="h-5 w-5 text-red-500" />
+                                ) : (
+                                  <TrendingUp className="h-5 w-5 text-green-500" />
+                                )}
+                              </div>
+                              <div>
+                                <div className="font-medium capitalize">{tx.type}</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {tx.created_at ? new Date(tx.created_at).toLocaleDateString() : "—"}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <div className="font-medium">{tx.price_oct ? `${tx.price_oct} OCT` : "—"}</div>
+                              <Link
+                                href={`/marketplace/${tx.nft_object_id}`}
+                                className="text-xs text-muted-foreground hover:underline"
+                              >
+                                View NFT
+                              </Link>
+                            </div>
                           </div>
-                          <div className="text-sm font-medium">{tx.price_oct ? `${tx.price_oct} OCT` : "—"}</div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   )}
                 </CardContent>

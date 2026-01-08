@@ -270,5 +270,81 @@
       "desc": "Your collection value over time",
       "placeholder": "Portfolio chart will be displayed here"
     }
+  },
+  "nft_detail": {
+    "loading": "Loading NFT details...",
+    "not_found": {
+      "title": "NFT not found",
+      "description": "This NFT may have been removed or never existed.",
+      "back_button": "Back to marketplace"
+    },
+    "back_link": "Back to Marketplace",
+    "status_card": {
+      "status": "Status",
+      "transactions": "Transactions",
+      "listing_price": "Listing Price",
+      "not_listed": "Not listed"
+    },
+    "action_card": {
+      "current_price": "Current Price",
+      "live_listing": "Live Listing",
+      "buy_now": "Buy Now",
+      "processing": "Processing...",
+      "make_offer": "Make Offer",
+      "not_listed": "Not listed"
+    },
+    "info_cards": {
+      "owner": "Owner",
+      "creator": "Creator"
+    },
+    "tabs": {
+      "details": "Details",
+      "history": "History",
+      "more": "More from Collection"
+    },
+    "attributes": {
+      "title": "Attributes",
+      "series": "Series",
+      "character": "Character",
+      "manufacturer": "Manufacturer",
+      "release_year": "Release Year",
+      "condition": "Condition",
+      "rarity": "Rarity",
+      "unknown": "Unknown"
+    },
+    "blockchain": {
+      "title": "Blockchain Details",
+      "token_id": "Token ID",
+      "network": "Network",
+      "network_name": "OneChain OCT Testnet",
+      "standard": "Standard",
+      "standard_name": "OCT NFT",
+      "created": "Created",
+      "view_explorer": "View on Explorer"
+    },
+    "history": {
+      "title": "Transaction History",
+      "description": "Complete ownership and transaction history for this NFT",
+      "empty": "No transactions recorded yet.",
+      "actor": "Actor"
+    },
+    "more_collection": {
+      "title": "More from this Collection",
+      "description": "Discover other NFTs from the same creator or series",
+      "placeholder": "More items from this collection will be displayed here."
+    },
+    "share": {
+      "text": "Check out this amazing anime NFT: {name}"
+    },
+    "toasts": {
+      "wallet_not_connected": "Wallet not connected",
+      "connect_first": "Please connect your wallet first",
+      "listing_not_found": "Listing not found",
+      "not_listed": "This NFT is not currently listed for sale",
+      "object_id_error": "NFT object ID not found. Please refresh and try again.",
+      "purchase_success": "NFT Purchased Successfully! 🎉",
+      "purchase_success_desc": "You are now the owner of {name}. View on explorer: {url}",
+      "purchase_failed": "Purchase failed"
+    }
   }
 }

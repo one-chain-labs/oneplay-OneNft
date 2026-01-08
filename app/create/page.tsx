@@ -206,8 +206,11 @@ export default function CreatePage() {
       const nftObject = mintResult.objectChanges?.find(
         (obj: any) => obj.type === "created" && obj.objectType?.includes("LandData")
       )
-      if (nftObject?.objectId) {
-        nftId = nftObject.objectId
+      
+      // The SuiObjectChange type usually has objectId on 'created' or 'mutated' changes
+      // We cast to any or check properties carefully
+      if (nftObject && 'objectId' in nftObject) {
+        nftId = (nftObject as any).objectId
       }
 
       if (!nftId) {

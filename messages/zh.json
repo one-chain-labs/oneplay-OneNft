@@ -270,5 +270,81 @@
       "desc": "您的收藏价值随时间变化",
       "placeholder": "此处将显示资产组合图表"
     }
+  },
+  "nft_detail": {
+    "loading": "正在加载 NFT 详情...",
+    "not_found": {
+      "title": "未找到 NFT",
+      "description": "此 NFT 可能已被移除或不存在。",
+      "back_button": "返回市场"
+    },
+    "back_link": "返回市场",
+    "status_card": {
+      "status": "状态",
+      "transactions": "交易次数",
+      "listing_price": "挂牌价格",
+      "not_listed": "未上架"
+    },
+    "action_card": {
+      "current_price": "当前价格",
+      "live_listing": "正在热卖",
+      "buy_now": "立即购买",
+      "processing": "处理中...",
+      "make_offer": "出价",
+      "not_listed": "未上架"
+    },
+    "info_cards": {
+      "owner": "拥有者",
+      "creator": "创作者"
+    },
+    "tabs": {
+      "details": "详情",
+      "history": "历史",
+      "more": "同系列更多"
+    },
+    "attributes": {
+      "title": "属性",
+      "series": "系列",
+      "character": "角色",
+      "manufacturer": "制造商",
+      "release_year": "发布年份",
+      "condition": "成色",
+      "rarity": "稀有度",
+      "unknown": "未知"
+    },
+    "blockchain": {
+      "title": "区块链详情",
+      "token_id": "Token ID",
+      "network": "网络",
+      "network_name": "OneChain OCT 测试网",
+      "standard": "标准",
+      "standard_name": "OCT NFT",
+      "created": "创建时间",
+      "view_explorer": "在浏览器查看"
+    },
+    "history": {
+      "title": "交易历史",
+      "description": "此 NFT 的完整所有权和交易历史",
+      "empty": "暂无交易记录。",
+      "actor": "操作者"
+    },
+    "more_collection": {
+      "title": "更多同系列藏品",
+      "description": "探索同一创作者或系列的更多 NFT",
+      "placeholder": "此处将显示更多同系列藏品。"
+    },
+    "share": {
+      "text": "快来看看这个超棒的动漫 NFT：{name}"
+    },
+    "toasts": {
+      "wallet_not_connected": "钱包未连接",
+      "connect_first": "请先连接您的钱包",
+      "listing_not_found": "未找到挂牌信息",
+      "not_listed": "此 NFT 当前未上架出售",
+      "object_id_error": "未找到 NFT 对象 ID。请刷新重试。",
+      "purchase_success": "NFT 购买成功！🎉",
+      "purchase_success_desc": "您现在是 {name} 的拥有者了。在浏览器查看：{url}",
+      "purchase_failed": "购买失败"
+    }
   }
 }
