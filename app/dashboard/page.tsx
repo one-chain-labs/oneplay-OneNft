@@ -453,31 +453,34 @@ export default function DashboardPage() {
                   <div className="text-center text-muted-foreground py-8">{t("dashboard.activity.empty")}</div>
                 ) : (
                   <div className="space-y-4">
-                    {transactions.map((tx) => (
-                      <div key={tx.tx_digest || Math.random().toString()} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <div className="p-2 bg-muted rounded-full">
-                          {getChangeIcon(tx.type === "purchase" ? "-" : "+")({ className: "h-4 w-4" })}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex justify-between mb-1">
-                            <span className="font-medium capitalize">{tx.type}</span>
-                            <span className="text-sm text-muted-foreground">
-                              {tx.created_at ? new Date(tx.created_at).toLocaleString() : "—"}
-                            </span>
+                    {transactions.map((tx) => {
+                      const Icon = getChangeIcon(tx.type === "purchase" ? "-" : "+")
+                      return (
+                        <div key={tx.tx_digest || Math.random().toString()} className="flex items-center gap-4 p-4 border rounded-lg">
+                          <div className="p-2 bg-muted rounded-full">
+                            <Icon className="h-4 w-4" />
                           </div>
-                          <div className="flex justify-between text-sm">
-                            <Link href={`/marketplace/${tx.nft_object_id}`} className="hover:underline">
-                              View NFT
-                            </Link>
-                            {tx.price_oct && (
-                              <span className="font-medium">
-                                {tx.price_oct} OCT
+                          <div className="flex-1">
+                            <div className="flex justify-between mb-1">
+                              <span className="font-medium capitalize">{tx.type}</span>
+                              <span className="text-sm text-muted-foreground">
+                                {tx.created_at ? new Date(tx.created_at).toLocaleString() : "—"}
                               </span>
-                            )}
+                            </div>
+                            <div className="flex justify-between text-sm">
+                              <Link href={`/marketplace/${tx.nft_object_id}`} className="hover:underline">
+                                {t("dashboard.activity.view_nft")}
+                              </Link>
+                              {tx.price_oct && (
+                                <span className="font-medium">
+                                  {tx.price_oct} OCT
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 )}
               </CardContent>
@@ -509,12 +512,12 @@ export default function DashboardPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Collection Breakdown</CardTitle>
-                  <CardDescription>Distribution by category and rarity</CardDescription>
+                  <CardTitle>{t("dashboard.analytics.collection_breakdown")}</CardTitle>
+                  <CardDescription>{t("dashboard.analytics.collection_breakdown_desc")}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {Object.keys(categoryBreakdown).length === 0 ? (
-                    <div className="text-sm text-muted-foreground">No NFTs to analyze yet.</div>
+                    <div className="text-sm text-muted-foreground">{t("dashboard.analytics.no_nfts")}</div>
                   ) : (
                     Object.entries(categoryBreakdown).map(([category, count]) => {
                       const percent = derivedStats.totalNfts ? Math.round((count / derivedStats.totalNfts) * 100) : 0
@@ -534,12 +537,12 @@ export default function DashboardPage() {
 
               <Card className="lg:col-span-2">
                 <CardHeader>
-                  <CardTitle>Recent Market Activity</CardTitle>
-                  <CardDescription>Latest trends in your collection categories</CardDescription>
+                  <CardTitle>{t("dashboard.activity.recent_market")}</CardTitle>
+                  <CardDescription>{t("dashboard.activity.recent_market_desc")}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {transactions.length === 0 ? (
-                    <div className="text-center text-muted-foreground py-6">No market activity recorded yet.</div>
+                    <div className="text-center text-muted-foreground py-6">{t("dashboard.activity.no_market_activity")}</div>
                   ) : (
                     <div className="space-y-4">
                       {transactions
@@ -567,7 +570,7 @@ export default function DashboardPage() {
                                 href={`/marketplace/${tx.nft_object_id}`}
                                 className="text-xs text-muted-foreground hover:underline"
                               >
-                                View NFT
+                                {t("dashboard.activity.view_nft")}
                               </Link>
                             </div>
                           </div>

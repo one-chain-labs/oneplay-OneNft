@@ -266,20 +266,20 @@
   "dashboard": {
     "header": {
       "collector": "收藏家",
-      "connect_prompt": "连接您的钱包",
+      "connect_prompt": "连接钱包",
       "member_since": "加入时间 {date}",
       "settings": "设置",
       "create": "创建 NFT"
     },
     "stats": {
       "portfolio_value": "资产组合价值",
-      "portfolio_desc": "拥有 NFT 的实时估值",
-      "nfts_owned": "拥有的 NFT",
-      "nfts_owned_desc": "涵盖所有类别",
+      "portfolio_desc": "预估总价值",
+      "nfts_owned": "拥有 NFT",
+      "nfts_owned_desc": "收藏中的物品",
       "total_volume": "总交易量",
       "transactions_logged": "记录了 {count} 笔交易",
       "listed_nfts": "已上架 NFT",
-      "listed_desc": "目前在市场上活跃"
+      "listed_desc": "当前正在出售"
     },
     "tabs": {
       "collection": "我的收藏",
@@ -288,38 +288,44 @@
       "analytics": "分析"
     },
     "collection": {
-      "search_placeholder": "搜索您的收藏...",
-      "loading": "正在加载您的收藏...",
-      "empty": "没有匹配您筛选条件的 NFT。",
-      "card": {
-        "minted": "铸造价：{price}",
-        "current_value": "当前价值",
-        "listed": "已上架",
-        "list_for_sale": "上架出售"
-      },
+      "search_placeholder": "搜索我的收藏...",
       "filters": {
         "all": "所有物品",
         "listed": "已上架",
         "unlisted": "未上架",
         "figure": "手办",
-        "card": "卡牌",
+        "card": "卡片",
         "poster": "海报",
-        "accessory": "配件"
+        "accessory": "饰品"
+      },
+      "loading": "正在加载收藏...",
+      "empty": "未找到物品",
+      "card": {
+        "listed": "已上架",
+        "minted": "铸造价格 {price}",
+        "current_value": "当前价值",
+        "list_for_sale": "上架出售"
       }
     },
     "activity": {
-      "title": "交易历史",
-      "desc": "您完整的交易和铸造历史",
-      "empty": "暂无交易。",
-      "actor": "操作者：{address}"
+      "title": "近期活动",
+      "desc": "您最近的交易和互动。",
+      "empty": "暂无近期活动记录。",
+      "view_nft": "查看 NFT",
+      "recent_market": "近期市场活动",
+      "recent_market_desc": "您收藏类别的最新趋势",
+      "no_market_activity": "暂无市场活动记录。"
     },
     "favorites": {
-      "empty": "您尚未添加任何收藏。"
+      "empty": "暂无收藏。去市场探索您喜欢的物品吧！"
     },
     "analytics": {
-      "title": "资产组合表现",
-      "desc": "您的收藏价值随时间变化",
-      "placeholder": "此处将显示资产组合图表"
+      "title": "分析概览",
+      "desc": "您的收藏表现分析。",
+      "placeholder": "分析图表即将推出",
+      "collection_breakdown": "收藏分布",
+      "collection_breakdown_desc": "按类别和稀有度分布",
+      "no_nfts": "暂无 NFT 可供分析。"
     }
   },
   "nft_detail": {
