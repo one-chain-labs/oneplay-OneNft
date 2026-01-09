@@ -56,10 +56,10 @@ export default function HomePage() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Wallet className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold">{messages.common.anime}{messages.common.vault}</span>
+            <span className="text-xl font-bold">{messages.common.anime}</span>
           </div>
           <p className="text-muted-foreground">
-            {messages.home.footer.powered_by}
+            {isMainnet ? messages.home.footer.powered_by_mainnet : messages.home.footer.powered_by_testnet}
           </p>
         </div>
       </footer>

@@ -26,7 +26,8 @@
       "description": "连接您的 OneWallet 以查看您的 OCT 代币余额"
     },
     "footer": {
-      "powered_by": "由 OneChain OCT 测试网支持"
+      "powered_by_mainnet": "由 OneChain OCT 主网支持",
+      "powered_by_testnet": "由 OneChain OCT 测试网网支持"
     }
   },
   "wallet_info": {

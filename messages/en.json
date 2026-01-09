@@ -26,7 +26,8 @@
       "description": "Connect your OneWallet to view your OCT token balance"
     },
     "footer": {
-      "powered_by": "Powered by OneChain OCT Testnet"
+      "powered_by_mainnet": "Powered by OneChain OCT Mainnet",
+      "powered_by_testnet": "Powered by OneChain OCT Testnet"
     }
   },
   "wallet_info": {
