@@ -54,11 +54,7 @@ export const suiClient = new SuiClient({
 
 // Load deployment info
 let deploymentInfo: any = null
-try {
-  deploymentInfo = require("../deployment-info.json")
-} catch {
-  console.warn("Deployment info not found. Please deploy contract first.")
-}
+
 
 // NFT Contract metadata - Updated from finalproofpack.txt
 // Contract address: 0x02c23edcb0cc861f892d22776d83e21e5b6a953c17e6b2011b5721b608c6fc64
