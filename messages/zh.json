@@ -10,8 +10,7 @@
     "disconnect": "断开连接"
   },
   "common": {
-    "anime": "动漫",
-    "vault": "金库",
+    "anime": "OneNFT",
     "language": "语言"
   },
   "home": {
@@ -19,7 +18,7 @@
       "badge": "由 OneChain OCT 测试网支持",
       "title_prefix": "连接您的",
       "title_highlight": "OneWallet",
-      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额并开始使用动漫 NFT 平台。"
+      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额并开始使用 OneNFT 平台。"
     },
     "integration": {
       "title": "OneWallet 集成",
@@ -31,7 +30,7 @@
   },
   "wallet_info": {
     "connect_title": "连接您的钱包",
-    "connect_description": "连接您的 OneWallet 以开始使用动漫 NFT 平台",
+    "connect_description": "连接您的 OneWallet 以开始使用 OneNFT 平台",
     "connect_button_connecting": "连接中...",
     "connect_button_default": "连接 OneWallet",
     "connected_title": "钱包已连接",
@@ -49,7 +48,7 @@
   "marketplace": {
     "hero": {
       "badge": "完整的 NFT 生命周期",
-      "title": "动漫 NFT 市场",
+      "title": "OneNFT 市场",
       "description": "体验完整的生命周期：",
       "mint": "铸造",
       "list": "上架",
@@ -70,7 +69,7 @@
       "collected": "已收藏"
     },
     "filters": {
-      "search_placeholder": "搜索动漫 NFT、系列或角色...",
+      "search_placeholder": "搜索 NFT、系列或角色...",
       "button": "筛选",
       "advanced": "高级筛选",
       "category": "类别",
@@ -100,7 +99,7 @@
     "dialogs": {
       "mint": {
         "title": "铸造新 NFT",
-        "desc": "在区块链上创建新的动漫周边 NFT。这将花费少量的 Gas 费。",
+        "desc": "在区块链上创建新的NFT。这将花费少量的 Gas 费。",
         "note": "要铸造 NFT，请使用“创建”页面上传您的商品详情和图片。",
         "go_create": "前往创建页面"
       },
@@ -173,8 +172,8 @@
   "create": {
     "hero": {
       "badge": "代币化工作室",
-      "title": "创建您的动漫 NFT",
-      "description": "将您的实物动漫周边转化为区块链上经过验证的 NFT"
+      "title": "创建您的NFT",
+      "description": "将您的实物转化为区块链上经过验证的 NFT"
     },
     "steps": {
       "1": {
@@ -216,7 +215,7 @@
       "item_name": "商品名称",
       "item_name_placeholder": "例如：鬼灭之刃 炭治郎手办",
       "description": "描述",
-      "description_placeholder": "详细描述您的动漫周边商品...",
+      "description_placeholder": "详细描述您的商品...",
       "category": "类别",
       "select_category": "选择类别",
       "rarity": "稀有度",
@@ -391,7 +390,7 @@
       "placeholder": "此处将显示更多同系列藏品。"
     },
     "share": {
-      "text": "快来看看这个超棒的动漫 NFT：{name}"
+      "text": "快来看看这个超棒的 NFT：{name}"
     },
     "toasts": {
       "wallet_not_connected": "钱包未连接",
