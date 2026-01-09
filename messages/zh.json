@@ -15,14 +15,15 @@
   },
   "home": {
     "hero": {
-      "badge": "由 OneChain OCT 测试网支持",
+      "badge_mainnet": "由 OneChain OCT 主网支持",
+      "badge_testnet": "由 OneChain OCT 测试网支持",
       "title_prefix": "连接您的",
       "title_highlight": "OneWallet",
-      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额并开始使用 OneNFT 平台。"
+      "description": "连接您的 OneWallet 以查看您的 OCT 代币余额并开始使用 OneNFT 平台。"
     },
     "integration": {
       "title": "OneWallet 集成",
-      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额"
+      "description": "连接您的 OneWallet 以查看您的 OCT 代币余额"
     },
     "footer": {
       "powered_by": "由 OneChain OCT 测试网支持"

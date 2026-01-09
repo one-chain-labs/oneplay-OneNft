@@ -49,27 +49,27 @@ export const getExplorerUrl = (type: 'transaction' | 'object' | 'account', id: s
 
 // Initialize OneChain OCT client
 export const suiClient = new SuiClient({
-  url: NETWORK_CONFIG.testnet.rpc,
+  url: process.env.NETWORK === 'mainnet' ? NETWORK_CONFIG.mainnet.rpc : NETWORK_CONFIG.testnet.rpc,
 })
-
+export const currentNetwork = process.env.NEXT_PUBLIC_NETWORK || '';
 // Load deployment info
 let deploymentInfo: any = null
 
-
+ 
 // NFT Contract metadata - Updated from finalproofpack.txt
 // Contract address: 0x02c23edcb0cc861f892d22776d83e21e5b6a953c17e6b2011b5721b608c6fc64
 // Module: animetranferprotocolnew
 export const CONTRACT_ADDRESSES = {
-  PACKAGE_ID: deploymentInfo?.packageId || "0xa4cf435971e08f658169a8066ef1be0ba980b4a0058aacc4c937d88707009a74",
-  NFT_COUNT_ID: deploymentInfo?.nftCountId || "0x7a91e2442533369c3e5bf2b843af7813a6531e6d0c9dedc6bc00989daecaf07b",
-  LAND_REGISTRY_ID: deploymentInfo?.landRegistryId || "0x3b48655e81ae2527f0086bac79c90a8afc289b405732082f3342d00ab9fc1e87",
-  LAND_REGISTRY_ADDRESS_ID: deploymentInfo?.landRegistryAddressId || "0x70cc3943cafc6f26cca128048b04c0891caf40c2f797bb1f1bcefceb6d5a39d5",
+  PACKAGE_ID: process.env.NEXT_PUBLIC_PACKAGE_ID || "",
+  NFT_COUNT_ID: process.env.NEXT_PUBLIC_NFT_COUNT_ID || "",
+  LAND_REGISTRY_ID: process.env.NEXT_PUBLIC_LAND_REGISTRY_ID || "",
+  LAND_REGISTRY_ADDRESS_ID: process.env.NEXT_PUBLIC_LAND_REGISTRY_ADDRESS_ID || "",
   // Legacy fields for backward compatibility
-  MARKETPLACE_ID: deploymentInfo?.marketplaceId || "",
-  MARKETPLACE_CAP_ID: deploymentInfo?.marketplaceCapId || "",
+  MARKETPLACE_ID: process.env.NEXT_PUBLIC_MARKETPLACE_ID || "",
+  MARKETPLACE_CAP_ID: process.env.NEXT_PUBLIC_MARKETPLACE_CAP_ID || "",
 }
 
-export const CONTRACT_MODULE = deploymentInfo?.moduleName || "animetranferprotocolnew"
+export const CONTRACT_MODULE = process.env.NEXT_PUBLIC_CONTRACT_MODULE || "animetranferprotocolnew"
 
 export const contractTarget = (fnName: string) =>
   CONTRACT_ADDRESSES.PACKAGE_ID ? `${CONTRACT_ADDRESSES.PACKAGE_ID}::${CONTRACT_MODULE}::${fnName}` : ""

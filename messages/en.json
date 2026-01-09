@@ -15,14 +15,15 @@
   },
   "home": {
     "hero": {
-      "badge": "Powered by OneChain OCT Testnet",
+      "badge_mainnet": "Powered by OneChain OCT Mainnet",
+      "badge_testnet": "Powered by OneChain OCT Testnet",
       "title_prefix": "Connect Your",
       "title_highlight": "OneWallet",
-      "description": "Connect your OneWallet to view your OCT Testnet token balance and start using the anime NFT platform."
+      "description": "Connect your OneWallet to view your OCT token balance and start using the anime NFT platform."
     },
     "integration": {
       "title": "OneWallet Integration",
-      "description": "Connect your OneWallet to view your OCT Testnet token balance"
+      "description": "Connect your OneWallet to view your OCT token balance"
     },
     "footer": {
       "powered_by": "Powered by OneChain OCT Testnet"
