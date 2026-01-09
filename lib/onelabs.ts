@@ -32,9 +32,11 @@ export const NETWORK_CONFIG = {
   },
 }
 
+export const currentNetwork = process.env.NEXT_PUBLIC_NETWORK || '';
+ 
 // Helper function to get explorer URL for transactions
-export const getExplorerUrl = (type: 'transaction' | 'object' | 'account', id: string, network: 'testnet' | 'mainnet' = 'testnet'): string => {
-  const baseUrl = NETWORK_CONFIG[network].explorer
+export const getExplorerUrl = (type: 'transaction' | 'object' | 'account', id: string): string => {
+  const baseUrl = NETWORK_CONFIG[currentNetwork as keyof typeof NETWORK_CONFIG].explorer
   switch (type) {
     case 'transaction':
       return `${baseUrl}/transactionBlocksDetail?digest=${id}`
@@ -51,7 +53,6 @@ export const getExplorerUrl = (type: 'transaction' | 'object' | 'account', id: s
 export const suiClient = new SuiClient({
   url: process.env.NETWORK === 'mainnet' ? NETWORK_CONFIG.mainnet.rpc : NETWORK_CONFIG.testnet.rpc,
 })
-export const currentNetwork = process.env.NEXT_PUBLIC_NETWORK || '';
 // Load deployment info
 let deploymentInfo: any = null
 
