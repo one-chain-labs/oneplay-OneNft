@@ -262,6 +262,81 @@
         "continue_verification": "Continue to Verification",
         "continue_preview": "Continue to Preview"
       }
+    },
+    "preview": {
+      "nft_preview": {
+        "title": "NFT Image Preview",
+        "images_uploaded": "image(s) uploaded",
+        "no_image": "No image uploaded",
+        "upload_prompt": "Please go back and upload an image",
+        "label": "Preview"
+      },
+      "item_details": {
+        "title": "Item Details",
+        "series": "Series",
+        "character": "Character",
+        "manufacturer": "Manufacturer",
+        "release_year": "Release Year",
+        "condition": "Condition"
+      },
+      "verification": {
+        "title": "Verification",
+        "photos": "Verification Photos",
+        "uploaded": "uploaded",
+        "certificates": "Certificates"
+      },
+      "blockchain_details": {
+        "title": "Blockchain Details",
+        "network": "Network",
+        "network_value": "OneLabs Testnet",
+        "standard": "Standard",
+        "standard_value": "SUI NFT",
+        "minting_fee": "Minting Fee"
+      },
+      "confirmation": {
+        "title": "Ready to Mint Your NFT?",
+        "description": "Once minted, your NFT will be permanently recorded on the OneLabs blockchain and cannot be modified.",
+        "minting_button": "Minting NFT...",
+        "mint_button": "Mint NFT",
+        "no_image_error": "Please go back and upload an image before minting.",
+        "processing": {
+          "creating": "Creating your NFT on the blockchain...",
+          "wait": "This may take a few moments."
+        }
+      }
+    },
+    "success": {
+      "title": "NFT Minted Successfully!",
+      "description": "Your anime merchandise has been successfully tokenized and is now live on the blockchain.",
+      "card_title": "Your new NFT is ready!",
+      "labels": {
+        "token_id": "Token ID",
+        "nft_id": "NFT ID",
+        "network": "Network",
+        "network_name": "OneLabs Testnet",
+        "view_explorer": "View on Explorer"
+      },
+      "actions": {
+        "share": "Share NFT",
+        "view": "View NFT",
+        "share_title": "Check out my new NFT: {name}",
+        "share_text": "I just minted \"{name}\" as an NFT on AnimeVault!"
+      },
+      "next_steps": {
+        "title": "What's Next?",
+        "list": {
+          "title": "List on Marketplace",
+          "desc": "Set a price and list your NFT for sale"
+        },
+        "collection": {
+          "title": "View Your Collection",
+          "desc": "See all your NFTs in your dashboard"
+        },
+        "create": {
+          "title": "Create Another NFT",
+          "desc": "Tokenize more of your collection"
+        }
+      }
     }
   },
   "dashboard": {

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, ExternalLink, Share2, Eye, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/components/providers/language-provider"
 
 interface TokenizationSuccessProps {
   nft: {
@@ -16,13 +17,19 @@ interface TokenizationSuccessProps {
 }
 
 export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
+  const { messages } = useLanguage()
+  const success = messages.create.success
+
   if (!nft) return null
 
   const handleShare = () => {
+    const title = success.actions.share_title.replace("{name}", nft.name)
+    const text = success.actions.share_text.replace("{name}", nft.name)
+    
     if (navigator.share) {
       navigator.share({
-        title: `Check out my new NFT: ${nft.name}`,
-        text: `I just minted "${nft.name}" as an NFT on AnimeVault!`,
+        title: title,
+        text: text,
         url: window.location.origin + `/marketplace/${nft.id}`,
       })
     } else {
@@ -42,9 +49,9 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
 
       {/* Success Message */}
       <div>
-        <h2 className="text-2xl font-bold text-green-600 mb-2">NFT Minted Successfully!</h2>
+        <h2 className="text-2xl font-bold text-green-600 mb-2">{success.title}</h2>
         <p className="text-muted-foreground">
-          Your anime merchandise has been successfully tokenized and is now live on the blockchain.
+          {success.description}
         </p>
       </div>
 
@@ -55,21 +62,21 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
             <span>{nft.name}</span>
             <Badge variant="secondary">#{nft.tokenId}</Badge>
           </CardTitle>
-          <CardDescription>Your new NFT is ready!</CardDescription>
+          <CardDescription>{success.card_title}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2 text-sm">
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Token ID:</span>
+              <span className="text-muted-foreground">{success.labels.token_id}:</span>
               <span className="font-mono">#{nft.tokenId}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">NFT ID:</span>
+              <span className="text-muted-foreground">{success.labels.nft_id}:</span>
               <span className="font-mono text-xs">{nft.id}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Network:</span>
-              <span>OneLabs Testnet</span>
+              <span className="text-muted-foreground">{success.labels.network}:</span>
+              <span>{success.labels.network_name}</span>
             </div>
           </div>
 
@@ -81,7 +88,7 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2"
               >
-                View on Explorer
+                {success.labels.view_explorer}
                 <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
@@ -93,12 +100,12 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
       <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
         <Button onClick={handleShare} variant="outline" className="flex items-center gap-2 bg-transparent">
           <Share2 className="h-4 w-4" />
-          Share NFT
+          {success.actions.share}
         </Button>
         <Button asChild className="flex items-center gap-2">
           <Link href={`/marketplace/${nft.id}`}>
             <Eye className="h-4 w-4" />
-            View NFT
+            {success.actions.view}
           </Link>
         </Button>
       </div>
@@ -106,7 +113,7 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
       {/* Next Steps */}
       <Card className="max-w-lg mx-auto">
         <CardHeader>
-          <CardTitle className="text-lg">What's Next?</CardTitle>
+          <CardTitle className="text-lg">{success.next_steps.title}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
@@ -114,8 +121,8 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
               <span className="text-sm font-medium text-primary">1</span>
             </div>
             <div className="flex-1">
-              <p className="font-medium">List on Marketplace</p>
-              <p className="text-sm text-muted-foreground">Set a price and list your NFT for sale</p>
+              <p className="font-medium">{success.next_steps.list.title}</p>
+              <p className="text-sm text-muted-foreground">{success.next_steps.list.desc}</p>
             </div>
             <Button size="sm" variant="ghost" asChild>
               <Link href="/marketplace/list">
@@ -129,8 +136,8 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
               <span className="text-sm font-medium text-primary">2</span>
             </div>
             <div className="flex-1">
-              <p className="font-medium">View Your Collection</p>
-              <p className="text-sm text-muted-foreground">See all your NFTs in your dashboard</p>
+              <p className="font-medium">{success.next_steps.collection.title}</p>
+              <p className="text-sm text-muted-foreground">{success.next_steps.collection.desc}</p>
             </div>
             <Button size="sm" variant="ghost" asChild>
               <Link href="/dashboard">
@@ -144,8 +151,8 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
               <span className="text-sm font-medium text-primary">3</span>
             </div>
             <div className="flex-1">
-              <p className="font-medium">Create Another NFT</p>
-              <p className="text-sm text-muted-foreground">Tokenize more of your collection</p>
+              <p className="font-medium">{success.next_steps.create.title}</p>
+              <p className="text-sm text-muted-foreground">{success.next_steps.create.desc}</p>
             </div>
             <Button size="sm" variant="ghost" asChild>
               <Link href="/create">

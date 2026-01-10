@@ -262,6 +262,81 @@
         "continue_verification": "继续验证",
         "continue_preview": "继续预览"
       }
+    },
+    "preview": {
+      "nft_preview": {
+        "title": "NFT 图片预览",
+        "images_uploaded": "张图片已上传",
+        "no_image": "未上传图片",
+        "upload_prompt": "请返回并上传图片",
+        "label": "预览"
+      },
+      "item_details": {
+        "title": "商品详情",
+        "series": "系列",
+        "character": "角色",
+        "manufacturer": "制造商",
+        "release_year": "发布年份",
+        "condition": "成色"
+      },
+      "verification": {
+        "title": "验证",
+        "photos": "验证照片",
+        "uploaded": "已上传",
+        "certificates": "证书"
+      },
+      "blockchain_details": {
+        "title": "区块链详情",
+        "network": "网络",
+        "network_value": "OneLabs 测试网",
+        "standard": "标准",
+        "standard_value": "SUI NFT",
+        "minting_fee": "铸造费用"
+      },
+      "confirmation": {
+        "title": "准备铸造您的 NFT？",
+        "description": "一旦铸造，您的 NFT 将永久记录在 OneLabs 区块链上，无法修改。",
+        "minting_button": "正在铸造 NFT...",
+        "mint_button": "铸造 NFT",
+        "no_image_error": "铸造前请返回并上传图片。",
+        "processing": {
+          "creating": "正在区块链上创建您的 NFT...",
+          "wait": "这可能需要一点时间。"
+        }
+      }
+    },
+    "success": {
+      "title": "NFT 铸造成功！",
+      "description": "您的动漫商品已成功代币化并已在区块链上线。",
+      "card_title": "您的新 NFT 已准备就绪！",
+      "labels": {
+        "token_id": "代币 ID",
+        "nft_id": "NFT ID",
+        "network": "网络",
+        "network_name": "OneLabs 测试网",
+        "view_explorer": "在浏览器中查看"
+      },
+      "actions": {
+        "share": "分享 NFT",
+        "view": "查看 NFT",
+        "share_title": "来看看我的新 NFT：{name}",
+        "share_text": "我刚刚在 AnimeVault 上将“{name}”铸造为 NFT！"
+      },
+      "next_steps": {
+        "title": "下一步？",
+        "list": {
+          "title": "上架市场",
+          "desc": "设定价格并将您的 NFT 上架出售"
+        },
+        "collection": {
+          "title": "查看您的收藏",
+          "desc": "在仪表盘中查看您的所有 NFT"
+        },
+        "create": {
+          "title": "创建另一个 NFT",
+          "desc": "代币化更多您的收藏品"
+        }
+      }
     }
   },
   "dashboard": {
