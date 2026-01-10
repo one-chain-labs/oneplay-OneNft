@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 8080 -H 0.0.0.0",
     "lint": "next lint",
-    "start": "next start",
+    "start": "next start -p 8080 -H 0.0.0.0",
     "deploy": "npx tsx scripts/deploy-programmatic.ts",
     "test:lifecycle": "npx tsx scripts/test-lifecycle.ts",
     "faucet": "npx tsx scripts/faucet.ts",
