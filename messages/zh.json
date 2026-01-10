@@ -167,8 +167,29 @@
       "list_failed_desc": "上架您的 NFT 时出错。请重试。",
       "buy_success": "购买成功！🎊",
       "buy_success_desc": "您已成功以 {price} OCT 购买 {name}",
-      "buy_failed": "购买失败",
-      "buy_failed_desc": "完成购买时出错。请重试。"
+      "buy_failed": "购买失败"
+    },
+    "list_dialog": {
+      "title": "上架 NFT 出售",
+      "description": "为 <strong>{name}</strong> 设置价格以将其上架到市场。",
+      "price_label": "价格 (OCT)",
+      "price_placeholder": "输入价格 (OCT)",
+      "note": "该 NFT 将作为共享对象上架，任何人都可以购买。",
+      "cancel": "取消",
+      "list_button": "上架出售",
+      "listing_button": "上架中...",
+      "toasts": {
+        "wallet_not_connected": "钱包未连接",
+        "connect_first": "请先连接您的钱包",
+        "missing_owner": "缺少拥有者地址",
+        "missing_owner_desc": "无法确定 NFT 拥有者。请重新连接您的钱包。",
+        "invalid_price": "无效价格",
+        "invalid_price_desc": "请输入大于 0 的有效价格",
+        "success": "NFT 上架成功！🎉",
+        "success_desc": "您的 NFT 已以 {price} OCT 上架。在浏览器查看：{url}",
+        "failed": "上架失败",
+        "unexpected_error": "发生了意外错误"
+      }
     }
   },
   "create": {
@@ -478,6 +499,28 @@
       "purchase_success": "NFT 购买成功！🎉",
       "purchase_success_desc": "您现在是 {name} 的拥有者了。在浏览器查看：{url}",
       "purchase_failed": "购买失败"
+    },
+    "list_dialog": {
+      "title": "上架 NFT 出售",
+      "description": "将 <strong>{name}</strong> 上架到市场出售。请设置您的 OCT 价格。",
+      "price_label": "价格 (OCT)",
+      "price_placeholder": "0.00",
+      "note": "上架此物品需要支付少量的 Gas 费用。",
+      "cancel": "取消",
+      "list_button": "确认上架",
+      "listing_button": "正在上架...",
+      "toasts": {
+        "wallet_not_connected": "钱包未连接",
+        "connect_first": "请先连接您的钱包",
+        "missing_owner": "缺少拥有者信息",
+        "missing_owner_desc": "无法验证所有权。请刷新重试。",
+        "invalid_price": "价格无效",
+        "invalid_price_desc": "请输入大于 0 的有效价格",
+        "success": "NFT 上架成功！🎉",
+        "success_desc": "以上架价格 {price} OCT。查看交易：{url}",
+        "failed": "上架失败",
+        "unexpected_error": "发生意外错误"
+      }
     }
   }
 }

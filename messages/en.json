@@ -169,6 +169,28 @@
       "buy_success_desc": "You've successfully purchased {name} for {price} OCT",
       "buy_failed": "Purchase failed",
       "buy_failed_desc": "There was an error completing the purchase. Please try again."
+    },
+    "list_dialog": {
+      "title": "List NFT for Sale",
+      "description": "Set a price for <strong>{name}</strong> to list it on the marketplace.",
+      "price_label": "Price (OCT)",
+      "price_placeholder": "Enter price in OCT",
+      "note": "The NFT will be listed as a shared object and can be purchased by anyone.",
+      "cancel": "Cancel",
+      "list_button": "List for Sale",
+      "listing_button": "Listing...",
+      "toasts": {
+        "wallet_not_connected": "Wallet not connected",
+        "connect_first": "Please connect your wallet first",
+        "missing_owner": "Missing owner address",
+        "missing_owner_desc": "Unable to determine NFT owner. Please reconnect your wallet.",
+        "invalid_price": "Invalid price",
+        "invalid_price_desc": "Please enter a valid price greater than 0",
+        "success": "NFT Listed Successfully! 🎉",
+        "success_desc": "Your NFT has been listed for {price} OCT. View on explorer: {url}",
+        "failed": "Listing failed",
+        "unexpected_error": "An unexpected error occurred"
+      }
     }
   },
   "create": {
@@ -472,6 +494,28 @@
       "purchase_success": "NFT Purchased Successfully! 🎉",
       "purchase_success_desc": "You are now the owner of {name}. View on explorer: {url}",
       "purchase_failed": "Purchase failed"
+    },
+    "list_dialog": {
+      "title": "List NFT for Sale",
+      "description": "List <strong>{name}</strong> for sale on the marketplace. Set your price in OCT.",
+      "price_label": "Price (OCT)",
+      "price_placeholder": "0.00",
+      "note": "A small gas fee will be required to list this item.",
+      "cancel": "Cancel",
+      "list_button": "List for Sale",
+      "listing_button": "Listing...",
+      "toasts": {
+        "wallet_not_connected": "Wallet not connected",
+        "connect_first": "Please connect your wallet first",
+        "missing_owner": "Missing Owner Information",
+        "missing_owner_desc": "Cannot verify ownership. Please refresh.",
+        "invalid_price": "Invalid Price",
+        "invalid_price_desc": "Please enter a valid price greater than 0",
+        "success": "NFT Listed Successfully! 🎉",
+        "success_desc": "Listed for {price} OCT. View transaction: {url}",
+        "failed": "Listing Failed",
+        "unexpected_error": "An unexpected error occurred"
+      }
     }
   }
 }
