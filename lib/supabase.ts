@@ -21,7 +21,9 @@ export async function uploadImageToSupabase(file: File): Promise<string> {
   try {
     // Create unique filename with timestamp
     const timestamp = Date.now()
-    const filename = `${timestamp}-${file.name}`
+    // Sanitize filename: ASCII only, remove spaces, limit length
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_').slice(-20);
+    const filename = `${timestamp}-${sanitizedName}`
     const destPath = `merchandise/${filename}`
 
     // Read file as array buffer

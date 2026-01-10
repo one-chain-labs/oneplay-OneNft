@@ -200,6 +200,7 @@ export async function fetchNFTByObjectId(nftObjectId: string): Promise<NFTData |
  * Fetch NFT by Supabase ID
  */
 export async function fetchNFTById(id: string): Promise<NFTData | null> {
+  console.log("Fetching NFT by ID:", id)
   const { data: nft, error } = await supabase
     .from("nfts")
     .select("*")
