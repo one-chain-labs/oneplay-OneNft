@@ -1,4 +1,4 @@
-# 🎌 OneChain Anime Vault - NFT Marketplace
+# 🎌 OneChain OneNFT - NFT Marketplace
 
 **Complete NFT Lifecycle: Mint → List → Trade → Collect**
 
@@ -24,14 +24,14 @@ A decentralized marketplace for tokenizing and trading anime merchandise as NFTs
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Sarthak-006/onechain-anime-vault.git
-cd onechain-anime-vault
+git clone https://github.com/one-chain-labs/oneplay-OneNft.git
+cd oneplay-OneNft
 
 # 2. Install dependencies
 pnpm install
 
 # 3. Build Move contract
-sui move build
+one move build
 
 # 4. Deploy contract to testnet (optional - contract already deployed)
 npx tsx scripts/deploy.ts
