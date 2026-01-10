@@ -8,6 +8,7 @@ One = { git = "https://github.com/one-chain-labs/onechain.git", subdir = "crates
 
 [addresses]
 anime = "0x0"
+nft_hub = "0x0"
 
 
 [dev-dependencies]

@@ -9,7 +9,9 @@ use one::object::{Self, UID, ID};
 use one::table::{Self, Table};
 use one::transfer;
 use one::tx_context::{Self, TxContext};
+use one::package::{Self, Publisher};
 use std::type_name::{Self, TypeName};
+use std::ascii::{Self, String};
 use std::vector;
 use one::oct::OCT;
 
@@ -22,6 +24,15 @@ const PLATFORM_FEE_BPS: u64 = 250; // 2.5%
 
 const E_NOT_ADMIN: u64 = 0;
 const E_NOT_ALLOWED_GAME: u64 = 1;
+
+/// Platform Fee Rule Witness
+public struct PlatformFeeRule has drop {}
+
+/// Configuration for Platform Fee Rule
+public struct PlatformFeeConfig has drop, store {
+    fee_bps: u64,
+    recipient: address,
+}
 
 /*********************************
      * 管理员
@@ -37,7 +48,7 @@ public struct AdminCap has key {
 
 public struct GameRegistry has key {
     id: UID,
-    allowed_packages: vector<address>,
+    allowed_packages: vector<String>,
 }
 
 /*********************************
@@ -57,7 +68,7 @@ public struct PlatformProfit has key {
 public struct NFTRegistered has copy, drop {
     nft_id: ID,
     nft_type: TypeName,
-    game_package: address,
+    game_package: String,
     owner: address,
 }
 
@@ -94,7 +105,7 @@ public struct NFTSold has copy, drop {
      * 初始化
      *********************************/
 
-public entry fun init(ctx: &mut TxContext) {
+fun init(ctx: &mut TxContext) {
     // 管理员
     transfer::transfer(
         AdminCap { id: object::new(ctx) },
@@ -116,14 +127,14 @@ public entry fun init(ctx: &mut TxContext) {
      * 游戏白名单
      *********************************/
 
-public entry fun add_game(_admin: &AdminCap, registry: &mut GameRegistry, game_package: address) {
+public entry fun add_game(_admin: &AdminCap, registry: &mut GameRegistry, game_package: String) {
     vector::push_back(&mut registry.allowed_packages, game_package);
 }
 
 fun is_allowed_game(registry: &GameRegistry, nft_type: &TypeName): bool {
     vector::contains(
         &registry.allowed_packages,
-        &type_name::address_of(nft_type),
+        &type_name::get_address(nft_type),
     )
 }
 
@@ -133,7 +144,7 @@ fun is_allowed_game(registry: &GameRegistry, nft_type: &TypeName): bool {
 
 public entry fun create_kiosk(ctx: &mut TxContext) {
     let (kiosk, cap) = kiosk::new(ctx);
-    transfer::share_object(kiosk);
+    transfer::public_share_object(kiosk);
     transfer::public_transfer(cap, tx_context::sender(ctx));
 }
 
@@ -149,7 +160,7 @@ public entry fun register_nft<T: key>(nft: &T, game_registry: &GameRegistry, ctx
     event::emit(NFTRegistered {
         nft_id: object::id(nft),
         nft_type,
-        game_package: type_name::address_of(&nft_type),
+        game_package: type_name::get_address(&nft_type),
         owner: tx_context::sender(ctx),
     });
 }
@@ -158,7 +169,7 @@ public entry fun register_nft<T: key>(nft: &T, game_registry: &GameRegistry, ctx
      * NFT 放入 Kiosk
      *********************************/
 
-public entry fun place_nft<T: key>(
+public entry fun place_nft<T: key + store>(
     kiosk: &mut Kiosk,
     owner_cap: &KioskOwnerCap,
     nft: T,
@@ -180,7 +191,7 @@ public entry fun place_nft<T: key>(
      * 上架 NFT
      *********************************/
 
-public entry fun list_nft<T: key>(
+public entry fun list_nft<T: key + store>(
     kiosk: &mut Kiosk,
     owner_cap: &KioskOwnerCap,
     nft: &T,
@@ -189,7 +200,7 @@ public entry fun list_nft<T: key>(
     let nft_id = object::id(nft);
     let kiosk_id = object::id(kiosk);
 
-    kiosk::list<T>(kiosk, owner_cap, nft, price);
+    kiosk::list<T>(kiosk, owner_cap, nft_id, price);
 
     event::emit(NFTListed {
         nft_id,
@@ -202,11 +213,11 @@ public entry fun list_nft<T: key>(
      * 下架 NFT
      *********************************/
 
-public entry fun delist_nft<T: key>(kiosk: &mut Kiosk, owner_cap: &KioskOwnerCap, nft: &T) {
+public entry fun delist_nft<T: key + store>(kiosk: &mut Kiosk, owner_cap: &KioskOwnerCap, nft: &T) {
     let nft_id = object::id(nft);
     let kiosk_id = object::id(kiosk);
 
-    kiosk::delist<T>(kiosk, owner_cap, nft);
+    kiosk::delist<T>(kiosk, owner_cap, nft_id);
 
     event::emit(NFTDelisted {
         nft_id,
@@ -218,46 +229,35 @@ public entry fun delist_nft<T: key>(kiosk: &mut Kiosk, owner_cap: &KioskOwnerCap
      * 创建 TransferPolicy（含平台手续费）
      *********************************/
 
-public entry fun create_transfer_policy<T: key>(
-    _admin: &AdminCap,
-    game_registry: &GameRegistry,
+public entry fun create_transfer_policy<T: key + store>(
+    publisher: &Publisher,
     ctx: &mut TxContext,
 ) {
-    let nft_type = type_name::get<T>();
-
-    assert!(is_allowed_game(game_registry, &nft_type), E_NOT_ALLOWED_GAME);
-
-    let (policy, cap) = transfer_policy::new<T>(ctx);
+    let (mut policy, cap) = transfer_policy::new<T>(publisher, ctx);
 
     // 平台手续费
-    transfer_policy::add_rule<T>(
+    transfer_policy::add_rule(
+        PlatformFeeRule {},
         &mut policy,
         &cap,
-        Policy::Royalty {
-            receiver: @nft_hub,
+        PlatformFeeConfig {
             fee_bps: PLATFORM_FEE_BPS,
+            recipient: @nft_hub,
         },
     );
 
-    // 成交 Hook（发事件）
-    transfer_policy::add_rule<T>(
-        &mut policy,
-        &cap,
-        Policy::Custom {
-            module: @nft_hub,
-            function: b"on_transfer",
-        },
-    );
+    // Note: Custom hook removed as it requires specific implementation pattern
+    // If needed, implement a Rule that requires calling a function emitting the event.
 
-    transfer::share_object(policy);
-    transfer::transfer(cap, tx_context::sender(ctx));
+    transfer::public_share_object(policy);
+    transfer::public_transfer(cap, tx_context::sender(ctx));
 }
 
 /*********************************
      * TransferPolicy Hook（成交事件）
      *********************************/
 
-public fun on_transfer<T: key>(
+public fun on_transfer<T: key + store>(
     _policy: &TransferPolicy<T>,
     ctx: &mut TxContext,
     nft: &T,
@@ -268,7 +268,7 @@ public fun on_transfer<T: key>(
     event::emit(NFTSold {
         nft_id: object::id(nft),
         seller: tx_context::sender(ctx),
-        buyer: tx_context::recipient(ctx),
+        buyer: tx_context::sender(ctx),
         price,
         fee_paid: fee,
     });
@@ -296,5 +296,5 @@ public entry fun withdraw_profit(
         balance::split(&mut profit.profit, amount),
         ctx,
     );
-    transfer::transfer(coin, tx_context::sender(ctx));
+    transfer::public_transfer(coin, tx_context::sender(ctx));
 }
