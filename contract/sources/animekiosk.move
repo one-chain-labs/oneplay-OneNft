@@ -3,14 +3,14 @@ module anime::market_kiosk;
 use one::balance::{Self, Balance};
 use one::coin::{Self, Coin};
 use one::event;
-use one::kiosk::{Self, Kiosk, KioskOwnerCap, transfer_policy as Self};
-use one::transfer_policy::{Self, TransferPolicy, Policy};
+use one::kiosk::{Self, Kiosk, KioskOwnerCap};
+use one::transfer_policy::{Self, TransferPolicy};
 use one::object::{Self, UID, ID};
 use one::table::{Self, Table};
 use one::transfer;
 use one::tx_context::{Self, TxContext};
 use std::type_name::{Self, TypeName};
-use one::vector;
+use std::vector;
 use one::oct::OCT;
 
 /*********************************
@@ -134,7 +134,7 @@ fun is_allowed_game(registry: &GameRegistry, nft_type: &TypeName): bool {
 public entry fun create_kiosk(ctx: &mut TxContext) {
     let (kiosk, cap) = kiosk::new(ctx);
     transfer::share_object(kiosk);
-    transfer::transfer(cap, tx_context::sender(ctx));
+    transfer::public_transfer(cap, tx_context::sender(ctx));
 }
 
 /*********************************
