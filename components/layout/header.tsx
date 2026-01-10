@@ -33,8 +33,8 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
           <div className="text-2xl font-black">
-            <span className="bg-gradient-to-r from-teal-500 via-purple-500 bg-clip-text text-transparent">{messages.common.anime}</span>
-            <span className="bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">{messages.common.vault}</span>
+            <span className="bg-gradient-to-r from-teal-500 via-purple-500 bg-clip-text text-transparent"></span>
+            <span className="bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">{messages.common.anime}</span>
           </div>
         </Link>
 

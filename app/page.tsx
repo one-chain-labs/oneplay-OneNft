@@ -7,10 +7,12 @@ import { ArrowRight, Wallet } from "lucide-react"
 import Link from "next/link"
 import { WalletInfo } from "@/components/wallet/wallet-info"
 import { useLanguage } from "@/components/providers/language-provider"
+import { currentNetwork } from "@/lib/onelabs"
 
 export default function HomePage() {
   const { messages } = useLanguage()
-
+  const isMainnet = currentNetwork === 'mainnet';
+  console.log("Current Network:", currentNetwork);
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -18,7 +20,7 @@ export default function HomePage() {
         <div className="container px-4 mx-auto">
           <div className="flex flex-col items-center text-center">
             <Badge variant="secondary" className="mb-4">
-              {messages.home.hero.badge}
+              {isMainnet ? messages.home.hero.badge_mainnet : messages.home.hero.badge_testnet}
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
               {messages.home.hero.title_prefix}
@@ -54,10 +56,10 @@ export default function HomePage() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Wallet className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold">{messages.common.anime}{messages.common.vault}</span>
+            <span className="text-xl font-bold">{messages.common.anime}</span>
           </div>
           <p className="text-muted-foreground">
-            {messages.home.footer.powered_by}
+            {isMainnet ? messages.home.footer.powered_by_mainnet : messages.home.footer.powered_by_testnet}
           </p>
         </div>
       </footer>

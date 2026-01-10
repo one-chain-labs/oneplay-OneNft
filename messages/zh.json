@@ -10,28 +10,29 @@
     "disconnect": "断开连接"
   },
   "common": {
-    "anime": "动漫",
-    "vault": "金库",
+    "anime": "OneNFT",
     "language": "语言"
   },
   "home": {
     "hero": {
-      "badge": "由 OneChain OCT 测试网支持",
+      "badge_mainnet": "由 OneChain OCT 主网支持",
+      "badge_testnet": "由 OneChain OCT 测试网支持",
       "title_prefix": "连接您的",
       "title_highlight": "OneWallet",
-      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额并开始使用动漫 NFT 平台。"
+      "description": "连接您的 OneWallet 以查看您的 OCT 代币余额并开始使用 OneNFT 平台。"
     },
     "integration": {
       "title": "OneWallet 集成",
-      "description": "连接您的 OneWallet 以查看您的 OCT 测试网代币余额"
+      "description": "连接您的 OneWallet 以查看您的 OCT 代币余额"
     },
     "footer": {
-      "powered_by": "由 OneChain OCT 测试网支持"
+      "powered_by_mainnet": "由 OneChain OCT 主网支持",
+      "powered_by_testnet": "由 OneChain OCT 测试网网支持"
     }
   },
   "wallet_info": {
     "connect_title": "连接您的钱包",
-    "connect_description": "连接您的 OneWallet 以开始使用动漫 NFT 平台",
+    "connect_description": "连接您的 OneWallet 以开始使用 OneNFT 平台",
     "connect_button_connecting": "连接中...",
     "connect_button_default": "连接 OneWallet",
     "connected_title": "钱包已连接",
@@ -49,7 +50,7 @@
   "marketplace": {
     "hero": {
       "badge": "完整的 NFT 生命周期",
-      "title": "动漫 NFT 市场",
+      "title": "OneNFT 市场",
       "description": "体验完整的生命周期：",
       "mint": "铸造",
       "list": "上架",
@@ -70,7 +71,7 @@
       "collected": "已收藏"
     },
     "filters": {
-      "search_placeholder": "搜索动漫 NFT、系列或角色...",
+      "search_placeholder": "搜索 NFT、系列或角色...",
       "button": "筛选",
       "advanced": "高级筛选",
       "category": "类别",
@@ -100,7 +101,7 @@
     "dialogs": {
       "mint": {
         "title": "铸造新 NFT",
-        "desc": "在区块链上创建新的动漫周边 NFT。这将花费少量的 Gas 费。",
+        "desc": "在区块链上创建新的NFT。这将花费少量的 Gas 费。",
         "note": "要铸造 NFT，请使用“创建”页面上传您的商品详情和图片。",
         "go_create": "前往创建页面"
       },
@@ -166,15 +167,36 @@
       "list_failed_desc": "上架您的 NFT 时出错。请重试。",
       "buy_success": "购买成功！🎊",
       "buy_success_desc": "您已成功以 {price} OCT 购买 {name}",
-      "buy_failed": "购买失败",
-      "buy_failed_desc": "完成购买时出错。请重试。"
+      "buy_failed": "购买失败"
+    },
+    "list_dialog": {
+      "title": "上架 NFT 出售",
+      "description": "为 <strong>{name}</strong> 设置价格以将其上架到市场。",
+      "price_label": "价格 (OCT)",
+      "price_placeholder": "输入价格 (OCT)",
+      "note": "该 NFT 将作为共享对象上架，任何人都可以购买。",
+      "cancel": "取消",
+      "list_button": "上架出售",
+      "listing_button": "上架中...",
+      "toasts": {
+        "wallet_not_connected": "钱包未连接",
+        "connect_first": "请先连接您的钱包",
+        "missing_owner": "缺少拥有者地址",
+        "missing_owner_desc": "无法确定 NFT 拥有者。请重新连接您的钱包。",
+        "invalid_price": "无效价格",
+        "invalid_price_desc": "请输入大于 0 的有效价格",
+        "success": "NFT 上架成功！🎉",
+        "success_desc": "您的 NFT 已以 {price} OCT 上架。在浏览器查看：{url}",
+        "failed": "上架失败",
+        "unexpected_error": "发生了意外错误"
+      }
     }
   },
   "create": {
     "hero": {
       "badge": "代币化工作室",
-      "title": "创建您的动漫 NFT",
-      "description": "将您的实物动漫周边转化为区块链上经过验证的 NFT"
+      "title": "创建您的NFT",
+      "description": "将您的实物转化为区块链上经过验证的 NFT"
     },
     "steps": {
       "1": {
@@ -216,7 +238,7 @@
       "item_name": "商品名称",
       "item_name_placeholder": "例如：鬼灭之刃 炭治郎手办",
       "description": "描述",
-      "description_placeholder": "详细描述您的动漫周边商品...",
+      "description_placeholder": "详细描述您的商品...",
       "category": "类别",
       "select_category": "选择类别",
       "rarity": "稀有度",
@@ -260,6 +282,81 @@
       "buttons": {
         "continue_verification": "继续验证",
         "continue_preview": "继续预览"
+      }
+    },
+    "preview": {
+      "nft_preview": {
+        "title": "NFT 图片预览",
+        "images_uploaded": "张图片已上传",
+        "no_image": "未上传图片",
+        "upload_prompt": "请返回并上传图片",
+        "label": "预览"
+      },
+      "item_details": {
+        "title": "商品详情",
+        "series": "系列",
+        "character": "角色",
+        "manufacturer": "制造商",
+        "release_year": "发布年份",
+        "condition": "成色"
+      },
+      "verification": {
+        "title": "验证",
+        "photos": "验证照片",
+        "uploaded": "已上传",
+        "certificates": "证书"
+      },
+      "blockchain_details": {
+        "title": "区块链详情",
+        "network": "网络",
+        "network_value": "OneLabs 测试网",
+        "standard": "标准",
+        "standard_value": "OneChain NFT",
+        "minting_fee": "铸造费用"
+      },
+      "confirmation": {
+        "title": "准备铸造您的 NFT？",
+        "description": "一旦铸造，您的 NFT 将永久记录在 OneLabs 区块链上，无法修改。",
+        "minting_button": "正在铸造 NFT...",
+        "mint_button": "铸造 NFT",
+        "no_image_error": "铸造前请返回并上传图片。",
+        "processing": {
+          "creating": "正在区块链上创建您的 NFT...",
+          "wait": "这可能需要一点时间。"
+        }
+      }
+    },
+    "success": {
+      "title": "NFT 铸造成功！",
+      "description": "您的动漫商品已成功代币化并已在区块链上线。",
+      "card_title": "您的新 NFT 已准备就绪！",
+      "labels": {
+        "token_id": "代币 ID",
+        "nft_id": "NFT ID",
+        "network": "网络",
+        "network_name": "OneLabs 测试网",
+        "view_explorer": "在浏览器中查看"
+      },
+      "actions": {
+        "share": "分享 NFT",
+        "view": "查看 NFT",
+        "share_title": "来看看我的新 NFT：{name}",
+        "share_text": "我刚刚在 AnimeVault 上将“{name}”铸造为 NFT！"
+      },
+      "next_steps": {
+        "title": "下一步？",
+        "list": {
+          "title": "上架市场",
+          "desc": "设定价格并将您的 NFT 上架出售"
+        },
+        "collection": {
+          "title": "查看您的收藏",
+          "desc": "在仪表盘中查看您的所有 NFT"
+        },
+        "create": {
+          "title": "创建另一个 NFT",
+          "desc": "代币化更多您的收藏品"
+        }
       }
     }
   },
@@ -391,7 +488,7 @@
       "placeholder": "此处将显示更多同系列藏品。"
     },
     "share": {
-      "text": "快来看看这个超棒的动漫 NFT：{name}"
+      "text": "快来看看这个超棒的 NFT：{name}"
     },
     "toasts": {
       "wallet_not_connected": "钱包未连接",
@@ -402,6 +499,28 @@
       "purchase_success": "NFT 购买成功！🎉",
       "purchase_success_desc": "您现在是 {name} 的拥有者了。在浏览器查看：{url}",
       "purchase_failed": "购买失败"
+    },
+    "list_dialog": {
+      "title": "上架 NFT 出售",
+      "description": "将 <strong>{name}</strong> 上架到市场出售。请设置您的 OCT 价格。",
+      "price_label": "价格 (OCT)",
+      "price_placeholder": "0.00",
+      "note": "上架此物品需要支付少量的 Gas 费用。",
+      "cancel": "取消",
+      "list_button": "确认上架",
+      "listing_button": "正在上架...",
+      "toasts": {
+        "wallet_not_connected": "钱包未连接",
+        "connect_first": "请先连接您的钱包",
+        "missing_owner": "缺少拥有者信息",
+        "missing_owner_desc": "无法验证所有权。请刷新重试。",
+        "invalid_price": "价格无效",
+        "invalid_price_desc": "请输入大于 0 的有效价格",
+        "success": "NFT 上架成功！🎉",
+        "success_desc": "以上架价格 {price} OCT。查看交易：{url}",
+        "failed": "上架失败",
+        "unexpected_error": "发生意外错误"
+      }
     }
   }
 }

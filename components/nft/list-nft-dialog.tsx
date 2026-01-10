@@ -19,6 +19,7 @@ import { createListForSaleTransaction } from "@/lib/nft-operations"
 import { Loader2 } from "lucide-react"
 import { getExplorerUrl } from "@/lib/onelabs"
 import { logTransaction, markNFTListed } from "@/lib/nft-repository"
+import { useLanguage } from "@/components/providers/language-provider"
 
 interface ListNFTDialogProps {
   open: boolean
@@ -37,12 +38,16 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
   const { mutate: signAndExecute, isPending: isTransactionPending } = useSignAndExecuteTransaction()
   const suiClient = useSuiClient()
   const { isConnected } = useOneWallet()
+  const { messages } = useLanguage()
+  const t = (messages.nft_detail as any).list_dialog
+
+  if (!t) return null
 
   const handleList = async () => {
     if (!isConnected || !account) {
       toast({
-        title: "Wallet not connected",
-        description: "Please connect your wallet first",
+        title: t.toasts.wallet_not_connected,
+        description: t.toasts.connect_first,
         variant: "destructive",
       })
       return
@@ -50,8 +55,8 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
 
     if (!ownerAddress) {
       toast({
-        title: "Missing owner address",
-        description: "Unable to determine NFT owner. Please reconnect your wallet.",
+        title: t.toasts.missing_owner,
+        description: t.toasts.missing_owner_desc,
         variant: "destructive",
       })
       return
@@ -60,8 +65,8 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
     const priceNum = parseFloat(price)
     if (isNaN(priceNum) || priceNum <= 0) {
       toast({
-        title: "Invalid price",
-        description: "Please enter a valid price greater than 0",
+        title: t.toasts.invalid_price,
+        description: t.toasts.invalid_price_desc,
         variant: "destructive",
       })
       return
@@ -90,7 +95,7 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
       // Find the created Listing object
       const listingObject = result.objectChanges?.find(
         (obj: any) => obj.type === "created" && obj.objectType?.includes("Listing")
-      )
+      ) as any
 
       const listingId = listingObject?.objectId || ""
       if (!listingId) {
@@ -117,8 +122,8 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
       console.log("View on Explorer:", getExplorerUrl("transaction", digest))
 
       toast({
-        title: "NFT Listed Successfully! 🎉",
-        description: `Your NFT has been listed for ${priceNum} OCT. View on explorer: ${getExplorerUrl("transaction", digest)}`,
+        title: t.toasts.success,
+        description: t.toasts.success_desc.replace("{price}", priceNum.toString()).replace("{url}", getExplorerUrl("transaction", digest)),
       })
 
       onOpenChange(false)
@@ -127,8 +132,8 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
     } catch (error: any) {
       console.error("Listing failed:", error)
       toast({
-        title: "Listing failed",
-        description: error.message || "An unexpected error occurred",
+        title: t.toasts.failed,
+        description: error.message || t.toasts.unexpected_error,
         variant: "destructive",
       })
     } finally {
@@ -140,41 +145,39 @@ export function ListNFTDialog({ open, onOpenChange, nftId, nftName, ownerAddress
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>List NFT for Sale</DialogTitle>
-          <DialogDescription>
-            Set a price for <strong>{nftName}</strong> to list it on the marketplace.
-          </DialogDescription>
+          <DialogTitle>{t.title}</DialogTitle>
+          <DialogDescription dangerouslySetInnerHTML={{ __html: t.description.replace("{name}", nftName) }} />
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="price">Price (OCT)</Label>
+            <Label htmlFor="price">{t.price_label}</Label>
             <Input
               id="price"
               type="number"
               step="0.1"
               min="0"
-              placeholder="Enter price in OCT"
+              placeholder={t.price_placeholder}
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               disabled={isLoading || isTransactionPending}
             />
             <p className="text-xs text-muted-foreground">
-              The NFT will be listed as a shared object and can be purchased by anyone.
+              {t.note}
             </p>
           </div>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={isLoading || isTransactionPending}>
-            Cancel
+            {t.cancel}
           </Button>
           <Button onClick={handleList} disabled={isLoading || isTransactionPending || !price}>
             {isLoading || isTransactionPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Listing...
+                {t.listing_button}
               </>
             ) : (
-              "List for Sale"
+              t.list_button
             )}
           </Button>
         </DialogFooter>

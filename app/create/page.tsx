@@ -17,6 +17,8 @@ import { useToast } from "@/hooks/use-toast"
 import { useOneWallet } from "@/lib/wallet"
 import { logTransaction, saveMintedNFT } from "@/lib/nft-repository"
 import { useLanguage } from "@/components/providers/language-provider"
+import { currentNetwork } from "@/lib/onelabs"
+
 
 export default function CreatePage() {
   const { t } = useLanguage()
@@ -30,7 +32,7 @@ export default function CreatePage() {
   const suiClient = useSuiClient()
   const { toast } = useToast()
   const { isConnected } = useOneWallet()
-
+  
   // Combine loading states
   const isMinting = isLoading || isTransactionPending
 
@@ -251,7 +253,7 @@ export default function CreatePage() {
 
       console.log("NFT ID:", nftId)
       console.log("Transaction Hash:", mintDigest)
-      console.log("View on Explorer:", `https://onescan.cc/testnet/transactionBlocksDetail?digest=${mintDigest}`)
+      console.log("View on Explorer:", `https://onescan.cc/${currentNetwork}/transactionBlocksDetail?digest=${mintDigest}`)
 
       // Set minted NFT data
       setMintedNFT({
@@ -263,7 +265,7 @@ export default function CreatePage() {
 
       toast({
         title: t("create.toasts.mint_success"),
-        description: t("create.toasts.mint_success_desc").replace("{url}", `https://onescan.cc/testnet/transactionBlocksDetail?digest=${mintDigest}`),
+        description: t("create.toasts.mint_success_desc").replace("{url}", `https://onescan.cc/${currentNetwork}/transactionBlocksDetail?digest=${mintDigest}`),
       })
 
       reset()
