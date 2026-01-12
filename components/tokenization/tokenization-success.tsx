@@ -125,7 +125,7 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
               <p className="text-sm text-muted-foreground">{success.next_steps.list.desc}</p>
             </div>
             <Button size="sm" variant="ghost" asChild>
-              <Link href="/marketplace/list">
+              <Link href="/marketplace">
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

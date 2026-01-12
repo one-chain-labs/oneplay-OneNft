@@ -48,13 +48,14 @@ export default function NFTDetailPage() {
         setIsLoading(false)
         return
       }
+      console.log("Fetching NFT by ID:", params.id)
       try {
         // Try fetching by object ID first, then by Supabase ID
         let record = await fetchNFTByObjectId(params.id as string)
         if (!record) {
           record = await fetchNFTById(params.id as string)
         }
-        
+        console.log("Fetched NFT record:", record)
         if (record) {
           const txs = await fetchTransactionsForNft(record.nft_object_id)
           if (mounted) {
