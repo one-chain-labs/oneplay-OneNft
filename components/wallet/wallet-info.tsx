@@ -136,7 +136,9 @@ export function WalletInfo() {
                     <div className="space-y-2">
                         <span className="text-sm font-medium">{messages.wallet_info.address_label}</span>
                         <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
-                            <code className="text-xs flex-1">{address}</code>
+                            <code className="text-xs flex-1">
+                                {address ? `${address.slice(0, 6)}...${address.slice(-5)}` : ''}
+                            </code>
                             <Button
                                 variant="ghost"
                                 size="sm"

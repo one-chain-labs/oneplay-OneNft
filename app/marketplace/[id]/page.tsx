@@ -362,7 +362,7 @@ export default function NFTDetailPage() {
                   </Avatar>
                   <div>
                     <div className="font-medium">{t("nft_detail.info_cards.owner")}</div>
-                    <div className="text-sm text-muted-foreground font-mono">{nft.owner}</div>
+                    <div className="text-sm text-muted-foreground font-mono">{nft.owner ? `${nft.owner.slice(0, 6)}...${nft.owner.slice(-5)}` : ''}</div>
                   </div>
                 </div>
               </CardContent>
@@ -383,7 +383,7 @@ export default function NFTDetailPage() {
                   </Avatar>
                   <div>
                     <div className="font-medium">{t("nft_detail.info_cards.creator")}</div>
-                    <div className="text-sm text-muted-foreground font-mono">{nft.creator}</div>
+                    <div className="text-sm text-muted-foreground font-mono">{nft.creator ? `${nft.creator.slice(0, 6)}...${nft.creator.slice(-5)}` : ''}</div>
                   </div>
                 </div>
               </CardContent>
