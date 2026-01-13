@@ -201,8 +201,8 @@
     },
     "steps": {
       "1": {
-        "name": "Item Details",
-        "desc": "Basic information about your merchandise"
+        "name": "NFT Details",
+        "desc": "Basic information about your NFT"
       },
       "2": {
         "name": "Verification",
@@ -235,24 +235,24 @@
       "mint_failed": "Minting failed"
     },
     "form": {
-      "item_details": "Item Details",
-      "item_name": "Item Name",
+      "item_details": "NFT Details",
+      "item_name": "NFT Name",
       "item_name_placeholder": "e.g., Demon Slayer Tanjiro Figure",
       "description": "Description",
-      "description_placeholder": "Describe your item in detail...",
+      "description_placeholder": "Describe your creative concept, NFT story, or holder rights...",
       "category": "Category",
       "select_category": "Select category",
       "rarity": "Rarity",
       "select_rarity": "Select rarity",
-      "attributes": "Item Attributes",
-      "series": "Anime Series",
+      "attributes": "NFT Attributes",
+      "series": "Series",
       "series_placeholder": "e.g., Demon Slayer",
-      "character": "Character",
+      "character": "Creators/Artists",
       "character_placeholder": "e.g., Tanjiro Kamado",
-      "manufacturer": "Manufacturer",
-      "manufacturer_placeholder": "e.g., Good Smile Company",
+      "manufacturer": "Technology stack/protocol",
+      "manufacturer_placeholder": "e.g., move/typescript",
       "release_year": "Release Year",
-      "release_year_placeholder": "e.g., 2023",
+      "release_year_placeholder": "e.g., 2023.1.beta",
       "condition": "Condition",
       "select_condition": "Select condition",
       "conditions": {
@@ -263,8 +263,8 @@
         "poor": "Poor - Significant wear"
       },
       "images": {
-        "label": "Item Images",
-        "upload_desc": "Upload high-quality photos of your merchandise",
+        "label": "NFT Images",
+        "upload_desc": "Upload high-quality photos of your NFT",
         "upload_button": "Upload Images",
         "drag_drop": "Drag & drop or click to upload",
         "requirements": "PNG, JPG up to 10MB each. Minimum 1 image required.",
@@ -272,7 +272,7 @@
       },
       "verification": {
         "title": "Verification Photos",
-        "desc": "Upload clear photos showing the item's condition, authenticity marks, and any unique features",
+        "desc": "Upload clear photos showing the NFT's condition, authenticity marks, and any unique features",
         "upload_photos": "Upload Verification Photos",
         "upload_certs": "Upload Certificates",
         "photo_reqs": "PNG, JPG up to 10MB each",
@@ -294,7 +294,7 @@
         "label": "Preview"
       },
       "item_details": {
-        "title": "Item Details",
+        "title": "NFT Details",
         "series": "Series",
         "character": "Character",
         "manufacturer": "Manufacturer",
@@ -396,7 +396,7 @@
         "list_for_sale": "List for Sale"
       },
       "filters": {
-        "all": "All Items",
+        "all": "All NFTs",
         "listed": "Listed",
         "unlisted": "Not Listed",
         "figure": "Figures",
@@ -480,7 +480,7 @@
     "more_collection": {
       "title": "More from this Collection",
       "description": "Discover other NFTs from the same creator or series",
-      "placeholder": "More items from this collection will be displayed here."
+      "placeholder": "More NFTs from this collection will be displayed here."
     },
     "share": {
       "text": "Check out this amazing NFT: {name}"
@@ -500,7 +500,7 @@
       "description": "List <strong>{name}</strong> for sale on the marketplace. Set your price in OCT.",
       "price_label": "Price (OCT)",
       "price_placeholder": "0.00",
-      "note": "A small gas fee will be required to list this item.",
+      "note": "A small gas fee will be required to list this NFT.",
       "cancel": "Cancel",
       "list_button": "List for Sale",
       "listing_button": "Listing...",

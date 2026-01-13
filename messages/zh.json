@@ -102,7 +102,7 @@
       "mint": {
         "title": "铸造新 NFT",
         "desc": "在区块链上创建新的NFT。这将花费少量的 Gas 费。",
-        "note": "要铸造 NFT，请使用“创建”页面上传您的商品详情和图片。",
+        "note": "要铸造 NFT，请使用“创建”页面上传您的NFT详情和图片。",
         "go_create": "前往创建页面"
       },
       "buy": {
@@ -200,8 +200,8 @@
     },
     "steps": {
       "1": {
-        "name": "商品详情",
-        "desc": "关于您商品的基本信息"
+        "name": "NFT详情",
+        "desc": "关于您NFT的基本信息"
       },
       "2": {
         "name": "验证",
@@ -234,24 +234,24 @@
       "mint_failed": "铸造失败"
     },
     "form": {
-      "item_details": "商品详情",
-      "item_name": "商品名称",
-      "item_name_placeholder": "例如：鬼灭之刃 炭治郎手办",
+      "item_details": "NFT详情",
+      "item_name": "NFT名称",
+      "item_name_placeholder": "例如：未来都市通行证",
       "description": "描述",
-      "description_placeholder": "详细描述您的商品...",
+      "description_placeholder": "介绍您的创作理念、NFT 故事或持有者权益...",
       "category": "类别",
       "select_category": "选择类别",
       "rarity": "稀有度",
       "select_rarity": "选择稀有度",
-      "attributes": "商品属性",
-      "series": "动漫系列",
+      "attributes": "NFT属性",
+      "series": "所属系列",
       "series_placeholder": "例如：鬼灭之刃",
-      "character": "角色",
+      "character": "创作者/艺术家",
       "character_placeholder": "例如：灶门炭治郎",
-      "manufacturer": "制造商",
-      "manufacturer_placeholder": "例如：Good Smile Company",
-      "release_year": "发布年份",
-      "release_year_placeholder": "例如：2023",
+      "manufacturer": "技术栈/协议",
+      "manufacturer_placeholder": "例如：move/typescript",
+      "release_year": "版本",
+      "release_year_placeholder": "例如：2023.1.beta",
       "condition": "成色",
       "select_condition": "选择成色",
       "conditions": {
@@ -262,8 +262,8 @@
         "poor": "较差 - 严重磨损"
       },
       "images": {
-        "label": "商品图片",
-        "upload_desc": "上传您商品的高质量照片",
+        "label": "NFT图片",
+        "upload_desc": "上传您NFT的高质量照片",
         "upload_button": "上传图片",
         "drag_drop": "拖拽或点击上传",
         "requirements": "PNG, JPG 格式，每张最大 10MB。至少上传 1 张图片。",
@@ -271,7 +271,7 @@
       },
       "verification": {
         "title": "验证照片",
-        "desc": "上传清晰的照片，展示商品的成色、防伪标记和任何独特特征",
+        "desc": "上传清晰的照片，展示NFT的成色、防伪标记和任何独特特征",
         "upload_photos": "上传验证照片",
         "upload_certs": "上传证书",
         "photo_reqs": "PNG, JPG 格式，每张最大 10MB",
@@ -293,11 +293,11 @@
         "label": "预览"
       },
       "item_details": {
-        "title": "商品详情",
+        "title": "NFT详情",
         "series": "系列",
-        "character": "角色",
-        "manufacturer": "制造商",
-        "release_year": "发布年份",
+        "character": "创作者/艺术家",
+        "manufacturer": "技术栈/协议",
+        "release_year": "铸造日期/版本",
         "condition": "成色"
       },
       "verification": {
@@ -328,7 +328,7 @@
     },
     "success": {
       "title": "NFT 铸造成功！",
-      "description": "您的动漫商品已成功代币化并已在区块链上线。",
+      "description": "您的NFT已成功代币化并已在区块链上线。",
       "card_title": "您的新 NFT 已准备就绪！",
       "labels": {
         "token_id": "代币 ID",
