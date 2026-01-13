@@ -15,7 +15,6 @@ create table if not exists public.nfts (
   character text,
   manufacturer text,
   release_year int,
-  condition text,
   creator_address text not null,
   owner_address text not null,
   status text not null default 'minted',

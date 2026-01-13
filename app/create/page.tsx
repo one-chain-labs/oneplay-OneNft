@@ -237,7 +237,6 @@ export default function CreatePage() {
         release_year: tokenizationData.attributes?.releaseYear
           ? Number(tokenizationData.attributes.releaseYear)
           : undefined,
-        condition: tokenizationData.attributes?.condition,
         creator_address: account.address,
         owner_address: account.address,
         status: "minted",

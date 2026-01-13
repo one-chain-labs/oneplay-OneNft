@@ -71,7 +71,7 @@
       "collected": "已收藏"
     },
     "filters": {
-      "search_placeholder": "搜索 NFT、系列或角色...",
+      "search_placeholder": "搜索 NFT、系列/项目或角色...",
       "button": "筛选",
       "advanced": "高级筛选",
       "category": "类别",
@@ -246,7 +246,7 @@
       "rarity": "稀有度",
       "select_rarity": "选择稀有度",
       "attributes": "NFT属性",
-      "series": "所属系列",
+      "series": "所属系列或项目",
       "series_placeholder": "例如：鬼灭之刃",
       "character": "创作者/艺术家",
       "character_placeholder": "例如：灶门炭治郎",
@@ -254,15 +254,6 @@
       "manufacturer_placeholder": "例如：move/typescript",
       "release_year": "版本",
       "release_year_placeholder": "例如：2023.1.beta",
-      "condition": "成色",
-      "select_condition": "选择成色",
-      "conditions": {
-        "mint": "全新 - 完美成色",
-        "near_mint": "近新 - 极佳成色",
-        "good": "良好 - 轻微磨损",
-        "fair": "一般 - 明显磨损",
-        "poor": "较差 - 严重磨损"
-      },
       "images": {
         "label": "NFT图片",
         "upload_desc": "上传您NFT的高质量照片",
@@ -296,11 +287,10 @@
       },
       "item_details": {
         "title": "NFT详情",
-        "series": "系列",
+        "series": "系列/项目",
         "character": "创作者/艺术家",
         "manufacturer": "技术栈/协议",
-        "release_year": "铸造日期/版本",
-        "condition": "成色"
+        "release_year": "铸造日期/版本"
       },
       "verification": {
         "title": "验证",
@@ -337,7 +327,8 @@
         "token_id": "代币 ID",
         "nft_id": "NFT ID",
         "network": "网络",
-        "network_name": "OneLabs 测试网",
+        "network_name_mainnet": "OneLabs 主网",
+        "network_name_testnet": "OneLabs 测试网",
         "view_explorer": "在浏览器中查看"
       },
       "actions": {
@@ -460,15 +451,14 @@
     "tabs": {
       "details": "详情",
       "history": "历史",
-      "more": "同系列更多"
+      "more": "同系列/项目更多"
     },
     "attributes": {
       "title": "属性",
-      "series": "系列",
+      "series": "系列/项目",
       "character": "角色",
       "manufacturer": "制造商",
       "release_year": "发布年份",
-      "condition": "成色",
       "rarity": "稀有度",
       "unknown": "未知"
     },
@@ -490,9 +480,9 @@
       "actor": "操作者"
     },
     "more_collection": {
-      "title": "更多同系列藏品",
-      "description": "探索同一创作者或系列的更多 NFT",
-      "placeholder": "此处将显示更多同系列藏品。"
+      "title": "更多同系列/项目藏品",
+      "description": "探索同一创作者或系列/项目的更多 NFT",
+      "placeholder": "此处将显示更多同系列/项目藏品。"
     },
     "share": {
       "text": "快来看看这个超棒的 NFT：{name}"

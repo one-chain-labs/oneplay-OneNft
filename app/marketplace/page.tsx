@@ -114,7 +114,6 @@ export default function MarketplacePage() {
       character: record.character || "Unknown Character",
       manufacturer: record.manufacturer || undefined,
       releaseYear: record.release_year || undefined,
-      condition: record.condition || undefined,
     },
     listingId: record.listing_id,
   })

@@ -11,7 +11,6 @@ export interface NFTData {
   character?: string
   manufacturer?: string
   release_year?: number
-  condition?: string
   owner_address: string
   creator_address: string
   status: "minted" | "listed" | "owned" | "sold"
@@ -54,7 +53,6 @@ export async function saveMintedNFT(data: NFTData): Promise<NFTData> {
       character: data.character || null,
       manufacturer: data.manufacturer || null,
       release_year: data.release_year || null,
-      condition: data.condition || null,
       owner_address: data.owner_address,
       creator_address: data.creator_address,
       status: data.status,

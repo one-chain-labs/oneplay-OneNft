@@ -99,7 +99,6 @@ export default function NFTDetailPage() {
         character: nftRecord.character || t("nft_detail.attributes.character"),
         manufacturer: nftRecord.manufacturer || undefined,
         releaseYear: nftRecord.release_year || undefined,
-        condition: nftRecord.condition || undefined,
       },
     }
   }, [nftRecord, t])
@@ -426,10 +425,6 @@ export default function NFTDetailPage() {
                     <div>
                       <span className="text-muted-foreground">{t("nft_detail.attributes.release_year")}:</span>
                       <p className="font-medium">{nft.attributes.releaseYear ?? "—"}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">{t("nft_detail.attributes.condition")}:</span>
-                      <p className="font-medium capitalize">{nft.attributes.condition ?? t("nft_detail.attributes.unknown")}</p>
                     </div>
                     <div>
                       <span className="text-muted-foreground">{t("nft_detail.attributes.rarity")}:</span>

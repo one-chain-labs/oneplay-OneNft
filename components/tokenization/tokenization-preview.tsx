@@ -122,12 +122,6 @@ export function TokenizationPreview({ data, onConfirm, isLoading }: Tokenization
                     <p className="font-medium">{data.attributes.releaseYear}</p>
                   </div>
                 )}
-                {data.attributes?.condition && (
-                  <div className="col-span-2">
-                    <span className="text-muted-foreground">{t.item_details.condition}:</span>
-                    <p className="font-medium capitalize">{data.attributes.condition.replace("-", " ")}</p>
-                  </div>
-                )}
               </div>
             </CardContent>
           </Card>

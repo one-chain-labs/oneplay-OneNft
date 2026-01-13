@@ -15,7 +15,6 @@ export interface AnimeNFT {
     character: string
     manufacturer?: string
     releaseYear?: number
-    condition?: string
   }
 }
 
@@ -50,7 +49,6 @@ export interface TokenizationRequest {
     character: string
     manufacturer?: string
     releaseYear?: number
-    condition?: string
   }
   physicalVerification: {
     photos: File[]
@@ -71,7 +69,6 @@ export interface StoredNft {
   character?: string | null
   manufacturer?: string | null
   release_year?: number | null
-  condition?: string | null
   creator_address: string
   owner_address: string
   status: "minted" | "listed" | "owned" | "sold"

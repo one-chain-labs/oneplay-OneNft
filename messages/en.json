@@ -71,7 +71,7 @@
       "collected": "Collected"
     },
     "filters": {
-      "search_placeholder": "Search NFTs, series, or characters...",
+      "search_placeholder": "Search NFTs, series/project, or characters...",
       "button": "Filters",
       "advanced": "Advanced Filters",
       "category": "Category",
@@ -247,7 +247,7 @@
       "rarity": "Rarity",
       "select_rarity": "Select rarity",
       "attributes": "NFT Attributes",
-      "series": "Series",
+      "series": "Series/Project",
       "series_placeholder": "e.g., Demon Slayer",
       "character": "Creators/Artists",
       "character_placeholder": "e.g., Tanjiro Kamado",
@@ -255,15 +255,6 @@
       "manufacturer_placeholder": "e.g., move/typescript",
       "release_year": "Release Year",
       "release_year_placeholder": "e.g., 2023.1.beta",
-      "condition": "Condition",
-      "select_condition": "Select condition",
-      "conditions": {
-        "mint": "Mint - Perfect condition",
-        "near_mint": "Near Mint - Excellent condition",
-        "good": "Good - Minor wear",
-        "fair": "Fair - Noticeable wear",
-        "poor": "Poor - Significant wear"
-      },
       "images": {
         "label": "NFT Images",
         "upload_desc": "Upload high-quality photos of your NFT",
@@ -297,11 +288,10 @@
       },
       "item_details": {
         "title": "NFT Details",
-        "series": "Series",
+        "series": "Series/Project",
         "character": "Character",
         "manufacturer": "Manufacturer",
-        "release_year": "Release Year",
-        "condition": "Condition"
+        "release_year": "Release Year"
       },
       "verification": {
         "title": "Verification",
@@ -338,7 +328,8 @@
         "token_id": "Token ID",
         "nft_id": "NFT ID",
         "network": "Network",
-        "network_name": "OneLabs Testnet",
+        "network_name_mainnet": "OneLabs Mainnet",
+        "network_name_testnet": "OneLabs Testnet",
         "view_explorer": "View on Explorer"
       },
       "actions": {
@@ -459,11 +450,10 @@
     },
     "attributes": {
       "title": "Attributes",
-      "series": "Series",
+      "series": "Series/Project",
       "character": "Character",
       "manufacturer": "Manufacturer",
       "release_year": "Release Year",
-      "condition": "Condition",
       "rarity": "Rarity",
       "unknown": "Unknown"
     },
@@ -486,7 +476,7 @@
     },
     "more_collection": {
       "title": "More from this Collection",
-      "description": "Discover other NFTs from the same creator or series",
+      "description": "Discover other NFTs from the same creator or series/project",
       "placeholder": "More NFTs from this collection will be displayed here."
     },
     "share": {

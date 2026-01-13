@@ -299,25 +299,6 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
               onChange={(e) => handleInputChange("attributes.releaseYear", Number.parseInt(e.target.value))}
             />
           </div>
-
-          <div className="md:col-span-2">
-            <Label htmlFor="condition">{t("create.form.condition")}</Label>
-            <Select
-              value={formData.attributes?.condition}
-              onValueChange={(value) => handleInputChange("attributes.condition", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={t("create.form.select_condition")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="mint">{t("create.form.conditions.mint")}</SelectItem>
-                <SelectItem value="near-mint">{t("create.form.conditions.near_mint")}</SelectItem>
-                <SelectItem value="good">{t("create.form.conditions.good")}</SelectItem>
-                <SelectItem value="fair">{t("create.form.conditions.fair")}</SelectItem>
-                <SelectItem value="poor">{t("create.form.conditions.poor")}</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
         </div>
       </div>
 

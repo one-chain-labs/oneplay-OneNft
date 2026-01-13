@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { CheckCircle, ExternalLink, Share2, Eye, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/components/providers/language-provider"
+import { currentNetwork } from "@/lib/onelabs"
 
 interface TokenizationSuccessProps {
   nft: {
@@ -19,6 +20,7 @@ interface TokenizationSuccessProps {
 export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
   const { messages } = useLanguage()
   const success = messages.create.success
+  const isMainnet = currentNetwork === 'mainnet';
 
   if (!nft) return null
 
@@ -76,7 +78,8 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">{success.labels.network}:</span>
-              <span>{success.labels.network_name}</span>
+              {/* @ts-ignore: Dynamic keys from JSON */}
+              <span>{isMainnet ? success.labels.network_name_mainnet : success.labels.network_name_testnet}</span>
             </div>
           </div>
 
