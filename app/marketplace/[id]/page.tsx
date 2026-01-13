@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useCurrentAccount, useSignAndExecuteTransaction, useSuiClient } from "@onelabs/dapp-kit"
 import { useOneWallet } from "@/lib/wallet"
 import { createPurchaseTransaction } from "@/lib/nft-operations"
-import { getExplorerUrl } from "@/lib/onelabs"
+import { getExplorerUrl, currentNetwork } from "@/lib/onelabs" // Import currentNetwork
 import {
   fetchNFTByObjectId,
   fetchNFTById,
@@ -30,6 +30,8 @@ import { useLanguage } from "@/components/providers/language-provider"
 export default function NFTDetailPage() {
   const { t } = useLanguage()
   const params = useParams<{ id: string }>()
+  const isMainnet = currentNetwork === 'mainnet'; // Determine if mainnet
+
   const [isLiked, setIsLiked] = useState(false)
   const [isPurchasing, setIsPurchasing] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -456,7 +458,7 @@ export default function NFTDetailPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-muted-foreground">{t("nft_detail.blockchain.network")}:</span>
-                      <span>{t("nft_detail.blockchain.network_name")}</span>
+                      <span>{isMainnet ? t("nft_detail.blockchain.mainnet_value") : t("nft_detail.blockchain.testnet_value")}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-muted-foreground">{t("nft_detail.blockchain.standard")}:</span>
