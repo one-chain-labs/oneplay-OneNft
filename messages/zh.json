@@ -327,8 +327,8 @@
         "token_id": "代币 ID",
         "nft_id": "NFT ID",
         "network": "网络",
-        "network_name_mainnet": "OneLabs 主网",
-        "network_name_testnet": "OneLabs 测试网",
+        "network_name_mainnet": "OneChain 主网",
+        "network_name_testnet": "OneChain 测试网",
         "view_explorer": "在浏览器中查看"
       },
       "actions": {

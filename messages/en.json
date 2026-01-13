@@ -328,8 +328,8 @@
         "token_id": "Token ID",
         "nft_id": "NFT ID",
         "network": "Network",
-        "network_name_mainnet": "OneLabs Mainnet",
-        "network_name_testnet": "OneLabs Testnet",
+        "network_name_mainnet": "OneChain Mainnet",
+        "network_name_testnet": "OneChain Testnet",
         "view_explorer": "View on Explorer"
       },
       "actions": {
