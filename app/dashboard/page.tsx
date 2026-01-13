@@ -291,10 +291,12 @@ export default function DashboardPage() {
                       <SelectItem value="all">{t("dashboard.collection.filters.all")}</SelectItem>
                       <SelectItem value="listed">{t("dashboard.collection.filters.listed")}</SelectItem>
                       <SelectItem value="unlisted">{t("dashboard.collection.filters.unlisted")}</SelectItem>
-                      <SelectItem value="figure">{t("dashboard.collection.filters.figure")}</SelectItem>
-                      <SelectItem value="card">{t("dashboard.collection.filters.card")}</SelectItem>
-                      <SelectItem value="poster">{t("dashboard.collection.filters.poster")}</SelectItem>
-                      <SelectItem value="accessory">{t("dashboard.collection.filters.accessory")}</SelectItem>
+                      <SelectItem value="art">{t("dashboard.collection.filters.art")}</SelectItem>
+                      <SelectItem value="PFP">{t("dashboard.collection.filters.PFP")}</SelectItem>
+                      <SelectItem value="assets">{t("dashboard.collection.filters.assets")}</SelectItem>
+                      <SelectItem value="collectibles">{t("dashboard.collection.filters.collectibles")}</SelectItem>
+                      <SelectItem value="others">{t("dashboard.collection.filters.others")}</SelectItem>
+                      <SelectItem value="utility">{t("dashboard.collection.filters.utility")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

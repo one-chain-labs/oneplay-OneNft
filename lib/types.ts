@@ -3,7 +3,7 @@ export interface AnimeNFT {
   name: string
   description: string
   imageUrl: string
-  category: "figure" | "card" | "poster" | "accessory" | "other"
+  category: "art" | "PFP" | "assets" | "collectibles" | "utility" | "media" | "others"
   rarity: "common" | "uncommon" | "rare" | "epic" | "legendary"
   creator: string
   owner: string
@@ -24,7 +24,7 @@ export interface MarketplaceListing {
   nftId: string
   seller: string
   price: number
-  currency: "OCT" | "SUI"
+  currency: "OCT"
   listedAt: string
   status: "active" | "sold" | "cancelled"
 }

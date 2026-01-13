@@ -138,11 +138,13 @@
       }
     },
     "categories": {
-      "figure": "Figure",
-      "card": "Card",
-      "poster": "Poster",
-      "accessory": "Accessory",
-      "other": "Other"
+      "art": "Digital Art",
+      "PFP": "PFP/Profile Pictures",
+      "assets": "Gaming Assets",
+      "collectibles": "Collectibles",
+      "utility": "Utility",
+      "media": "Media",
+      "others": "Others"
     },
     "rarities": {
       "common": "Common",
@@ -399,10 +401,13 @@
         "all": "All NFTs",
         "listed": "Listed",
         "unlisted": "Not Listed",
-        "figure": "Figures",
-        "card": "Cards",
-        "poster": "Posters",
-        "accessory": "Accessories"
+        "art": "Digital Art",
+        "PFP": "PFP",
+        "assets": "Gaming Assets",
+        "collectibles": "Collectibles",
+        "utility": "Utility",
+        "media": "Music/Video",
+        "others": "Others"
       }
     },
     "activity": {

@@ -102,13 +102,13 @@ export default function MarketplacePage() {
     name: record.name,
     description: record.description || "",
     imageUrl: record.image_url || "/placeholder.svg",
-    category: (record.category as AnimeNFT["category"]) || "other",
+    category: (record.category as AnimeNFT["category"]) || "others",
     rarity: (record.rarity as AnimeNFT["rarity"]) || "common",
     creator: record.creator_address,
     owner: record.owner_address,
     price: record.listing_price_oct || record.price_oct || undefined,
     isListed: record.status === "listed",
-    createdAt: record.created_at,
+    createdAt: record.created_at || "",
     attributes: {
       series: record.series || "Unknown Series",
       character: record.character || "Unknown Character",
@@ -121,7 +121,7 @@ export default function MarketplacePage() {
 
   const marketplaceItems = useMemo(() => nftRecords.map(mapRecordToNFT), [nftRecords])
 
-  const categories = ["figure", "card", "poster", "accessory", "other"]
+  const categories = ["art", "PFP", "assets", "collectibles", "utility", "media", "others"]
   const rarities = ["common", "uncommon", "rare", "epic", "legendary"]
   const lifecycleStages = ["minted", "listed", "trading", "collected"]
 

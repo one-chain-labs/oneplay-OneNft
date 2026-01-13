@@ -223,11 +223,13 @@ export function TokenizationForm({ onSubmit, initialData = {}, step = "details" 
                 <SelectValue placeholder={t("create.form.select_category")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="figure">{t("marketplace.categories.figure")}</SelectItem>
-                <SelectItem value="card">{t("marketplace.categories.card")}</SelectItem>
-                <SelectItem value="poster">{t("marketplace.categories.poster")}</SelectItem>
-                <SelectItem value="accessory">{t("marketplace.categories.accessory")}</SelectItem>
-                <SelectItem value="other">{t("marketplace.categories.other")}</SelectItem>
+                <SelectItem value="art">{t("marketplace.categories.art")}</SelectItem>
+                <SelectItem value="PFP">{t("marketplace.categories.PFP")}</SelectItem>
+                <SelectItem value="assets">{t("marketplace.categories.assets")}</SelectItem>
+                <SelectItem value="collectibles">{t("marketplace.categories.collectibles")}</SelectItem>
+                <SelectItem value="utility">{t("marketplace.categories.utility")}</SelectItem>
+                 <SelectItem value="media">{t("marketplace.categories.media")}</SelectItem>
+                  <SelectItem value="other">{t("marketplace.categories.others")}</SelectItem>
               </SelectContent>
             </Select>
           </div>

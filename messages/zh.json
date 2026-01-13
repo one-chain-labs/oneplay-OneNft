@@ -138,11 +138,13 @@
       }
     },
     "categories": {
-      "figure": "手办",
-      "card": "卡牌",
-      "poster": "海报",
-      "accessory": "配件",
-      "other": "其他"
+      "art": "数字艺术",
+      "PFP": "PFP / 头像",
+      "assets": "游戏资产",
+      "collectibles": "收藏品",
+      "utility": "实用型",
+      "media": "音乐/视频",
+      "others": "其他"
     },
     "rarities": {
       "common": "普通",
@@ -390,10 +392,13 @@
         "all": "所有物品",
         "listed": "已上架",
         "unlisted": "未上架",
-        "figure": "手办",
-        "card": "卡片",
-        "poster": "海报",
-        "accessory": "饰品"
+        "art":"数字艺术",
+        "PFP": "头像",
+        "assets": "游戏资产",
+        "collectibles": "收藏品",
+        "utility": "实用型",
+        "media": "音乐/视频",
+        "others": "其他"
       },
       "loading": "正在加载收藏...",
       "empty": "未找到物品",
