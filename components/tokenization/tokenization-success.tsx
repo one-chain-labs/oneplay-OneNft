@@ -74,7 +74,7 @@ export function TokenizationSuccess({ nft }: TokenizationSuccessProps) {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">{success.labels.nft_id}:</span>
-              <span className="font-mono text-xs">{nft.id}</span>
+              <span className="font-mono text-xs">{nft.id ? `${nft.id.slice(0, 6)}...${nft.id.slice(-5)}` : ''}</span> 
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">{success.labels.network}:</span>
