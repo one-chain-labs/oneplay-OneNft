@@ -311,14 +311,15 @@
       "blockchain_details": {
         "title": "区块链详情",
         "network": "网络",
-        "network_value": "OneLabs 测试网",
+        "mainnet_value": "OneChain 主网",
+        "testnet_value": "OneChain 测试网",
         "standard": "标准",
         "standard_value": "OneChain NFT",
         "minting_fee": "铸造费用"
       },
       "confirmation": {
         "title": "准备铸造您的 NFT？",
-        "description": "一旦铸造，您的 NFT 将永久记录在 OneLabs 区块链上，无法修改。",
+        "description": "一旦铸造，您的 NFT 将永久记录在 OneChain 区块链上，无法修改。",
         "minting_button": "正在铸造 NFT...",
         "mint_button": "铸造 NFT",
         "no_image_error": "铸造前请返回并上传图片。",
@@ -475,7 +476,8 @@
       "title": "区块链详情",
       "token_id": "Token ID",
       "network": "网络",
-      "network_name": "OneChain OCT 测试网",
+      "mainnet_value": "OneChain 主网",
+      "testnet_value": "OneChain 测试网",
       "standard": "标准",
       "standard_name": "OCT NFT",
       "created": "创建时间",

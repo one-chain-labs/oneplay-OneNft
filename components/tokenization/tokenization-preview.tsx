@@ -7,12 +7,14 @@ import { Separator } from "@/components/ui/separator"
 import { Loader2, Sparkles, Eye, Tag, User, Shield } from "lucide-react"
 import type { TokenizationRequest } from "@/lib/types"
 import { useLanguage } from "@/components/providers/language-provider"
+import { currentNetwork } from "@/lib/onelabs"
 
 interface TokenizationPreviewProps {
   data: Partial<TokenizationRequest>
   onConfirm: () => void
   isLoading: boolean
 }
+const isMainnet = currentNetwork === 'mainnet';
 
 export function TokenizationPreview({ data, onConfirm, isLoading }: TokenizationPreviewProps) {
   const { messages } = useLanguage()
@@ -161,7 +163,7 @@ export function TokenizationPreview({ data, onConfirm, isLoading }: Tokenization
             <CardContent className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">{t.blockchain_details.network}:</span>
-                <span className="font-medium">{t.blockchain_details.network_value}</span>
+                <span className="font-medium">{isMainnet ? t.blockchain_details.mainnet_value : t.blockchain_details.testnet_value}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">{t.blockchain_details.standard}:</span>

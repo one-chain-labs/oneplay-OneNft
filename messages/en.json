@@ -312,14 +312,15 @@
       "blockchain_details": {
         "title": "Blockchain Details",
         "network": "Network",
-        "network_value": "OneLabs Testnet",
+        "mainnet_value": "OneChain Mainnet",
+        "testnet_value": "OneChain Testnet",
         "standard": "Standard",
         "standard_value": "OneChain NFT",
         "minting_fee": "Minting Fee"
       },
       "confirmation": {
         "title": "Ready to Mint Your NFT?",
-        "description": "Once minted, your NFT will be permanently recorded on the OneLabs blockchain and cannot be modified.",
+        "description": "Once minted, your NFT will be permanently recorded on the OneChain blockchain and cannot be modified.",
         "minting_button": "Minting NFT...",
         "mint_button": "Mint NFT",
         "no_image_error": "Please go back and upload an image before minting.",
@@ -470,7 +471,8 @@
       "title": "Blockchain Details",
       "token_id": "Token ID",
       "network": "Network",
-      "network_name": "OneChain OCT Testnet",
+      "mainnet_value": "OneChain Mainnet",
+      "testnet_value": "OneChain Testnet",
       "standard": "Standard",
       "standard_name": "OCT NFT",
       "created": "Created",
